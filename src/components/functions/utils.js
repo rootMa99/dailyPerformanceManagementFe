@@ -20,7 +20,6 @@ export const getStartAndEndMonth = (inputDate) => {
   return { start: startOfMonthFormatted, end: endOfMonthFormatted };
 };
 export const getOnlyDay = (data) => {
-  console.log(data);
   if (data.length === 0) {
     return [];
   }
@@ -45,9 +44,7 @@ export const filterBydataName = (data, dataName) => {
   return rd;
 };
 export const colorDays = (data, dayC, date) => {
-  if (data.length === 0) {
-    return {};
-  }
+
   const today = new Date();
   const currentdate = new Date(date.getFullYear(), date.getMonth(), dayC);
   if (currentdate > today) {

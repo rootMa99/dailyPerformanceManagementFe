@@ -83,20 +83,18 @@ const customStyles = {
 
 const Details = (p) => {
   const { data } = useSelector((s) => s.data);
-  const [kpi, setKpi]=useState("first")
+  const [kpi, setKpi] = useState("first");
   console.log(data[p.title].length);
 
-
-
   let deliveryData;
-  try{
-    deliveryData=data[p.title].length !== 0
-    ? getOnlyDay(data[p.title].filter((f) => f.name === kpi)[0].data)
-    : [];
-  }catch(error){
-    deliveryData=[]
+  try {
+    deliveryData =
+      data[p.title].length !== 0
+        ? getOnlyDay(data[p.title].filter((f) => f.name === kpi)[0].data)
+        : [];
+  } catch (error) {
+    deliveryData = [];
   }
-    
 
   console.log(deliveryData);
 
@@ -111,8 +109,8 @@ const Details = (p) => {
       ? bgcolor.push("#005B41")
       : bgcolor.push("rgb(88, 3, 3)")
   );
-
   const datac = {
+    // labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],
     labels: deliveryData.map((m) => m.day),
     datasets: [
       {
@@ -243,7 +241,8 @@ const Details = (p) => {
             inputId="modality"
             styles={customStyles}
             placeholder="select KPI"
-            onChange={e=>setKpi(e.value)}
+            onChange={(e) => setKpi(e.value)}
+            value={{ label: kpi, value: kpi }}
           />
         </div>
         <div className={c.logo}>
