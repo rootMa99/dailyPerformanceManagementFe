@@ -20,9 +20,9 @@ export const getStartAndEndMonth = (inputDate) => {
   return { start: startOfMonthFormatted, end: endOfMonthFormatted };
 };
 export const getOnlyDay = (data) => {
-  console.log(data)
-  if(data.length===0){
-    return []
+  console.log(data);
+  if (data.length === 0) {
+    return [];
   }
   const rd = [];
   data.forEach((e) => {
@@ -45,9 +45,8 @@ export const filterBydataName = (data, dataName) => {
   return rd;
 };
 export const colorDays = (data, dayC, date) => {
-  console.log(data)
-  if(data.length===0){
-    return {}
+  if (data.length === 0) {
+    return {};
   }
   const today = new Date();
   const currentdate = new Date(date.getFullYear(), date.getMonth(), dayC);
@@ -63,14 +62,12 @@ export const colorDays = (data, dayC, date) => {
     return { backgroundColor: "#0720d9" };
   } else {
     if (data[index].data.real >= data[index].data.target) {
-      console.log("here")
       if (data[index].data.type === "positive") {
         return { backgroundColor: "#006B63" };
       } else {
         return { backgroundColor: "#CF3335" };
       }
     } else {
-      console.log("here2", data[index].data.real, data[index].data.target)
       if (data[index].data.type !== "positive") {
         return { backgroundColor: "#006B63" };
       } else {

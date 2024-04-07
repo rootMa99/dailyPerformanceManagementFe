@@ -53,6 +53,19 @@ const Delivery = (p) => {
       const d = separateDataByName(data);
       setDeliveryData(getOnlyDay(d.filter((f) => f.name === "first")[0].data));
       dispatch(dataActions.addDelevery(d));
+      p.title === "delivery" && dispatch(dataActions.addDelevery(d));
+
+      p.title === "safety" && dispatch(dataActions.addSafety(d));
+
+      p.title === "skills" && dispatch(dataActions.addSkills(d));
+
+      p.title === "quality" && dispatch(dataActions.addQuality(d));
+
+      p.title === "inventory" && dispatch(dataActions.addInventory(d));
+
+      p.title === "productivity" && dispatch(dataActions.addProductivity(d));
+
+      p.title === "kaizen" && dispatch(dataActions.addKaizen(d));
     } catch (error) {
       console.error("Error:", error);
     }
@@ -285,7 +298,7 @@ const Delivery = (p) => {
                       m.data.apm != null &&
                       m.data.apm.map((m) => (
                         <tr
-                          key={i}
+                          key={m.id}
                           style={
                             m.dueDate < formatDate(new Date())
                               ? { backgroundColor: "red" }

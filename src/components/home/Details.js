@@ -16,10 +16,11 @@ import {
 import { formatDate, getOnlyDay } from "../functions/utils";
 const Details = (p) => {
   const { data } = useSelector((s) => s.data);
-
-  const deliveryData = getOnlyDay(
-    data[p.title].filter((f) => f.name === "first")[0].data
-  );
+    console.log(data[p.title].length)
+  const deliveryData =
+    data[p.title].length !== 0
+      ? getOnlyDay(data[p.title].filter((f) => f.name === "first")[0].data)
+      : [];
 
   console.log(deliveryData);
 
@@ -163,11 +164,6 @@ const Details = (p) => {
           <h1>{p.title}</h1>
         </div>
         <div className={c.chartHolder}>
-          <div className={c.titletop}>
-            <span></span>
-            <h3> {p.title} </h3>
-            <span></span>
-          </div>
           <Line data={datac} options={options} />
           {p.home === undefined && (
             <React.Fragment>
@@ -194,7 +190,7 @@ const Details = (p) => {
                       m.data.apm != null &&
                       m.data.apm.map((m) => (
                         <tr
-                          key={i}
+                          key={m.id}
                           style={
                             m.dueDate < formatDate(new Date())
                               ? { backgroundColor: "red" }
