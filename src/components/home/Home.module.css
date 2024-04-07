@@ -1,5 +1,6 @@
 .holding{
     display: flex;
+    justify-content: space-evenly;
 }
 
 .letterContainer{
