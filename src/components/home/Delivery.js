@@ -56,22 +56,18 @@ const Delivery = (p) => {
   //   return b.percentage - a.percentage;
   // });
   // console.log(pareto);
+  console.log(deliveryData);
   const bgcolor = [];
-  if (p.title === "daily") {
-    if (p.warn === "safety" || p.warn === "quality" || p.warn === "inventory") {
-      p.data.map((m) =>
-        m.data[0].real >= m.data[0].target
-          ? bgcolor.push("rgb(88, 3, 3)")
-          : bgcolor.push("#005B41")
-      );
-    } else {
-      p.data.map((m) =>
-        m.data[0].real >= m.data[0].target
-          ? bgcolor.push("#005B41")
-          : bgcolor.push("rgb(88, 3, 3)")
-      );
-    }
-  }
+
+  deliveryData.map((m) =>
+    m.data.type === "negative"
+      ? m.data.real >= m.data.target
+        ? bgcolor.push("rgb(88, 3, 3)")
+        : bgcolor.push("#005B41")
+      : m.data.real >= m.data.target
+      ? bgcolor.push("#005B41")
+      : bgcolor.push("rgb(88, 3, 3)")
+  );
 
   const data = {
     labels: deliveryData.map((m) => m.day),

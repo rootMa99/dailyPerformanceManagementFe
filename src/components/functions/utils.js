@@ -64,14 +64,14 @@ export const colorDays = (data, dayC, date) => {
   } else {
     if (data[index].data.real >= data[index].data.target) {
       console.log("here")
-      if (data[index].data.type === "negative") {
+      if (data[index].data.type === "positive") {
         return { backgroundColor: "#006B63" };
       } else {
         return { backgroundColor: "#CF3335" };
       }
     } else {
       console.log("here2", data[index].data.real, data[index].data.target)
-      if (data[index].data.type !== "negative") {
+      if (data[index].data.type !== "positive") {
         return { backgroundColor: "#006B63" };
       } else {
         return { backgroundColor: "#CF3335" };
