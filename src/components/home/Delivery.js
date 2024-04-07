@@ -207,11 +207,9 @@ const Delivery = (p) => {
 
   return (
     <div className={c.containerData}>
-      <div className={c.title}>
-        <div className={c.line}></div>
-        <h3>Safety</h3>
+      <div className={c.letter}>
+        <Dtable data={deliveryData} date={new Date(date.start)} />
       </div>
-      <Dtable data={deliveryData} date={new Date(date.start)} />
       <Profile
         urlI={delivery !== -1 ? kpiOwners[delivery].uri : ""}
         name={delivery !== -1 ? kpiOwners[delivery].name : "N/A"}
