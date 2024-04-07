@@ -1,3 +1,40 @@
 .letterContainer{
     width: 13vw;
+    margin-top: 1rem;
 }
+
+.title {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    position: absolute;
+    left: -0.5rem;
+    top: 4rem;
+    width: 100%;
+  }
+  .title h3 {
+    color: aliceblue;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  
+  .alphabetH {
+    margin-top: 2rem;
+  }
+  .line {
+    width: 4%;
+    height: 2px;
+    background-color: rgb(255, 255, 255);
+    position: relative;
+  }
+  
+  .line::after {
+    content: "";
+    width: 1rem;
+    height: 1rem;
+    border: 3px solid #f84018;
+    border-radius: 50%;
+    position: absolute;
+    right: -20px;
+    top: -7px;
+  }
