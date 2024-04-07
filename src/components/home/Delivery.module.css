@@ -11,6 +11,7 @@
     cursor: pointer;
     margin-top: 3rem;
     padding: 10px 0;
+    height: 26vh;
 }
 .letter:hover{
     transform: scale(1.1);

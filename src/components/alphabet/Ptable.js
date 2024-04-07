@@ -1,10 +1,8 @@
-import { useSelector } from "react-redux";
 import c from "./Stable.module.css";
-import { colorDays, filterBydataName } from "../functions/utils";
+import { colorDays} from "../functions/utils";
 
 const Ptable = (p) => {
-  const { data } = useSelector((s) => s.data);
-  const filtredData = filterBydataName(data, "productivity");
+  const filtredData = p.data;
   return (
     <table className={c["letter-s"]}>
       <tr>

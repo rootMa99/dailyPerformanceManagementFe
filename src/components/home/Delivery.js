@@ -19,6 +19,12 @@ import {
   BarElement,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import Ttable from "../alphabet/Ttable";
+import Stable from "../alphabet/Stable";
+import Qletter from "../alphabet/Qletter";
+import Itable from "../alphabet/Itable";
+import Ptable from "../alphabet/Ptable";
+import Ktable from "../alphabet/Ktable";
 const Delivery = (p) => {
   const { date, kpiOwners } = useSelector((s) => s.data);
   const [deliveryData, setDeliveryData] = useState([]);
@@ -204,7 +210,13 @@ const Delivery = (p) => {
   return (
     <div className={c.containerData}>
       <div className={c.letter}>
-        <Dtable data={deliveryData} date={new Date(date.start)} />
+        {p.title==="delivery" && <Dtable data={deliveryData} date={new Date(date.start)} />}
+        {p.title==="safety" && <Ttable data={deliveryData} date={new Date(date.start)} />}
+        {p.title==="skills" && <Stable data={deliveryData} date={new Date(date.start)} />}
+        {p.title==="quality" && <Qletter data={deliveryData} date={new Date(date.start)} />}
+        {p.title==="inventory" && <Itable data={deliveryData} date={new Date(date.start)} />}
+        {p.title==="productivity" && <Ptable data={deliveryData} date={new Date(date.start)} />}
+        {p.title==="kaizen" && <Ktable data={deliveryData} date={new Date(date.start)} />}
       </div>
       <Profile
         urlI={delivery !== -1 ? kpiOwners[delivery].uri : ""}
