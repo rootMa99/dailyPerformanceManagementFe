@@ -1,0 +1,54 @@
+.letter-s {
+    border-collapse: collapse;
+  }
+  /* .letter-s:hover{
+    transform: scale(1.1);
+    padding-top: 1rem;
+  } */
+  .letter-s td {
+    width: 15px;
+    height: 15px;
+    /* border: 1px solid black; */
+  }
+  .letter-s td span{
+    color: aliceblue;
+  }
+  
+  .corner {
+    background-color: rgb(80, 80, 80);
+    /* border: 1px solid  #F84018; */
+  }
+  
+  /* .top {
+    border-bottom: none;
+  }
+  
+  .middle {
+    background-color: black;
+  }
+   */
+
+   .rotA{
+    position: absolute;
+    top: 48%;
+    right: 32%;
+    transform: rotate(-50deg);
+   }
+   .rotA tr td, .rotB tr td{
+    padding: 5px 0;
+   }
+   .rotB{
+    position: absolute;
+    top: 6%;
+    right: 34%;
+    transform: rotate(40deg);
+   }
+   .pad{
+    position: absolute;
+    top: 17%;
+    left: 6%;
+   }
+   .pad tr td{
+    padding: 12px 0;
+   }
+  
