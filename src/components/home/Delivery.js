@@ -23,14 +23,14 @@ const Delivery = (p) => {
   const { date, kpiOwners } = useSelector((s) => s.data);
   const [deliveryData, setDeliveryData] = useState([]);
   const dispatch = useDispatch();
-  const delivery = kpiOwners.findIndex((f) => f.kpiOwn === "delivery");
+  const delivery = kpiOwners.findIndex((f) => f.kpiOwn === p.title);
   const location = useLocation();
   const currentPath = location.pathname;
 
   const callback = useCallback(async () => {
     try {
       const response = await fetch(
-        `${api}/dpm/delivery?startDate=${date.start}&endDate=${date.end}`,
+        `${api}/dpm/${p.title}?startDate=${date.start}&endDate=${date.end}`,
         {
           method: "GET",
           headers: {
@@ -47,7 +47,7 @@ const Delivery = (p) => {
     } catch (error) {
       console.error("Error:", error);
     }
-  }, [dispatch, date.start, date.end]);
+  }, [dispatch, date.start, date.end,p.title]);
 
   useEffect(() => {
     callback();

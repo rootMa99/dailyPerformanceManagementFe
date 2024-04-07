@@ -1,5 +1,9 @@
+.holding{
+    display: flex;
+}
+
 .letterContainer{
-    width: 13vw;
+    width: 14vw;
     margin-top: 1rem;
     position: relative;
 }
