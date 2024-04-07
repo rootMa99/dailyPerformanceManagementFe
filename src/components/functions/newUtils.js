@@ -7,11 +7,14 @@ export const separateDataByName = (d) => {
         name: e.name,
         data: [
           {
-            apm: e.apm,
-            ddate: e.ddate,
-            real: e.real,
-            target: e.target,
-            type: e.type,
+            date: e.ddate,
+            data: {
+              apm: e.apm,
+              date: e.ddate,
+              real: e.real,
+              target: e.target,
+              type: e.type,
+            },
           },
         ],
       });
@@ -19,26 +22,33 @@ export const separateDataByName = (d) => {
       const index = rd.findIndex((f) => f.name === e.name);
       if (index > -1) {
         rd[index].data.push({
-          apm: e.apm,
-          ddate: e.ddate,
-          real: e.real,
-          target: e.target,
-          type: e.type,
+          date: e.ddate,
+          data: {
+            apm: e.apm,
+            date: e.ddate,
+            real: e.real,
+            target: e.target,
+            type: e.type,
+          },
         });
       } else {
         rd.push({
           name: e.name,
           data: [
             {
-              apm: e.apm,
-              ddate: e.ddate,
-              real: e.real,
-              target: e.target,
-              type: e.type,
+              date: e.ddate,
+              data: {
+                apm: e.apm,
+                date: e.ddate,
+                real: e.real,
+                target: e.target,
+                type: e.type,
+              },
             },
           ],
         });
       }
     }
   });
+  return rd;
 };

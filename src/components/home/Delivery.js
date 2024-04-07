@@ -1,9 +1,16 @@
-import React, { useCallback, useEffect } from "react";
-import {  useSelector } from "react-redux";
+import React, { useCallback, useEffect, useState } from "react";
+import {  useSelector, useDispatch } from "react-redux";
 import api from "../../service/api";
+import { separateDataByName } from "../functions/newUtils";
+import { dataActions } from "../store/dataSlice";
+import { getOnlyDay } from "../functions/utils";
+import Dtable from "../alphabet/Dtable";
+
 
 const Delivery=p=>{
     const {date}= useSelector(s=>s.data);
+    const [deliveryData, setDeliveryData]= useState([]);
+    const dispatch = useDispatch();
     const callback=useCallback(async ()=>{
         try {
           const response = await fetch(`${api}/dpm/delivery?startDate=${date.start}&endDate=${date.end}`, {
@@ -14,12 +21,15 @@ const Delivery=p=>{
           });
     
           const data = await response.json();
-          console.log(data)
+          console.log(data, separateDataByName(data))
+          const d=separateDataByName(data)
+          setDeliveryData(getOnlyDay((d.filter(f=>f.name==="first"))[0].data))
+          dispatch(dataActions.addDelevery(d))
         } catch (error) {
           console.error("Error:", error);
         }
    
-      }, [date.start, date.end])
+      }, [dispatch, date.start, date.end])
     
     useEffect(()=>{
       callback();
@@ -28,7 +38,7 @@ const Delivery=p=>{
 
     return(
         <React.Fragment>
-
+          <Dtable data={deliveryData} date={new Date(date.start)}/>
         </React.Fragment>
     )
 

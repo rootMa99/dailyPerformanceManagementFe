@@ -20,11 +20,15 @@ export const getStartAndEndMonth = (inputDate) => {
   return { start: startOfMonthFormatted, end: endOfMonthFormatted };
 };
 export const getOnlyDay = (data) => {
+  console.log(data)
+  if(data.length===0){
+    return []
+  }
   const rd = [];
   data.forEach((e) => {
     rd.push({
       day: +e.date.split("-")[2],
-      data: e.deliveryModels,
+      data: e.data,
     });
   });
 
@@ -41,6 +45,10 @@ export const filterBydataName = (data, dataName) => {
   return rd;
 };
 export const colorDays = (data, dayC, date, rev) => {
+  console.log(data)
+  if(data.length===0){
+    return {}
+  }
   const today = new Date();
   const currentdate = new Date(date.getFullYear(), date.getMonth(), dayC);
   if (currentdate > today) {
@@ -50,19 +58,21 @@ export const colorDays = (data, dayC, date, rev) => {
 
   if (
     index === -1 ||
-    (data[index].data[0].real === 0 && data[index].data[0].target === 0)
+    (data[index].data.real === 0 && data[index].data.target === 0)
   ) {
     return { backgroundColor: "#0720d9" };
   } else {
-    if (data[index].data[0].real >= data[index].data[0].target) {
-      if (rev === undefined) {
+    if (data[index].data.real >= data[index].data.target) {
+      console.log("here")
+      if (data[index].data.type === "negative") {
         return { backgroundColor: "#006B63" };
       } else {
         return { backgroundColor: "#CF3335" };
       }
     } else {
-      if (rev !== undefined) {
-        return { backgroundColor: "#006B63" };
+      console.log("here2", data[index].data.real, data[index].data.target)
+      if (data[index].data.type !== "negative") {
+        return { backgroundColor: "white" };
       } else {
         return { backgroundColor: "#CF3335" };
       }

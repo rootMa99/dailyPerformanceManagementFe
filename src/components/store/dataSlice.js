@@ -4,36 +4,44 @@ import { createSlice } from "@reduxjs/toolkit";
 const dataSlice = createSlice({
   name: "datas",
   initialState: {
-    data: {delivery:[], safety:[], quality:[], skills:[], inventory:[], productivity:[], kaizen:[]},
+    data: {
+      delivery: [],
+      safety: [],
+      quality: [],
+      skills: [],
+      inventory: [],
+      productivity: [],
+      kaizen: [],
+    },
     kpiOwners: [],
     //date: getCurrentMonthDates(),
-    date:{
-      start:"2024-03-01",
-      end:"2024-03-31"
-    }
+    date: {
+      start: "2024-03-01",
+      end: "2024-03-31",
+    },
   },
   reducers: {
-   addDelevery(s, p){
-    s.data.delivery=p
-   },
-   addSafety(s, p){
-    s.data.safety=p
-   },
-   addSkills(s, p){
-    s.data.skills=p
-   },
-   addQuality(s, p){
-    s.data.quality=p
-   },
-   addInventory(s, p){
-    s.data.inventory=p
-   },
-   addProductivity(s, p){
-    s.data.productivity=p
-   },
-   addKaizen(s, p){
-    s.data.kaizen=p
-   },
+    addDelevery(s, p) {
+      s.data.delivery = p.payload;
+    },
+    addSafety(s, p) {
+      s.data.safety = p.payload;
+    },
+    addSkills(s, p) {
+      s.data.skills = p.payload;
+    },
+    addQuality(s, p) {
+      s.data.quality = p.payload;
+    },
+    addInventory(s, p) {
+      s.data.inventory = p.payload;
+    },
+    addProductivity(s, p) {
+      s.data.productivity = p.payload;
+    },
+    addKaizen(s, p) {
+      s.data.kaizen = p.payload;
+    },
     setTime(s, p) {
       s.date = p.payload;
     },
