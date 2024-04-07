@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import c from "./Details.module.css";
 import imglogo from "../../assets/aptiv-logo.svg";
 import { useSelector } from "react-redux";
@@ -14,13 +14,89 @@ import {
   BarElement,
 } from "chart.js";
 import { formatDate, getOnlyDay } from "../functions/utils";
+import Select from "react-select";
+
+const customStyles = {
+  control: (provided, state) => ({
+    ...provided,
+    width: "97%",
+    height: "auto",
+    fontWeight: "600",
+    textTransform: "uppercase",
+    borderRadius: "5px",
+    fontFamily: `Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                  "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+                  "Segoe UI Symbol"`,
+    letterSpacing: "2px",
+    textAlign: "center",
+    outline: "none",
+    border: "1px solid #414141",
+    backgroundColor: "transparent",
+    boxShadow: "none",
+    margin: "auto",
+    "&:hover": {
+      border: "1px solid #f33716",
+      cursor: "pointer",
+    },
+  }),
+  option: (provided, state) => ({
+    width: "97%",
+    padding: "0.5rem",
+    color: state.isFocused ? "#f3f3f3" : "#f33716",
+    backgroundColor: state.isFocused && "#474b4d",
+    fontFamily: `Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                  "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+                  "Segoe UI Symbol"`,
+    textTransform: "uppercase",
+    outline: "none",
+    textAlign: "center",
+    "&:hover": {
+      cursor: "pointer",
+    },
+  }),
+  input: (provided) => ({
+    ...provided,
+    color: "#f3f3f3",
+  }),
+  singleValue: (p) => ({
+    ...p,
+    color: "#f3f3f3",
+  }),
+  menuList: (provided) => ({
+    maxHeight: "200px",
+    overflowY: "auto",
+    overflowX: "hidden",
+    scrollbarWidth: "thin",
+    msOverflowStyle: "none",
+    "&::-webkit-scrollbar": {
+      width: "5px",
+      backgroundColor: "#535151",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: "#f33716",
+    },
+    "&::-webkit-scrollbar-track": {
+      backgroundColor: "transparent",
+    },
+  }),
+};
+
 const Details = (p) => {
   const { data } = useSelector((s) => s.data);
-    console.log(data[p.title].length)
-  const deliveryData =
-    data[p.title].length !== 0
-      ? getOnlyDay(data[p.title].filter((f) => f.name === "first")[0].data)
-      : [];
+  const [kpi, setKpi]=useState("first")
+  console.log(data[p.title].length);
+
+
+
+  let deliveryData;
+  try{
+    deliveryData=data[p.title].length !== 0
+    ? getOnlyDay(data[p.title].filter((f) => f.name === kpi)[0].data)
+    : [];
+  }catch(error){
+    deliveryData=[]
+  }
+    
 
   console.log(deliveryData);
 
@@ -156,6 +232,20 @@ const Details = (p) => {
   return (
     <React.Fragment>
       <div className={c["form-container"]}>
+        <div className={c.selectContainer}>
+          <Select
+            options={[
+              { label: "first", value: "first" },
+              { label: "second", value: "second" },
+              { label: "third", value: "third" },
+            ]}
+            id="modality"
+            inputId="modality"
+            styles={customStyles}
+            placeholder="select KPI"
+            onChange={e=>setKpi(e.value)}
+          />
+        </div>
         <div className={c.logo}>
           <img src={imglogo} alt="logo for aptiv" />
         </div>

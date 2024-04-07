@@ -16,8 +16,8 @@ const dataSlice = createSlice({
     kpiOwners: [],
     //date: getCurrentMonthDates(),
     date: {
-      start: "2024-04-01",
-      end: "2024-04-30",
+      start: "2024-03-01",
+      end: "2024-03-30",
     },
   },
   reducers: {
