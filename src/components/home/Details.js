@@ -1,13 +1,8 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import api from "../../service/api";
-import { separateDataByName } from "../functions/newUtils";
-import { dataActions } from "../store/dataSlice";
-import { formatDate, getOnlyDay } from "../functions/utils";
-import Dtable from "../alphabet/Dtable";
-import Profile from "../UI/Profile";
-import { useLocation } from "react-router";
-import c from "./Delivery.module.css";
+import React from "react";
+import c from "./Details.module.css";
+import imglogo from "../../assets/aptiv-logo.svg";
+import { useSelector } from "react-redux";
+import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   LineElement,
@@ -18,54 +13,16 @@ import {
   Legend,
   BarElement,
 } from "chart.js";
-import { Line } from "react-chartjs-2";
-import Ttable from "../alphabet/Ttable";
-import Stable from "../alphabet/Stable";
-import Qletter from "../alphabet/Qletter";
-import Itable from "../alphabet/Itable";
-import Ptable from "../alphabet/Ptable";
-import Ktable from "../alphabet/Ktable";
-import BackDrop from "../UI/BackDrop";
-import Details from "./Details";
-const Delivery = (p) => {
-  const [showkpi, setShowKpi] = useState(false);
-  const { date, kpiOwners } = useSelector((s) => s.data);
-  const [deliveryData, setDeliveryData] = useState([]);
-  const dispatch = useDispatch();
-  const delivery = kpiOwners.findIndex((f) => f.kpiOwn === p.title);
-  const location = useLocation();
-  const currentPath = location.pathname;
+import { formatDate, getOnlyDay } from "../functions/utils";
+const Details = (p) => {
+  const { data } = useSelector((s) => s.data);
 
-  const callback = useCallback(async () => {
-    try {
-      const response = await fetch(
-        `${api}/dpm/${p.title}?startDate=${date.start}&endDate=${date.end}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+  const deliveryData = getOnlyDay(
+    data[p.title].filter((f) => f.name === "first")[0].data
+  );
 
-      const data = await response.json();
-      console.log(data, separateDataByName(data));
-      const d = separateDataByName(data);
-      setDeliveryData(getOnlyDay(d.filter((f) => f.name === "first")[0].data));
-      dispatch(dataActions.addDelevery(d));
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  }, [dispatch, date.start, date.end, p.title]);
-
-  useEffect(() => {
-    callback();
-  }, [callback]);
-  // const pareto = getParetp(p.data).sort((a, b) => {
-  //   return b.percentage - a.percentage;
-  // });
-  // console.log(pareto);
   console.log(deliveryData);
+
   const bgcolor = [];
 
   deliveryData.map((m) =>
@@ -78,7 +35,7 @@ const Delivery = (p) => {
       : bgcolor.push("rgb(88, 3, 3)")
   );
 
-  const data = {
+  const datac = {
     labels: deliveryData.map((m) => m.day),
     datasets: [
       {
@@ -119,20 +76,6 @@ const Delivery = (p) => {
       },
     ],
   };
-  // const paretoChart = {
-  //   labels: pareto.map((m) => m.motif),
-  //   datasets: [
-  //     {
-  //       type: "bar",
-  //       label: "Pareto",
-  //       data: pareto.map((m) => m.percentage),
-  //       backgroundColor: "#4E7C88",
-  //       hoverBackgroundColor: "#929D96",
-  //       borderColor: "black",
-  //       borderWidth: 1,
-  //     },
-  //   ],
-  // };
   const options = {
     responsive: true,
     maintainAspectRatio: false,
@@ -209,57 +152,23 @@ const Delivery = (p) => {
     Legend,
     BarElement
   );
-
-  const close = (e) => {
-    setShowKpi(false);
-  };
-
   return (
     <React.Fragment>
-      {showkpi && (
-        <React.Fragment>
-          <BackDrop click={close} />
-          <Details title={showkpi} />
-        </React.Fragment>
-      )}
-      <div className={c.containerData}>
-        <div className={c.letter} onClick={(e) => setShowKpi(p.title)}>
-          {p.title === "delivery" && (
-            <Dtable data={deliveryData} date={new Date(date.start)} />
-          )}
-          {p.title === "safety" && (
-            <Ttable data={deliveryData} date={new Date(date.start)} />
-          )}
-          {p.title === "skills" && (
-            <Stable data={deliveryData} date={new Date(date.start)} />
-          )}
-          {p.title === "quality" && (
-            <Qletter data={deliveryData} date={new Date(date.start)} />
-          )}
-          {p.title === "inventory" && (
-            <Itable data={deliveryData} date={new Date(date.start)} />
-          )}
-          {p.title === "productivity" && (
-            <Ptable data={deliveryData} date={new Date(date.start)} />
-          )}
-          {p.title === "kaizen" && (
-            <Ktable data={deliveryData} date={new Date(date.start)} />
-          )}
+      <div className={c["form-container"]}>
+        <div className={c.logo}>
+          <img src={imglogo} alt="logo for aptiv" />
         </div>
-        <Profile
-          urlI={delivery !== -1 ? kpiOwners[delivery].uri : ""}
-          name={delivery !== -1 ? kpiOwners[delivery].name : "N/A"}
-          coName={delivery !== -1 ? kpiOwners[delivery].coName : "N/A"}
-          kpiOwn="delivery"
-          path={currentPath}
-        />
+        <div className={c.employeeT}>
+          <span></span>
+          <h1>{p.title}</h1>
+        </div>
         <div className={c.chartHolder}>
           <div className={c.titletop}>
             <span></span>
             <h3> {p.title} </h3>
             <span></span>
           </div>
-          <Line data={data} options={options} />
+          <Line data={datac} options={options} />
           {p.home === undefined && (
             <React.Fragment>
               <div className={c.title}>
@@ -318,10 +227,8 @@ const Delivery = (p) => {
             </React.Fragment>
           )}
         </div>
-        );
       </div>
     </React.Fragment>
   );
 };
-
-export default Delivery;
+export default Details;

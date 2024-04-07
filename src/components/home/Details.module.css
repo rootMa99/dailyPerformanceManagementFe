@@ -1,0 +1,192 @@
+.form-container {
+  width: 95%;
+  height: 95%;
+  background: linear-gradient(#000000, #0c0c0c) padding-box,
+    linear-gradient(140deg, transparent 35%, #f33716, orange) border-box;
+  border: 4px solid transparent;
+  /* padding: 32px 24px; */
+  font-size: 14px;
+  font-family: inherit;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+  border-radius: 16px;
+  background-size: 200% 100%;
+  animation: gradient 5s ease infinite;
+  position: fixed;
+  z-index: 11111;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: auto;
+}
+
+/* @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+  
+    50% {
+      background-position: 100% 50%;
+    }
+  
+    100% {
+      background-position: 0% 50%;
+    }
+  } */
+
+.logo {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+}
+.employeeT {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  position: absolute;
+  left: -15px;
+  top: 10px;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+.employeeT span {
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 50%;
+  background-color: #f33716;
+}
+.employeeT h1 {
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: lighter;
+  /* font-size: 35px; */
+}
+.infoC {
+  width: 100%;
+  height: 85%;
+  margin: auto 0;
+  display: flex;
+}
+
+.perInfo,
+.trainingInfo {
+  height: 100%;
+}
+.perInfo {
+  width: 20%;
+  border-right: 2px solid #b7d1cf;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.form-container ::-webkit-scrollbar {
+  width: 10px;
+  background-color: #535151;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.form-container::-webkit-scrollbar-thumb {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #000000;
+}
+
+.containerData {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.letter {
+  width: fit-content;
+  cursor: pointer;
+  margin-top: 3rem;
+  padding: 10px 0;
+  height: 26vh;
+}
+.letter:hover {
+  transform: scale(1.1);
+}
+.chartHolder {
+  height: 20rem;
+  width: 100%;
+}
+
+.title {
+  display: flex;
+  margin: auto;
+  align-items: center;
+  width: fit-content;
+  gap: 0.5rem;
+}
+.title span {
+  width: 1rem;
+  height: 1rem;
+  background-color: #f84018;
+  border-radius: 50%;
+}
+.title h3 {
+  color: aliceblue;
+  text-transform: uppercase;
+}
+.table {
+  width: 100%;
+  border-collapse: initial;
+  /* border: 1px solid black; */
+  border-radius: 20px;
+  animation: rsin 0.25s ease-in forwards;
+  table-layout: fixed;
+  box-shadow: 0px 0px 25px 5px rgba(8, 8, 8, 0.788);
+}
+.table thead,
+.table tfoot {
+  background-color: #f84018;
+}
+.table th,
+.table tfoot tr td {
+  font-family: Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  color: rgb(255, 254, 251);
+  text-align: center;
+  text-transform: uppercase;
+  padding: 16px 3px;
+}
+.table th:first-of-type {
+  border-radius: 14px 0 0 0;
+}
+.table th:last-of-type {
+  border-radius: 0 14px 0 0;
+}
+.table tr {
+  background-color: rgba(0, 0, 0, 0.233);
+  cursor: pointer;
+}
+.table tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.596);
+}
+.table td {
+  text-align: center;
+  padding: 8px;
+  color: #fdcec4;
+  text-transform: capitalize;
+  font-weight: 450;
+  font-size: small;
+}
+
+.table tfoot tr:last-of-type td:last-of-type {
+  border-radius: 0 0 14px 0;
+}
+.table tfoot tr:last-of-type td:first-of-type {
+  border-radius: 0 0 0 14px;
+}
+.table tfoot tr td {
+  font-weight: 900;
+  font-size: larger;
+}
