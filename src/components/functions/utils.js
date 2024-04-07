@@ -72,7 +72,7 @@ export const colorDays = (data, dayC, date) => {
     } else {
       console.log("here2", data[index].data.real, data[index].data.target)
       if (data[index].data.type !== "negative") {
-        return { backgroundColor: "white" };
+        return { backgroundColor: "#006B63" };
       } else {
         return { backgroundColor: "#CF3335" };
       }
