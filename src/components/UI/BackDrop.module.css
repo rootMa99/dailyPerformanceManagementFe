@@ -1,0 +1,22 @@
+.backdrop{
+    width: 100vw;
+    height: 100vh;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    animation: backdrop 0.24s ease-in forwards;
+    cursor: pointer;
+}
+@keyframes backdrop {
+    from{
+        opacity: 0;
+       
+    }
+    to{
+        opacity: 1;
+       
+    }
+}

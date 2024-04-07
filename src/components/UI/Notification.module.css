@@ -1,0 +1,51 @@
+.notifications-container {
+  width: auto;
+  height: auto;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 111111;
+  text-transform: capitalize;
+  padding-inline: 10px;
+  /* border-radius: 10px;
+  background: linear-gradient(#810f0fa8, #f703036b) padding-box,
+  linear-gradient(145deg, transparent 35%, rgb(145, 3, 3), rgb(211, 1, 1))
+    border-box; */
+border: 2px solid transparent;
+background-size: 200% 100%;
+animation: gradient 5s ease infinite;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+
+
+.alert-svg {
+  height: 1.25rem;
+  width: 1.25rem;
+  color: rgb(250, 21, 21);
+}
+
+.alert-prompt-wrap {
+  margin: 0;
+  margin-left: 0.25rem;
+  color: rgb(228, 218, 107);
+  font-size: medium;
+}
+.flex-shrink-0 {
+  width: 2rem;
+  color: rgb(238 245 134);
+  display: flex;
+}
