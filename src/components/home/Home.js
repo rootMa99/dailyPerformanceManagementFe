@@ -1,10 +1,13 @@
 import React from "react";
 import Delivery from "./Delivery";
+import c from "./Home.module.css"
 
 const Home = (p) => {
   return (
     <React.Fragment>
-      <Delivery />
+      <div className={c.letterContainer}>
+        <Delivery/>
+      </div>
     </React.Fragment>
   );
 };
