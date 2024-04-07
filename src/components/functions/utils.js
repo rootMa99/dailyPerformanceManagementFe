@@ -44,7 +44,7 @@ export const filterBydataName = (data, dataName) => {
   });
   return rd;
 };
-export const colorDays = (data, dayC, date, rev) => {
+export const colorDays = (data, dayC, date) => {
   console.log(data)
   if(data.length===0){
     return {}

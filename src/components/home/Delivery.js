@@ -5,12 +5,17 @@ import { separateDataByName } from "../functions/newUtils";
 import { dataActions } from "../store/dataSlice";
 import { getOnlyDay } from "../functions/utils";
 import Dtable from "../alphabet/Dtable";
-
+import Profile from "../UI/Profile";
+import { useLocation } from "react-router";
 
 const Delivery=p=>{
-    const {date}= useSelector(s=>s.data);
+    const {date, kpiOwners}= useSelector(s=>s.data);
     const [deliveryData, setDeliveryData]= useState([]);
     const dispatch = useDispatch();
+    const delivery = kpiOwners.findIndex((f) => f.kpiOwn === "delivery");
+    const location = useLocation();
+    const currentPath = location.pathname;
+
     const callback=useCallback(async ()=>{
         try {
           const response = await fetch(`${api}/dpm/delivery?startDate=${date.start}&endDate=${date.end}`, {
@@ -39,6 +44,13 @@ const Delivery=p=>{
     return(
         <React.Fragment>
           <Dtable data={deliveryData} date={new Date(date.start)}/>
+          <Profile
+          urlI={delivery !== -1 ? kpiOwners[delivery].uri : ""}
+          name={delivery !== -1 ? kpiOwners[delivery].name : "N/A"}
+          coName={delivery !== -1 ? kpiOwners[delivery].coName : "N/A"}
+          kpiOwn="delivery"
+          path={currentPath}
+        />
         </React.Fragment>
     )
 
