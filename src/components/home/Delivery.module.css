@@ -58,6 +58,9 @@
     text-align: center;
     text-transform: uppercase;
     padding: 16px 3px;
+    font-size: 7px;
+    word-wrap: break-word;
+
   }
   .table th:first-of-type {
     border-radius: 14px 0 0 0;
@@ -77,8 +80,9 @@
     padding: 8px;
     color: #fdcec4;
     text-transform: capitalize;
-    font-weight: 450;
-    font-size: small;
+    font-weight: 100;
+    font-size: 1px;
+    word-wrap: break-word;
   }
   
   .table tfoot tr:last-of-type td:last-of-type {

@@ -297,18 +297,19 @@ const Delivery = (p) => {
                     (m, i) =>
                       m.data.apm != null &&
                       m.data.apm.map((m) => (
-                        <tr
-                          key={m.id}
-                          style={
-                            m.dueDate < formatDate(new Date())
-                              ? { backgroundColor: "red" }
-                              : {}
-                          }
-                        >
+                        <tr key={m.id}>
                           <td>{m.day}</td>
                           <td>{m.issueDescription}</td>
                           <td>{m.causes}</td>
-                          <td>{m.contermeasures}</td>
+                          <td
+                            style={
+                              m.dueDate < formatDate(new Date())
+                                ? { backgroundColor: "red" }
+                                : {}
+                            }
+                          >
+                            {m.contermeasures}
+                          </td>
                           <td>{m.dueDate}</td>
                           <td>{m.resp}</td>
                           <td>{m.status}</td>
