@@ -1,6 +1,7 @@
 .letterContainer{
     width: 13vw;
     margin-top: 1rem;
+    position: relative;
 }
 
 .title {
@@ -8,8 +9,8 @@
     align-items: center;
     gap: 1.5rem;
     position: absolute;
-    left: -0.5rem;
-    top: 4rem;
+    left:0;
+    top: 0rem;
     width: 100%;
   }
   .title h3 {
@@ -22,7 +23,7 @@
     margin-top: 2rem;
   }
   .line {
-    width: 4%;
+    width: 30%;
     height: 2px;
     background-color: rgb(255, 255, 255);
     position: relative;

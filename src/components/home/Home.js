@@ -10,7 +10,7 @@ const Home = (p) => {
           <div className={c.line}></div>
           <h3>Delivery</h3>
         </div>
-        <Delivery />
+        <Delivery title="delivery" />
       </div>
     </React.Fragment>
   );
