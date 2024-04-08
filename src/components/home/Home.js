@@ -31,7 +31,7 @@ const Home = (p) => {
         />
       </div>
       <div className={c.ndiv} style={{ width: "28%" }}>
-        <h1>people</h1>
+        <h1 className={c.ndivh1}>people</h1>
         <div className={c.letterContainer}>
           <div className={c.title}>
             <div className={c.line}></div>
@@ -48,7 +48,7 @@ const Home = (p) => {
         </div>
       </div>
       <div className={c.ndiv} style={{ width: "56%" }}>
-        <h1>performance</h1>
+        <h1 className={c.ndivh1}>performance</h1>
         <div className={c.letterContainer}>
           <div className={c.title}>
             <div className={c.line}></div>
@@ -80,7 +80,7 @@ const Home = (p) => {
         </div>
       </div>
       <div className={c.ndiv} style={{ width: "14%" }}>
-        <h1>improvement</h1>
+        <h1 className={c.ndivh1}>improvement</h1>
         <div className={c.letterContainer}>
           <div className={c.title}>
             <div className={c.line}></div>
