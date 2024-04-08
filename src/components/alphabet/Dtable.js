@@ -1,6 +1,6 @@
 import c from "./Stable.module.css";
 import { colorDays } from "../functions/utils";
-import React, { useState } from "react";
+import React from "react";
 import { useLocation } from "react-router";
 const Dtable = (p) => {
   // const [click, setClicked]=useState(false);

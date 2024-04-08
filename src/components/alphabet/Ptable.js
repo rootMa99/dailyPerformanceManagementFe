@@ -13,7 +13,11 @@ const Ptable = (p) => {
   };
 
   return (
-    <table className={c["letter-s"]}>
+    <table
+      className={
+        currentPath === "/" ? c["letter-s"] : `${c["letter-s"]} ${c.hoverTd}`
+      }
+    >
       <tr>
         <td
           className={c.corner}
@@ -22,6 +26,7 @@ const Ptable = (p) => {
             ...colorDays(filtredData, 1, p.date),
             borderRadius: "15px 0px 0px 0px",
           }}
+          onClick={(e) => onClickH(e, 1)}
         >
           <span>1</span>
         </td>
