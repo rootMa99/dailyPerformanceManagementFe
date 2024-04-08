@@ -28,6 +28,9 @@ import Ktable from "../alphabet/Ktable";
 import BackDrop from "../UI/BackDrop";
 import Details from "./Details";
 import AddData from "./AddData";
+
+
+
 const Delivery = (p) => {
   const [showkpi, setShowKpi] = useState(false);
   const [addData, setAddData] = useState(false);
@@ -81,6 +84,11 @@ const Delivery = (p) => {
   useEffect(() => {
     callback();
   }, [callback]);
+
+
+
+
+  
   // const pareto = getParetp(p.data).sort((a, b) => {
   //   return b.percentage - a.percentage;
   // });
@@ -324,7 +332,7 @@ const Delivery = (p) => {
             urlI={delivery !== -1 ? kpiOwners[delivery].uri : ""}
             name={delivery !== -1 ? kpiOwners[delivery].name : "N/A"}
             coName={delivery !== -1 ? kpiOwners[delivery].coName : "N/A"}
-            kpiOwn="delivery"
+            kpiOwn={p.title}
             path={currentPath}
           />
         </div>

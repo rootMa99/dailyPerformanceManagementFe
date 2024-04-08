@@ -74,8 +74,8 @@ const AddData = (p) => {
   const [control, setControl] = useState("ad");
   const [dataAdded, setDataAdded] = useState({
     date: p.dateChoosen,
-    real: 0,
-    target: 0,
+    real: "",
+    target: "",
     name: "",
     type: "",
   });
@@ -106,6 +106,23 @@ const AddData = (p) => {
   const submitHandler = async (e) => {
     e.preventDefault();
     if (control === "ad") {
+      if (dataAdded.name.trim() === "") {
+        alert("Please select a KPI name.");
+        return;
+      }
+      if (dataAdded.type.trim() === "") {
+        alert("Please select a KPI type.");
+        return;
+      }
+      if (isNaN(dataAdded.real)) {
+        alert("Please Enter the Actual (Real).");
+        return;
+      }
+      if (isNaN(dataAdded.target)) {
+        alert("Please Enter the Target");
+        return;
+      }
+      
       try {
         await fetch(`${api}/${p.title}`, {
           method: "POST",
@@ -121,22 +138,22 @@ const AddData = (p) => {
         // p.click(e, p.title);
         setDataAdded({
           date: p.dateChoosen,
-          real: 0,
-          target: 0,
+          real: "",
+          target: "",
           name: "",
           type: "",
         });
         setSuccess({
-            status: true,
-            message: "data has been successfully added.",
-          });
+          status: true,
+          message: "data has been successfully added.",
+        });
       } catch (error) {
         console.error("Error:", error);
         setErr({
-            status: true,
-            message:
-              "Something has gone wrong, we were not able to save this action, please try it again. ",
-          });
+          status: true,
+          message:
+            "Something has gone wrong, we were not able to save this action, please try it again. ",
+        });
       }
     }
   };
@@ -148,7 +165,7 @@ const AddData = (p) => {
   }
   return (
     <React.Fragment>
-    {err.status && <NetworkNotify message={err.message} success={false} />}
+      {err.status && <NetworkNotify message={err.message} success={false} />}
       {success.status && (
         <NetworkNotify message={success.message} success={true} />
       )}

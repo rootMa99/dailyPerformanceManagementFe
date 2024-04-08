@@ -3,6 +3,8 @@ import edit from "../../assets/edit.png";
 import React, { useEffect, useState } from "react";
 import BackDrop from "../UI/BackDrop";
 import api from "../../service/api";
+
+
 const Profile = (p) => {
   const [showForm, setShowForm] = useState(false);
   const [data, setData] = useState({});
@@ -24,7 +26,7 @@ const Profile = (p) => {
       const formData = new FormData();
       formData.append("file", data.file);
       fetch(
-        `${api}/kpio?kpiOwn=${p.kpiOwn}&name=${data.owner}&coName=${data.coOwner}`,
+        `${api}/dpm/kpio?kpiOwn=${p.kpiOwn}&name=${data.owner}&coName=${data.coOwner}`,
         {
           method: "POST",
           body: formData,

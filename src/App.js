@@ -19,7 +19,6 @@ function App() {
       });
 
       const data = await response.json();
-    
       dispatch(
         dataActions.setKpiOwners(data)
       );

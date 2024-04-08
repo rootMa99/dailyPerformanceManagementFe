@@ -100,3 +100,13 @@
   display: flex;
   align-items: flex-end;
 }
+@media (height <= 700px) {
+  .profileC{
+    margin-top: 10rem;
+  }
+}
+@media (min-height: 700px) and (max-height: 900px)  {
+  .profileC{
+    margin-top: 2rem;
+  }
+}
