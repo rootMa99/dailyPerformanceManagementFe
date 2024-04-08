@@ -8,8 +8,9 @@ const Itable = (p) => {
   const currentPath = location.pathname;
 
   const onClickH = (e, i) => {
-    alert(i, "clicked");
+    p.click(e, {index: i, type: "delivery"})
   };
+
 
   return (
     <table

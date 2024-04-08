@@ -12,7 +12,7 @@
   padding: 10px 0;
   height: 25vh;
 }
-.letter:hover {
+.letterA:hover {
   transform: scale(1.1);
 }
 .chartHolder {

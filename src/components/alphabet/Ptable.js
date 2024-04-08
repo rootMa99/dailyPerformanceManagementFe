@@ -3,13 +3,12 @@ import { colorDays } from "../functions/utils";
 import { useLocation } from "react-router";
 
 const Ptable = (p) => {
-  // const [click, setClicked]=useState(false);
   const location = useLocation();
   const filtredData = p.data;
   const currentPath = location.pathname;
 
   const onClickH = (e, i) => {
-    alert(i, "clicked");
+    p.click(e, {index: i, type: "delivery"})
   };
 
   return (

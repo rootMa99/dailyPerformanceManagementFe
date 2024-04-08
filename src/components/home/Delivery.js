@@ -29,14 +29,13 @@ import BackDrop from "../UI/BackDrop";
 import Details from "./Details";
 const Delivery = (p) => {
   const [showkpi, setShowKpi] = useState(false);
+  const [addData, setAddData] = useState(false);
   const { date, kpiOwners } = useSelector((s) => s.data);
   const [deliveryData, setDeliveryData] = useState([]);
   const dispatch = useDispatch();
   const delivery = kpiOwners.findIndex((f) => f.kpiOwn === p.title);
   const location = useLocation();
   const currentPath = location.pathname;
-
-
 
   const callback = useCallback(async () => {
     try {
@@ -232,7 +231,13 @@ const Delivery = (p) => {
 
   const close = (e) => {
     setShowKpi(false);
+    setAddData(false);
   };
+  
+  const addDataClicked=(e, t)=>{
+    console.log(t, p.title);
+    setAddData(t);
+  }
 
   return (
     <React.Fragment>
@@ -243,27 +248,34 @@ const Delivery = (p) => {
         </React.Fragment>
       )}
       <div className={c.containerData}>
-        <div className={c.letter} onClick={(e) =>{ currentPath==="/" && setShowKpi(p.title)}}>
+        <div
+          className={
+            currentPath === "/" ? `${c.letter} ${c.letterA}` : c.letter
+          }
+          onClick={(e) => {
+            currentPath === "/" && setShowKpi(p.title);
+          }}
+        >
           {p.title === "delivery" && (
-            <Dtable data={deliveryData} date={new Date(date.start)} />
+            <Dtable data={deliveryData} date={new Date(date.start)} click={addDataClicked} />
           )}
           {p.title === "safety" && (
-            <Ttable data={deliveryData} date={new Date(date.start)} />
+            <Ttable data={deliveryData} date={new Date(date.start)} click={addDataClicked} />
           )}
           {p.title === "skills" && (
-            <Stable data={deliveryData} date={new Date(date.start)} />
+            <Stable data={deliveryData} date={new Date(date.start)} click={addDataClicked} />
           )}
           {p.title === "quality" && (
-            <Qletter data={deliveryData} date={new Date(date.start)} />
+            <Qletter data={deliveryData} date={new Date(date.start)} click={addDataClicked} />
           )}
           {p.title === "inventory" && (
-            <Itable data={deliveryData} date={new Date(date.start)} />
+            <Itable data={deliveryData} date={new Date(date.start)} click={addDataClicked} />
           )}
           {p.title === "productivity" && (
-            <Ptable data={deliveryData} date={new Date(date.start)} />
+            <Ptable data={deliveryData} date={new Date(date.start)} click={addDataClicked} />
           )}
           {p.title === "kaizen" && (
-            <Ktable data={deliveryData} date={new Date(date.start)} />
+            <Ktable data={deliveryData} date={new Date(date.start)} click={addDataClicked} />
           )}
         </div>
         <div className={c.profileC}>
