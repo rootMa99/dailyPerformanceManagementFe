@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import api from "../../service/api";
-import { getDaysInMonth, separateDataByName } from "../functions/newUtils";
+import { formatDayDate, getDaysInMonth, separateDataByName } from "../functions/newUtils";
 import { dataActions } from "../store/dataSlice";
 import { formatDate, getOnlyDay } from "../functions/utils";
 import Dtable from "../alphabet/Dtable";
@@ -240,7 +240,7 @@ const Delivery = (p) => {
       setAddData(false);
       return;
     }
-    console.log(t, p.title, getDaysInMonth(date.end), date.start, date.end);
+    console.log(t, p.title, getDaysInMonth(date.end), formatDayDate(t, date.end), date.end);
     setAddData(t);
   };
 

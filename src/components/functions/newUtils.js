@@ -53,7 +53,6 @@ export const separateDataByName = (d) => {
   return rd;
 };
 
-
 export const getlabelandvalue = (data) => {
   const retData = [];
   if (data.length > 0) {
@@ -67,7 +66,13 @@ export const getlabelandvalue = (data) => {
   return retData;
 };
 
-export const getDaysInMonth=(dateString)=> {
-  const [year, month] = dateString.split('-').map(Number);
+export const getDaysInMonth = (dateString) => {
+  const [year, month] = dateString.split("-").map(Number);
   return new Date(year, month, 0).getDate();
-}
+};
+
+export const formatDayDate = (i, d) => {
+  const splitedData = d.split("-");
+
+  return `${splitedData[0]}-${splitedData[1]}-${i}`;
+};
