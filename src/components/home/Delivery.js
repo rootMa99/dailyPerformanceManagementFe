@@ -233,6 +233,7 @@ const Delivery = (p) => {
   const close = (e) => {
     setShowKpi(false);
     setAddData(false);
+    callback()
   };
 
   const addDataClicked = (e, t) => {
@@ -250,7 +251,7 @@ const Delivery = (p) => {
       {addData && (
         <React.Fragment>
           <BackDrop click={close} />
-          <AddData title={p.title} dateChoosen={addData} />
+          <AddData title={p.title} dateChoosen={addData}/>
         </React.Fragment>
       )}
       {showkpi && (

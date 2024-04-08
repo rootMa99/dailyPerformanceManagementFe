@@ -208,6 +208,7 @@ const AddData = (p) => {
                     onChange={(e) =>
                       setDataAdded((p) => ({ ...p, name: e.value }))
                     }
+                    value={{ label: dataAdded.name, value: dataAdded.name }}
                   />
                 </div>
                 {dataAdded.name === "create new kpi" && (
@@ -241,6 +242,7 @@ const AddData = (p) => {
                   onChange={(e) =>
                     setDataAdded((p) => ({ ...p, type: e.value }))
                   }
+                  value={{ label: dataAdded.type, value: dataAdded.type }}
                 />
               </div>
               <div className={c["form-group"]}>
@@ -254,6 +256,7 @@ const AddData = (p) => {
                     onChange={(e) =>
                       setDataAdded((p) => ({ ...p, real: +e.target.value }))
                     }
+                    value={dataAdded.real}
                   />
                 </div>
                 <div className={c.inputC}>
@@ -266,6 +269,7 @@ const AddData = (p) => {
                     onChange={(e) =>
                       setDataAdded((p) => ({ ...p, target: +e.target.value }))
                     }
+                    value={dataAdded.target}
                   />
                 </div>
               </div>
