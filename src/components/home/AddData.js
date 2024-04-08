@@ -3,7 +3,13 @@ import c from "./AddData.module.css";
 
 const AddData = (p) => {
   const [control, setControl] = useState("ad");
-
+  const [dataAdded, setDataAdded] = useState({
+    date: p.dateChoosen,
+    real: 0,
+    target: 0,
+    name: "",
+  });
+  console.log(dataAdded.date);
   return (
     <div className={c["form-container"]}>
       <ul className={c.underList}>
@@ -42,28 +48,30 @@ const AddData = (p) => {
       <form className={c.form}>
         <div className={c.inputD}>
           <h3>choose date:</h3>
-          <input type="date" required value={"2013-05-13"} disabled />
+          <input type="date" required value={dataAdded.date} disabled />
         </div>
-        <div className={c["form-group"]}>
-          <div className={c.inputC}>
-            <h3>real data:</h3>
-            <input
-              type="number"
-              placeholder="Enter your real data"
-              step="0.01"
-              required
-            />
+        {control === "ad" && (
+          <div className={c["form-group"]}>
+            <div className={c.inputC}>
+              <h3>real data:</h3>
+              <input
+                type="number"
+                placeholder="Enter your real data"
+                step="0.01"
+                required
+              />
+            </div>
+            <div className={c.inputC}>
+              <h3>target data:</h3>
+              <input
+                type="number"
+                placeholder="Enter your target data"
+                step="0.01"
+                required
+              />
+            </div>
           </div>
-          <div className={c.inputC}>
-            <h3>target data:</h3>
-            <input
-              type="number"
-              placeholder="Enter your target data"
-              step="0.01"
-              required
-            />
-          </div>
-        </div>
+        )}
         <button className={c["form-submit-btn"]} type="submit">
           submit
         </button>

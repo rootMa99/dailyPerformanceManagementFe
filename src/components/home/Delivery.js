@@ -242,7 +242,7 @@ const Delivery = (p) => {
       return;
     }
     console.log(t, p.title, getDaysInMonth(date.end), formatDayDate(t, date.end), date.end);
-    setAddData(t);
+    setAddData(formatDayDate(t, date.end));
   };
 
   return (
@@ -250,7 +250,7 @@ const Delivery = (p) => {
       {addData && (
         <React.Fragment>
           <BackDrop click={close} />
-          <AddData />
+          <AddData title={p.title} dateChoosen={addData} />
         </React.Fragment>
       )}
       {showkpi && (

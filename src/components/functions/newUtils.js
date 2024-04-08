@@ -73,6 +73,6 @@ export const getDaysInMonth = (dateString) => {
 
 export const formatDayDate = (i, d) => {
   const splitedData = d.split("-");
-
-  return `${splitedData[0]}-${splitedData[1]}-${i}`;
+  const ind = +i < 10 ? `0${i}` : i;
+  return `${splitedData[0]}-${splitedData[1]}-${ind}`;
 };
