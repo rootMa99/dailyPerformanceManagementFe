@@ -27,6 +27,7 @@ import Ptable from "../alphabet/Ptable";
 import Ktable from "../alphabet/Ktable";
 import BackDrop from "../UI/BackDrop";
 import Details from "./Details";
+import AddData from "./AddData";
 const Delivery = (p) => {
   const [showkpi, setShowKpi] = useState(false);
   const [addData, setAddData] = useState(false);
@@ -249,6 +250,7 @@ const Delivery = (p) => {
       {addData && (
         <React.Fragment>
           <BackDrop click={close} />
+          <AddData />
         </React.Fragment>
       )}
       {showkpi && (
