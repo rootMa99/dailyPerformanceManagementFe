@@ -11,6 +11,7 @@ const Home = (p) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const dispatch = useDispatch();
   const handleDateChange = (date) => {
+    console.log(date)
     setSelectedDate(date);
     dispatch(dataActions.setTime(getStartAndEndMonth(date)));
   };

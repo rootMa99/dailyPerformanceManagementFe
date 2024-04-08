@@ -283,7 +283,6 @@ const Details = (p) => {
               <table className={c.table}>
                 <thead>
                   <tr>
-                    <th>day</th>
                     <th>issue Description</th>
                     <th>causes</th>
                     <th width="30%">contermeasures</th>
@@ -298,7 +297,6 @@ const Details = (p) => {
                       m.data.apm != null &&
                       m.data.apm.map((m) => (
                         <tr key={m.id}>
-                          <td>{m.day}</td>
                           <td>{m.issueDescription}</td>
                           <td>{m.causes}</td>
                           <td>{m.contermeasures}</td>
@@ -319,7 +317,6 @@ const Details = (p) => {
                 </tbody>
                 <tfoot>
                   <tr>
-                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>

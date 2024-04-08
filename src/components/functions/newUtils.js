@@ -76,3 +76,19 @@ export const formatDayDate = (i, d) => {
   const ind = +i < 10 ? `0${i}` : i;
   return `${splitedData[0]}-${splitedData[1]}-${ind}`;
 };
+
+export const getDateOfTomorrow = (dateString) => {
+  const [year, month, day] = dateString.split("-").map(Number);
+
+  const currentDate = new Date(year, month - 1, day);
+
+  currentDate.setDate(currentDate.getDate() + 1);
+
+  const tomorrowYear = currentDate.getFullYear();
+  const tomorrowMonth = String(currentDate.getMonth() + 1).padStart(2, "0");
+  const tomorrowDay = String(currentDate.getDate()).padStart(2, "0");
+
+  const tomorrowDateString = `${tomorrowYear}-${tomorrowMonth}-${tomorrowDay}`;
+
+  return tomorrowDateString;
+};

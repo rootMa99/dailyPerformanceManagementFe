@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import c from "./AddData.module.css";
 import Select from "react-select";
 import api from "../../service/api";
-import { getlabelandvalue } from "../functions/newUtils";
+import { getDateOfTomorrow, getlabelandvalue } from "../functions/newUtils";
 import NetworkNotify from "../UI/NetworkNotify";
 
 const customStyles = {
@@ -70,6 +70,13 @@ const customStyles = {
   }),
 };
 
+const dataOp = [
+  { value: "action assigned", label: "action assigned" },
+  { value: "action started", label: "action started" },
+  { value: "action complete", label: "action complete" },
+  { value: "rc fix confirmed", label: "rc fix confirmed" },
+];
+
 const AddData = (p) => {
   const [control, setControl] = useState("ad");
   const [dataAdded, setDataAdded] = useState({
@@ -78,6 +85,14 @@ const AddData = (p) => {
     target: "",
     name: "",
     type: "",
+  });
+  const [apm, setApm] = useState({
+    issueDescription: "",
+    causes: "",
+    contermeasures: "",
+    resp: "",
+    dueDate: "",
+    status: "",
   });
   const [kpiListOwner, setKpiListOwner] = useState(["first"]);
   const [err, setErr] = useState({ status: false, message: "" });
@@ -122,7 +137,7 @@ const AddData = (p) => {
         alert("Please Enter the Target");
         return;
       }
-      
+console.log(dataAdded.date)
       try {
         await fetch(`${api}/${p.title}`, {
           method: "POST",
@@ -136,12 +151,64 @@ const AddData = (p) => {
         // const datar = await response.json();
         // console.Console(datar);
         // p.click(e, p.title);
-        setDataAdded({
-          date: p.dateChoosen,
-          real: "",
-          target: "",
-          name: "",
-          type: "",
+        const confirmation = window.confirm("Want to enter tomorrow's data?");
+
+        if(confirmation){
+          setDataAdded(p=>({
+            date: getDateOfTomorrow(p.date),
+            real: "",
+            target: "",
+            name: p.name,
+            type: p.type,
+          }));
+        }else{
+          setDataAdded(p=>({
+            date:p.date,
+            real: "",
+            target: "",
+            name: p.name,
+            type: p.type,
+          }));
+        }
+       
+        setSuccess({
+          status: true,
+          message: "data has been successfully added.",
+        });
+      } catch (error) {
+        console.error("Error:", error);
+        setErr({
+          status: true,
+          message:
+            "Something has gone wrong, we were not able to save this action, please try it again. ",
+        });
+      }
+    }
+    if (control === "acp") {
+      console.log(apm)
+      if (dataAdded.name.trim() === "") {
+        alert("Please select a KPI name.");
+        return;
+      }
+      try {
+        await fetch(
+          `${api}/${p.title}/actionPlan?name=${dataAdded.name}&date=${dataAdded.date}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              // Authorization: `Bearer ${isLoged.token}`,
+            },
+            body: JSON.stringify([apm]),
+          }
+        );
+        setApm({
+          issueDescription: "",
+          causes: "",
+          contermeasures: "",
+          resp: "",
+          dueDate: "",
+          status: "",
         });
         setSuccess({
           status: true,
@@ -287,6 +354,109 @@ const AddData = (p) => {
                       setDataAdded((p) => ({ ...p, target: +e.target.value }))
                     }
                     value={dataAdded.target}
+                  />
+                </div>
+              </div>
+            </React.Fragment>
+          )}
+          {control === "acp" && (
+            <React.Fragment>
+              <div className={c["form-group"]}>
+                <div className={c.inputC}>
+                  <h3>choose Kpi:</h3>
+                  <Select
+                    options={getlabelandvalue(kpiListOwner)}
+                    id="modality"
+                    inputId="modality"
+                    styles={customStyles}
+                    placeholder="select KPI"
+                    onChange={(e) =>
+                      setDataAdded((p) => ({ ...p, name: e.value }))
+                    }
+                    value={{ label: dataAdded.name, value: dataAdded.name }}
+                  />
+                </div>
+                <div className={c.inputC}>
+                  <h3>Issue description:</h3>
+                  <input
+                    type="text"
+                    placeholder="Enter Issue description"
+                    value={apm.issueDescription}
+                    onChange={(e) =>
+                      setApm((p) => {
+                        return { ...p, issueDescription: e.target.value };
+                      })
+                    }
+                    required
+                  />
+                </div>
+                <div className={c.inputC}>
+                  <h3>Causes:</h3>
+                  <input
+                    type="text"
+                    placeholder="Enter Causes"
+                    value={apm.causes}
+                    onChange={(e) =>
+                      setApm((p) => {
+                        return { ...p, causes: e.target.value };
+                      })
+                    }
+                    required
+                  />
+                </div>
+                <div className={c.inputC}>
+                  <h3>Contermeasures:</h3>
+                  <input
+                    type="text"
+                    placeholder="Enter Contermeasures"
+                    value={apm.contermeasures}
+                    onChange={(e) =>
+                      setApm((p) => {
+                        return { ...p, contermeasures: e.target.value };
+                      })
+                    }
+                    required
+                  />
+                </div>
+                <div className={c.inputC}>
+                  <h3>Resp:</h3>
+                  <input
+                    type="text"
+                    placeholder="Enter Resp"
+                    value={apm.resp}
+                    onChange={(e) =>
+                      setApm((p) => {
+                        return { ...p, resp: e.target.value };
+                      })
+                    }
+                    required
+                  />
+                </div>
+                <div className={c.inputC}>
+                  <h3>Due date:</h3>
+                  <input
+                    type="date"
+                    value={apm.dueDate}
+                    required
+                    onChange={(e) =>
+                      setApm((p) => {
+                        return { ...p, dueDate: e.target.value };
+                      })
+                    }
+                  />
+                </div>
+                <div className={c.inputC}>
+                  <h3>Status:</h3>
+                  <Select
+                    options={dataOp}
+                    styles={customStyles}
+                    value={{ label:apm.status, value:apm.status }}
+                    onChange={(e) =>
+                      setApm((p) => {
+                        return { ...p, status: e.value };
+                      })
+                    }
+                    menuPlacement="top"
                   />
                 </div>
               </div>

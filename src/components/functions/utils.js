@@ -5,18 +5,17 @@ export const getMonthAndYear = () => {
   return `${currentMonth}-${currentYear}`;
 };
 export const getStartAndEndMonth = (inputDate) => {
-  const startOfMonth = new Date(
-    inputDate.getFullYear(),
-    inputDate.getMonth(),
-    1
-  );
-  const startOfMonthFormatted = startOfMonth.toISOString().slice(0, 10);
-  const endOfMonth = new Date(
-    inputDate.getFullYear(),
-    inputDate.getMonth() + 1,
-    0
-  );
-  const endOfMonthFormatted = endOfMonth.toISOString().slice(0, 10);
+  const year = inputDate.getFullYear();
+  const month = inputDate.getMonth();
+
+  // Start of the month
+  const startOfMonth = new Date(year, month, 1);
+  const startOfMonthFormatted = `${year}-${(month + 1).toString().padStart(2, '0')}-01`;
+
+  // End of the month
+  const lastDayOfMonth = new Date(year, month + 1, 0).getDate();
+  const endOfMonthFormatted = `${year}-${(month + 1).toString().padStart(2, '0')}-${lastDayOfMonth.toString().padStart(2, '0')}`;
+
   return { start: startOfMonthFormatted, end: endOfMonthFormatted };
 };
 export const getOnlyDay = (data) => {

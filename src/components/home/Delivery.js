@@ -55,6 +55,7 @@ const Delivery = (p) => {
 
       const data = await response.json();
       const d = separateDataByName(data);
+      console.log(data, date)
       try {
         setDeliveryData(
           getOnlyDay(d.filter((f) => f.name === "first")[0].data)
@@ -280,49 +281,49 @@ const Delivery = (p) => {
           {p.title === "delivery" && (
             <Dtable
               data={deliveryData}
-              date={new Date(date.start)}
+              date={new Date(date.end)}
               click={addDataClicked}
             />
           )}
           {p.title === "safety" && (
             <Ttable
               data={deliveryData}
-              date={new Date(date.start)}
+              date={new Date(date.end)}
               click={addDataClicked}
             />
           )}
           {p.title === "skills" && (
             <Stable
               data={deliveryData}
-              date={new Date(date.start)}
+              date={new Date(date.end)}
               click={addDataClicked}
             />
           )}
           {p.title === "quality" && (
             <Qletter
               data={deliveryData}
-              date={new Date(date.start)}
+              date={new Date(date.end)}
               click={addDataClicked}
             />
           )}
           {p.title === "inventory" && (
             <Itable
               data={deliveryData}
-              date={new Date(date.start)}
+              date={new Date(date.end)}
               click={addDataClicked}
             />
           )}
           {p.title === "productivity" && (
             <Ptable
               data={deliveryData}
-              date={new Date(date.start)}
+              date={new Date(date.end)}
               click={addDataClicked}
             />
           )}
           {p.title === "kaizen" && (
             <Ktable
               data={deliveryData}
-              date={new Date(date.start)}
+              date={new Date(date.end)}
               click={addDataClicked}
             />
           )}
@@ -353,7 +354,6 @@ const Delivery = (p) => {
               <table className={c.table}>
                 <thead>
                   <tr>
-                    <th>day</th>
                     <th>issue Description</th>
                     <th>causes</th>
                     <th width="30%">contermeasures</th>
@@ -368,7 +368,6 @@ const Delivery = (p) => {
                       m.data.apm != null &&
                       m.data.apm.map((m) => (
                         <tr key={m.id}>
-                          <td>{m.day}</td>
                           <td>{m.issueDescription}</td>
                           <td>{m.causes}</td>
                           <td
@@ -389,7 +388,6 @@ const Delivery = (p) => {
                 </tbody>
                 <tfoot>
                   <tr>
-                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
