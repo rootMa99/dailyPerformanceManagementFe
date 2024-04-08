@@ -8,7 +8,7 @@ const Itable = (p) => {
   const currentPath = location.pathname;
 
   const onClickH = (e, i) => {
-    p.click(e, {index: i, type: "delivery"})
+    p.click(e, i)
   };
 
 
