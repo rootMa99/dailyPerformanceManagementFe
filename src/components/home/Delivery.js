@@ -55,7 +55,7 @@ const Delivery = (p) => {
 
       const data = await response.json();
       const d = separateDataByName(data);
-      console.log(data, date)
+    
       try {
         setDeliveryData(
           getOnlyDay(d.filter((f) => f.name === "first")[0].data)

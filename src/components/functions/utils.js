@@ -9,7 +9,7 @@ export const getStartAndEndMonth = (inputDate) => {
   const month = inputDate.getMonth();
 
   // Start of the month
-  const startOfMonth = new Date(year, month, 1);
+  // const startOfMonth = new Date(year, month, 1);
   const startOfMonthFormatted = `${year}-${(month + 1).toString().padStart(2, '0')}-01`;
 
   // End of the month
