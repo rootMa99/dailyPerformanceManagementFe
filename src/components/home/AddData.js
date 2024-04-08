@@ -101,6 +101,31 @@ const AddData = (p) => {
     callback();
   }, [callback]);
 
+
+  const submitHandler=async e=>{
+    e.preventDefault();
+    if(control==="ad"){
+        try {
+          
+            await fetch(`${api}/${p.title}`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                // Authorization: `Bearer ${isLoged.token}`,
+              },
+              body: JSON.stringify(dataAdded),
+            });
+      
+            // const datar = await response.json();
+            // console.Console(datar);
+            // p.click(e, p.title);
+          } catch (error) {
+            console.error("Error:", error);
+          }
+    }
+  }
+
+
   return (
     <div className={c["form-container"]}>
       <ul className={c.underList}>
@@ -136,7 +161,7 @@ const AddData = (p) => {
           add pareto
         </li>
       </ul>
-      <form className={c.form}>
+      <form className={c.form} onSubmit={submitHandler}>
         <div className={c.inputD}>
           <h3>choose date:</h3>
           <input type="date" required value={dataAdded.date} disabled />
@@ -201,6 +226,9 @@ const AddData = (p) => {
                   placeholder="Enter your real data"
                   step="0.01"
                   required
+                  onChange={(e) =>
+                    setDataAdded((p) => ({ ...p, real: +e.target.value }))
+                  }
                 />
               </div>
               <div className={c.inputC}>
@@ -210,6 +238,9 @@ const AddData = (p) => {
                   placeholder="Enter your target data"
                   step="0.01"
                   required
+                  onChange={(e) =>
+                    setDataAdded((p) => ({ ...p, target: +e.target.value }))
+                  }
                 />
               </div>
             </div>
