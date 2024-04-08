@@ -11,6 +11,9 @@
     height: 15px;
     /* border: 1px solid black; */
   }
+  .hoverTd td:hover{
+    transform: scale(1.5);
+  }
   .letter-s td span{
     color: aliceblue;
   }

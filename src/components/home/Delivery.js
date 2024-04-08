@@ -36,7 +36,7 @@ const Delivery = (p) => {
   const location = useLocation();
   const currentPath = location.pathname;
 
-  console.log(date);
+
 
   const callback = useCallback(async () => {
     try {
@@ -51,7 +51,6 @@ const Delivery = (p) => {
       );
 
       const data = await response.json();
-      console.log(data, separateDataByName(data));
       const d = separateDataByName(data);
       try {
         setDeliveryData(
@@ -86,7 +85,7 @@ const Delivery = (p) => {
   //   return b.percentage - a.percentage;
   // });
   // console.log(pareto);
-  console.log(deliveryData);
+
   const bgcolor = [];
 
   deliveryData.map((m) =>
@@ -244,7 +243,7 @@ const Delivery = (p) => {
         </React.Fragment>
       )}
       <div className={c.containerData}>
-        <div className={c.letter} onClick={(e) => setShowKpi(p.title)}>
+        <div className={c.letter} onClick={(e) =>{ currentPath==="/" && setShowKpi(p.title)}}>
           {p.title === "delivery" && (
             <Dtable data={deliveryData} date={new Date(date.start)} />
           )}

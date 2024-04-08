@@ -1,10 +1,19 @@
 
 import { colorDays } from "../functions/utils";
 import c from "./Stable.module.css";
+import { useLocation } from "react-router"
 
 const Ttable = (p) => {
 
+  // const [click, setClicked]=useState(false);
+  const location = useLocation();
   const filtredData = p.data;
+  const currentPath = location.pathname;
+
+  const onClickH = (e, i) => {
+    alert(i, "clicked");
+  };
+
   return (
     <table className={c["letter-s"]}>
       <tr>
