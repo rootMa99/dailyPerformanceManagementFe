@@ -36,6 +36,8 @@ const Delivery = (p) => {
   const location = useLocation();
   const currentPath = location.pathname;
 
+  console.log(date);
+
   const callback = useCallback(async () => {
     try {
       const response = await fetch(
@@ -51,7 +53,13 @@ const Delivery = (p) => {
       const data = await response.json();
       console.log(data, separateDataByName(data));
       const d = separateDataByName(data);
-      setDeliveryData(getOnlyDay(d.filter((f) => f.name === "first")[0].data));
+      try {
+        setDeliveryData(
+          getOnlyDay(d.filter((f) => f.name === "first")[0].data)
+        );
+      } catch (e) {
+        setDeliveryData([]);
+      }
       dispatch(dataActions.addDelevery(d));
       p.title === "delivery" && dispatch(dataActions.addDelevery(d));
 
@@ -259,13 +267,15 @@ const Delivery = (p) => {
             <Ktable data={deliveryData} date={new Date(date.start)} />
           )}
         </div>
-        <Profile
-          urlI={delivery !== -1 ? kpiOwners[delivery].uri : ""}
-          name={delivery !== -1 ? kpiOwners[delivery].name : "N/A"}
-          coName={delivery !== -1 ? kpiOwners[delivery].coName : "N/A"}
-          kpiOwn="delivery"
-          path={currentPath}
-        />
+        <div className={c.profileC}>
+          <Profile
+            urlI={delivery !== -1 ? kpiOwners[delivery].uri : ""}
+            name={delivery !== -1 ? kpiOwners[delivery].name : "N/A"}
+            coName={delivery !== -1 ? kpiOwners[delivery].coName : "N/A"}
+            kpiOwn="delivery"
+            path={currentPath}
+          />
+        </div>
         <div className={c.chartHolder}>
           <div className={c.titletop}>
             <span></span>

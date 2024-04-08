@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { getCurrentMonthDates } from "../functions/utils";
+import { getCurrentMonthDates } from "../functions/utils";
 
 const dataSlice = createSlice({
   name: "datas",
@@ -14,11 +14,11 @@ const dataSlice = createSlice({
       kaizen: [],
     },
     kpiOwners: [],
-    //date: getCurrentMonthDates(),
-    date: {
-      start: "2024-03-01",
-      end: "2024-03-30",
-    },
+    date: getCurrentMonthDates(),
+    // date: {
+    //   start: "2024-03-01",
+    //   end: "2024-03-30",
+    // },
   },
   reducers: {
     addDelevery(s, p) {

@@ -94,3 +94,26 @@
   color: #f84018;
   text-transform: uppercase;
 }
+.ndiv {
+    display: flex;
+    position: relative;
+    padding-top: 3rem;
+    justify-content: space-around;
+    margin-top: 3vh;
+  }
+  .ndiv h1 {
+    background-color: #383942;
+    width: 100%;
+    position: absolute;
+    top: -0.5rem;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fffefe;
+    text-transform: capitalize;
+    font-variant-caps: petite-caps;
+    padding: 0.5rem 0;
+  }
+  .ndiv h1::first-letter {
+    color: #f84018;
+    font-size: xx-large;
+  }

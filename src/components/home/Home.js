@@ -20,65 +20,74 @@ const Home = (p) => {
         <span></span> daily performance management
       </h1>
       <div className={c.datePicker}>
-      <label>PICK A DATE</label>
-      <DatePicker
-        selected={selectedDate}
-        onChange={handleDateChange}
-        dateFormat="MMMM yyyy"
-        showMonthYearPicker
-        showFullMonthYearPicker
-        className={c["custom-datepicker"]}
-      />
-    </div>
-      <div className={c.letterContainer}>
-        <div className={c.title}>
-          <div className={c.line}></div>
-          <h3>safety</h3>
-        </div>
-        <Delivery title="safety" />
+        <label>PICK A DATE</label>
+        <DatePicker
+          selected={selectedDate}
+          onChange={handleDateChange}
+          dateFormat="MMMM yyyy"
+          showMonthYearPicker
+          showFullMonthYearPicker
+          className={c["custom-datepicker"]}
+        />
       </div>
-      <div className={c.letterContainer}>
-        <div className={c.title}>
-          <div className={c.line}></div>
-          <h3>skills</h3>
+      <div className={c.ndiv} style={{ width: "28%" }}>
+        <h1>people</h1>
+        <div className={c.letterContainer}>
+          <div className={c.title}>
+            <div className={c.line}></div>
+            <h3>safety</h3>
+          </div>
+          <Delivery title="safety" />
         </div>
-        <Delivery title="skills" />
-      </div>
-      <div className={c.letterContainer}>
-        <div className={c.title}>
-          <div className={c.line}></div>
-          <h3>quality</h3>
+        <div className={c.letterContainer}>
+          <div className={c.title}>
+            <div className={c.line}></div>
+            <h3>skills</h3>
+          </div>
+          <Delivery title="skills" />
         </div>
-        <Delivery title="quality" />
       </div>
-      <div className={c.letterContainer}>
-        <div className={c.title}>
-          <div className={c.line}></div>
-          <h3>Delivery</h3>
+      <div className={c.ndiv} style={{ width: "56%" }}>
+        <h1>performance</h1>
+        <div className={c.letterContainer}>
+          <div className={c.title}>
+            <div className={c.line}></div>
+            <h3>quality</h3>
+          </div>
+          <Delivery title="quality" />
         </div>
-        <Delivery title="delivery" />
-      </div>
+        <div className={c.letterContainer}>
+          <div className={c.title}>
+            <div className={c.line}></div>
+            <h3>Delivery</h3>
+          </div>
+          <Delivery title="delivery" />
+        </div>
 
-      <div className={c.letterContainer}>
-        <div className={c.title}>
-          <div className={c.line}></div>
-          <h3>inventory</h3>
+        <div className={c.letterContainer}>
+          <div className={c.title}>
+            <div className={c.line}></div>
+            <h3>inventory</h3>
+          </div>
+          <Delivery title="inventory" />
         </div>
-        <Delivery title="inventory" />
+        <div className={c.letterContainer}>
+          <div className={c.title}>
+            <div className={c.line}></div>
+            <h3>productivity</h3>
+          </div>
+          <Delivery title="productivity" />
+        </div>
       </div>
-      <div className={c.letterContainer}>
-        <div className={c.title}>
-          <div className={c.line}></div>
-          <h3>productivity</h3>
+      <div className={c.ndiv} style={{ width: "14%" }}>
+        <h1>improvement</h1>
+        <div className={c.letterContainer}>
+          <div className={c.title}>
+            <div className={c.line}></div>
+            <h3>kaizen</h3>
+          </div>
+          <Delivery title="kaizen" />
         </div>
-        <Delivery title="productivity" />
-      </div>
-      <div className={c.letterContainer}>
-        <div className={c.title}>
-          <div className={c.line}></div>
-          <h3>kaizen</h3>
-        </div>
-        <Delivery title="kaizen" />
       </div>
     </div>
   );
