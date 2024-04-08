@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import api from "../../service/api";
-import { separateDataByName } from "../functions/newUtils";
+import { getDaysInMonth, separateDataByName } from "../functions/newUtils";
 import { dataActions } from "../store/dataSlice";
 import { formatDate, getOnlyDay } from "../functions/utils";
 import Dtable from "../alphabet/Dtable";
@@ -233,14 +233,24 @@ const Delivery = (p) => {
     setShowKpi(false);
     setAddData(false);
   };
-  
-  const addDataClicked=(e, t)=>{
-    console.log(t, p.title);
+
+  const addDataClicked = (e, t) => {
+    if (t > getDaysInMonth(date.end)) {
+      alert("This Day Is Invalid.");
+      setAddData(false);
+      return;
+    }
+    console.log(t, p.title, getDaysInMonth(date.end), date.start, date.end);
     setAddData(t);
-  }
+  };
 
   return (
     <React.Fragment>
+      {addData && (
+        <React.Fragment>
+          <BackDrop click={close} />
+        </React.Fragment>
+      )}
       {showkpi && (
         <React.Fragment>
           <BackDrop click={close} />
@@ -257,25 +267,53 @@ const Delivery = (p) => {
           }}
         >
           {p.title === "delivery" && (
-            <Dtable data={deliveryData} date={new Date(date.start)} click={addDataClicked} />
+            <Dtable
+              data={deliveryData}
+              date={new Date(date.start)}
+              click={addDataClicked}
+            />
           )}
           {p.title === "safety" && (
-            <Ttable data={deliveryData} date={new Date(date.start)} click={addDataClicked} />
+            <Ttable
+              data={deliveryData}
+              date={new Date(date.start)}
+              click={addDataClicked}
+            />
           )}
           {p.title === "skills" && (
-            <Stable data={deliveryData} date={new Date(date.start)} click={addDataClicked} />
+            <Stable
+              data={deliveryData}
+              date={new Date(date.start)}
+              click={addDataClicked}
+            />
           )}
           {p.title === "quality" && (
-            <Qletter data={deliveryData} date={new Date(date.start)} click={addDataClicked} />
+            <Qletter
+              data={deliveryData}
+              date={new Date(date.start)}
+              click={addDataClicked}
+            />
           )}
           {p.title === "inventory" && (
-            <Itable data={deliveryData} date={new Date(date.start)} click={addDataClicked} />
+            <Itable
+              data={deliveryData}
+              date={new Date(date.start)}
+              click={addDataClicked}
+            />
           )}
           {p.title === "productivity" && (
-            <Ptable data={deliveryData} date={new Date(date.start)} click={addDataClicked} />
+            <Ptable
+              data={deliveryData}
+              date={new Date(date.start)}
+              click={addDataClicked}
+            />
           )}
           {p.title === "kaizen" && (
-            <Ktable data={deliveryData} date={new Date(date.start)} click={addDataClicked} />
+            <Ktable
+              data={deliveryData}
+              date={new Date(date.start)}
+              click={addDataClicked}
+            />
           )}
         </div>
         <div className={c.profileC}>

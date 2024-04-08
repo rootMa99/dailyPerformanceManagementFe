@@ -66,3 +66,8 @@ export const getlabelandvalue = (data) => {
   }
   return retData;
 };
+
+export const getDaysInMonth=(dateString)=> {
+  const [year, month] = dateString.split('-').map(Number);
+  return new Date(year, month, 0).getDate();
+}
