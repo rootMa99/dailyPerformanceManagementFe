@@ -1,10 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import Delivery from "./Delivery";
 import c from "./Home.module.css";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { useDispatch } from "react-redux";
+import { dataActions } from "../store/dataSlice";
+import { getStartAndEndMonth } from "../functions/utils";
 
 const Home = (p) => {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const dispatch = useDispatch();
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+    dispatch(dataActions.setTime(getStartAndEndMonth(date)));
+  };
   return (
     <div className={c.holding}>
+      <h1 className={c.topTitle}>
+        <span></span> daily performance management
+      </h1>
+      <div className={c.datePicker}>
+      <label>PICK A DATE</label>
+      <DatePicker
+        selected={selectedDate}
+        onChange={handleDateChange}
+        dateFormat="MMMM yyyy"
+        showMonthYearPicker
+        showFullMonthYearPicker
+        className={c["custom-datepicker"]}
+      />
+    </div>
       <div className={c.letterContainer}>
         <div className={c.title}>
           <div className={c.line}></div>
@@ -20,12 +45,12 @@ const Home = (p) => {
         <Delivery title="skills" />
       </div>
       <div className={c.letterContainer}>
-      <div className={c.title}>
-        <div className={c.line}></div>
-        <h3>quality</h3>
+        <div className={c.title}>
+          <div className={c.line}></div>
+          <h3>quality</h3>
+        </div>
+        <Delivery title="quality" />
       </div>
-      <Delivery title="quality" />
-    </div>
       <div className={c.letterContainer}>
         <div className={c.title}>
           <div className={c.line}></div>
@@ -33,7 +58,7 @@ const Home = (p) => {
         </div>
         <Delivery title="delivery" />
       </div>
-     
+
       <div className={c.letterContainer}>
         <div className={c.title}>
           <div className={c.line}></div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import c from "./Details.module.css";
 import imglogo from "../../assets/aptiv-logo.svg";
 import { useSelector } from "react-redux";
@@ -15,6 +15,8 @@ import {
 } from "chart.js";
 import { formatDate, getOnlyDay } from "../functions/utils";
 import Select from "react-select";
+import api from "../../service/api";
+import { getlabelandvalue } from "../functions/newUtils";
 
 const customStyles = {
   control: (provided, state) => ({
@@ -83,8 +85,29 @@ const customStyles = {
 
 const Details = (p) => {
   const { data } = useSelector((s) => s.data);
+  const [kpiListOwner, setKpiListOwner]=useState(["first"]);
   const [kpi, setKpi] = useState("first");
   console.log(data[p.title].length);
+  const callback = useCallback(async () => {
+    try {
+      const response = await fetch(`${api}/dpm/kpiNames?kpiName=${p.title}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await response.json();
+      setKpiListOwner(data)
+      console.log(data);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }, [p.title]);
+
+  useEffect(() => {
+    callback();
+  }, [callback]);
 
   let deliveryData;
   try {
@@ -232,11 +255,7 @@ const Details = (p) => {
       <div className={c["form-container"]}>
         <div className={c.selectContainer}>
           <Select
-            options={[
-              { label: "first", value: "first" },
-              { label: "second", value: "second" },
-              { label: "third", value: "third" },
-            ]}
+            options={getlabelandvalue(kpiListOwner)}
             id="modality"
             inputId="modality"
             styles={customStyles}

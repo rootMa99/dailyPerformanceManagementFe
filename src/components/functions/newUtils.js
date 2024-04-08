@@ -52,3 +52,17 @@ export const separateDataByName = (d) => {
   });
   return rd;
 };
+
+
+export const getlabelandvalue = (data) => {
+  const retData = [];
+  if (data.length > 0) {
+    data.map((m) =>
+      retData.push({
+        value: m,
+        label: m,
+      })
+    );
+  }
+  return retData;
+};
