@@ -4,7 +4,6 @@ import Select from "react-select";
 import api from "../../service/api";
 import {
   getDateOfTomorrow,
-  getlabelandvalue,
   newgetlabelandvalue,
 } from "../functions/newUtils";
 import NetworkNotify from "../UI/NetworkNotify";
