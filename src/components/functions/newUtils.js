@@ -65,6 +65,18 @@ export const getlabelandvalue = (data) => {
   }
   return retData;
 };
+export const newgetlabelandvalue = (data) => {
+  const retData = [];
+  if (data.length > 0) {
+    data.map((m) =>
+      retData.push({
+        value: m.alias,
+        label: m.kpiName,
+      })
+    );
+  }
+  return retData;
+};
 
 export const getDaysInMonth = (dateString) => {
   const [year, month] = dateString.split("-").map(Number);

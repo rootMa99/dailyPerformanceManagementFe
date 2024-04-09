@@ -16,7 +16,7 @@ import {
 import { formatDate, getOnlyDay } from "../functions/utils";
 import Select from "react-select";
 import api from "../../service/api";
-import { getlabelandvalue } from "../functions/newUtils";
+import {  newgetlabelandvalue } from "../functions/newUtils";
 
 const customStyles = {
   control: (provided, state) => ({
@@ -255,7 +255,7 @@ const Details = (p) => {
       <div className={c["form-container"]}>
         <div className={c.selectContainer}>
           <Select
-            options={getlabelandvalue(kpiListOwner)}
+            options={newgetlabelandvalue(kpiListOwner)}
             id="modality"
             inputId="modality"
             styles={customStyles}

@@ -2,7 +2,11 @@ import React, { useCallback, useEffect, useState } from "react";
 import c from "./AddData.module.css";
 import Select from "react-select";
 import api from "../../service/api";
-import { getDateOfTomorrow, getlabelandvalue } from "../functions/newUtils";
+import {
+  getDateOfTomorrow,
+  getlabelandvalue,
+  newgetlabelandvalue,
+} from "../functions/newUtils";
 import NetworkNotify from "../UI/NetworkNotify";
 
 const customStyles = {
@@ -83,8 +87,9 @@ const AddData = (p) => {
     date: p.dateChoosen,
     real: "",
     target: "",
-    name: "",
+    name: { label: "", value: "" },
     type: "",
+    alias: null,
   });
   const [apm, setApm] = useState({
     issueDescription: "",
@@ -97,6 +102,8 @@ const AddData = (p) => {
   const [kpiListOwner, setKpiListOwner] = useState(["first"]);
   const [err, setErr] = useState({ status: false, message: "" });
   const [success, setSuccess] = useState({ status: false, message: "" });
+
+  console.log(kpiListOwner);
   const callback = useCallback(async () => {
     try {
       const response = await fetch(`${api}/dpm/kpiNames?kpiName=${p.title}`, {
@@ -121,10 +128,6 @@ const AddData = (p) => {
   const submitHandler = async (e) => {
     e.preventDefault();
     if (control === "ad") {
-      if (dataAdded.name.trim() === "") {
-        alert("Please select a KPI name.");
-        return;
-      }
       if (dataAdded.type.trim() === "") {
         alert("Please select a KPI type.");
         return;
@@ -137,7 +140,8 @@ const AddData = (p) => {
         alert("Please Enter the Target");
         return;
       }
-console.log(dataAdded.date)
+      console.log(dataAdded.date);
+      const body = { ...dataAdded, name: dataAdded.name.value };
       try {
         await fetch(`${api}/${p.title}`, {
           method: "POST",
@@ -145,7 +149,7 @@ console.log(dataAdded.date)
             "Content-Type": "application/json",
             // Authorization: `Bearer ${isLoged.token}`,
           },
-          body: JSON.stringify(dataAdded),
+          body: JSON.stringify(body),
         });
 
         // const datar = await response.json();
@@ -153,24 +157,26 @@ console.log(dataAdded.date)
         // p.click(e, p.title);
         const confirmation = window.confirm("Want to enter tomorrow's data?");
 
-        if(confirmation){
-          setDataAdded(p=>({
+        if (confirmation) {
+          setDataAdded((p) => ({
             date: getDateOfTomorrow(p.date),
             real: "",
             target: "",
             name: p.name,
-            type: p.type,
+            alias: p.alias,
+            type: { label: p.type, value: p.type },
           }));
-        }else{
-          setDataAdded(p=>({
-            date:p.date,
+        } else {
+          setDataAdded((p) => ({
+            date: p.date,
             real: "",
             target: "",
             name: p.name,
-            type: p.type,
+            alias: p.alias,
+            type: { label: p.type, value: p.type },
           }));
         }
-       
+
         setSuccess({
           status: true,
           message: "data has been successfully added.",
@@ -185,14 +191,14 @@ console.log(dataAdded.date)
       }
     }
     if (control === "acp") {
-      console.log(apm)
+      console.log(apm);
       if (dataAdded.name.trim() === "") {
         alert("Please select a KPI name.");
         return;
       }
       try {
         await fetch(
-          `${api}/${p.title}/actionPlan?name=${dataAdded.name}&date=${dataAdded.date}`,
+          `${api}/${p.title}/actionPlan?name=${dataAdded.name.value}&date=${dataAdded.date}`,
           {
             method: "POST",
             headers: {
@@ -230,6 +236,24 @@ console.log(dataAdded.date)
       setSuccess({ status: false, message: "" });
     }, 2000);
   }
+
+  const changeKpiOwn = (e) => {
+    if (e.value !== "create new kpi") {
+      const f = kpiListOwner.filter((f) => f.kpiName === e.label);
+      console.log(f);
+      setDataAdded((p) => ({
+        ...p,
+        name: e,
+        type: f[0].type,
+        alias: f[0].alias,
+      }));
+    } else {
+      setDataAdded((p) => ({ ...p, name: e }));
+    }
+  };
+
+
+  console.log(dataAdded)
   return (
     <React.Fragment>
       {err.status && <NetworkNotify message={err.message} success={false} />}
@@ -282,53 +306,77 @@ console.log(dataAdded.date)
                   <h3>choose Kpi:</h3>
                   <Select
                     options={[
-                      ...getlabelandvalue(kpiListOwner),
+                      ...newgetlabelandvalue(kpiListOwner),
                       { label: "create new kpi", value: "create new kpi" },
                     ]}
                     id="modality"
                     inputId="modality"
                     styles={customStyles}
                     placeholder="select KPI"
-                    onChange={(e) =>
-                      setDataAdded((p) => ({ ...p, name: e.value }))
-                    }
-                    value={{ label: dataAdded.name, value: dataAdded.name }}
+                    onChange={changeKpiOwn}
+                    value={dataAdded.name}
                   />
                 </div>
-                {dataAdded.name === "create new kpi" && (
+                {(dataAdded.name === "create new kpi" ||
+                  dataAdded.alias === null) && (
                   <React.Fragment>
                     OR
                     <div className={c.inputC}>
-                      <h3>new Kpi:</h3>
-                      <input
-                        type="text"
-                        placeholder="Enter NEw KPI"
-                        required
-                        onBlur={(e) =>
-                          setDataAdded((p) => ({ ...p, name: e.target.value }))
+                      <h3>choose type:</h3>
+                      <Select
+                        options={[
+                          { label: "negative", value: "negative" },
+                          { label: "positive", value: "positive" },
+                        ]}
+                        id="modality"
+                        inputId="modality"
+                        styles={customStyles}
+                        placeholder="select type"
+                        onChange={(e) =>
+                          setDataAdded((p) => ({ ...p, type: e.value }))
                         }
+                        value={{ label: dataAdded.type, value: dataAdded.type }}
                       />
                     </div>
+                    {dataAdded.type !== "" && (
+                      <div className={c.newK}>
+                        <div className={c.inputC}>
+                          <h3>new Kpi:</h3>
+                          <input
+                            type="text"
+                            placeholder="Enter New KPI"
+                            required
+                            onBlur={(e) => {
+                              setDataAdded((p) => ({
+                                ...p,
+                                name: {
+                                  label: e.target.value,
+                                  value: e.target.value,
+                                },
+                              }));
+                            }}
+                          />
+                        </div>
+                        <div>
+                          <input
+                            type="checkbox"
+                            id="horns"
+                            name="horns"
+                            onChange={(e) =>
+                              setDataAdded((p) => ({
+                                ...p,
+                                alias: "first",
+                              }))
+                            }
+                          />
+                          <label htmlFor="horns">PRIMARY</label>
+                        </div>
+                      </div>
+                    )}
                   </React.Fragment>
                 )}
               </div>
-              <div className={c.inputD}>
-                <h3>choose type:</h3>
-                <Select
-                  options={[
-                    { label: "negative", value: "negative" },
-                    { label: "positive", value: "positive" },
-                  ]}
-                  id="modality"
-                  inputId="modality"
-                  styles={customStyles}
-                  placeholder="select type"
-                  onChange={(e) =>
-                    setDataAdded((p) => ({ ...p, type: e.value }))
-                  }
-                  value={{ label: dataAdded.type, value: dataAdded.type }}
-                />
-              </div>
+
               <div className={c["form-group"]}>
                 <div className={c.inputC}>
                   <h3>real data:</h3>
@@ -450,7 +498,7 @@ console.log(dataAdded.date)
                   <Select
                     options={dataOp}
                     styles={customStyles}
-                    value={{ label:apm.status, value:apm.status }}
+                    value={{ label: apm.status, value: apm.status }}
                     onChange={(e) =>
                       setApm((p) => {
                         return { ...p, status: e.value };
