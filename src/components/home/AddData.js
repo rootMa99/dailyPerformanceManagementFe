@@ -87,9 +87,9 @@ const AddData = (p) => {
     date: p.dateChoosen,
     real: "",
     target: "",
-    name: { label: "", value: "" },
+    name: null ,
     type: "",
-    alias: null,
+    alias: { label: "", value: "" },
   });
   const [apm, setApm] = useState({
     issueDescription: "",
@@ -141,7 +141,7 @@ const AddData = (p) => {
         return;
       }
       console.log(dataAdded.date);
-      const body = { ...dataAdded, name: dataAdded.name.value };
+      const body = dataAdded.name!==null? { ...dataAdded, alias: dataAdded.alias.value }:{ ...dataAdded, alias: dataAdded.alias.value, name: dataAdded.alias.value };
       try {
         await fetch(`${api}/${p.title}`, {
           method: "POST",
@@ -164,7 +164,7 @@ const AddData = (p) => {
             target: "",
             name: p.name,
             alias: p.alias,
-            type: { label: p.type, value: p.type },
+            type: p.type,
           }));
         } else {
           setDataAdded((p) => ({
@@ -173,7 +173,7 @@ const AddData = (p) => {
             target: "",
             name: p.name,
             alias: p.alias,
-            type: { label: p.type, value: p.type },
+            type: p.type,
           }));
         }
 
@@ -192,10 +192,7 @@ const AddData = (p) => {
     }
     if (control === "acp") {
       console.log(apm);
-      if (dataAdded.name.trim() === "") {
-        alert("Please select a KPI name.");
-        return;
-      }
+
       try {
         await fetch(
           `${api}/${p.title}/actionPlan?name=${dataAdded.name.value}&date=${dataAdded.date}`,
@@ -239,16 +236,16 @@ const AddData = (p) => {
 
   const changeKpiOwn = (e) => {
     if (e.value !== "create new kpi") {
-      const f = kpiListOwner.filter((f) => f.kpiName === e.label);
+      const f = kpiListOwner.filter((f) => f.kpiName === e.value);
       console.log(f);
       setDataAdded((p) => ({
         ...p,
-        name: e,
+        alias: e,
         type: f[0].type,
-        alias: f[0].alias,
+        name: f[0].kpiName,
       }));
     } else {
-      setDataAdded((p) => ({ ...p, name: e }));
+      setDataAdded((p) => ({ ...p, alias: e }));
     }
   };
 
@@ -296,7 +293,7 @@ const AddData = (p) => {
         </ul>
         <form className={c.form} onSubmit={submitHandler}>
           <div className={c.inputD}>
-            <h3>choose date:</h3>
+            <h3>choosen date:</h3>
             <input type="date" required value={dataAdded.date} disabled />
           </div>
           {control === "ad" && (
@@ -313,12 +310,12 @@ const AddData = (p) => {
                     inputId="modality"
                     styles={customStyles}
                     placeholder="select KPI"
-                    onChange={changeKpiOwn}
-                    value={dataAdded.name}
+                    onChange={e=>changeKpiOwn(e)}
+                    value={dataAdded.alias}
                   />
                 </div>
-                {(dataAdded.name === "create new kpi" ||
-                  dataAdded.alias === null) && (
+                {(dataAdded.name === null ||
+                  dataAdded.alias.value === "create new kpi") && (
                   <React.Fragment>
                     OR
                     <div className={c.inputC}>
@@ -349,7 +346,7 @@ const AddData = (p) => {
                             onBlur={(e) => {
                               setDataAdded((p) => ({
                                 ...p,
-                                name: {
+                                alias: {
                                   label: e.target.value,
                                   value: e.target.value,
                                 },
@@ -365,7 +362,7 @@ const AddData = (p) => {
                             onChange={(e) =>
                               setDataAdded((p) => ({
                                 ...p,
-                                alias: "first",
+                                name: "first",
                               }))
                             }
                           />
@@ -413,15 +410,15 @@ const AddData = (p) => {
                 <div className={c.inputC}>
                   <h3>choose Kpi:</h3>
                   <Select
-                    options={getlabelandvalue(kpiListOwner)}
+                    options={newgetlabelandvalue(kpiListOwner)}
                     id="modality"
                     inputId="modality"
                     styles={customStyles}
                     placeholder="select KPI"
                     onChange={(e) =>
-                      setDataAdded((p) => ({ ...p, name: e.value }))
+                      setDataAdded((p) => ({ ...p, name: e}))
                     }
-                    value={{ label: dataAdded.name, value: dataAdded.name }}
+                    value={dataAdded.name}
                   />
                 </div>
                 <div className={c.inputC}>

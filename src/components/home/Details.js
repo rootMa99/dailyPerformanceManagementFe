@@ -86,7 +86,7 @@ const customStyles = {
 const Details = (p) => {
   const { data } = useSelector((s) => s.data);
   const [kpiListOwner, setKpiListOwner]=useState(["first"]);
-  const [kpi, setKpi] = useState("first");
+  const [kpi, setKpi] = useState({label:"first", value:"first"});
   console.log(data[p.title].length);
   const callback = useCallback(async () => {
     try {
@@ -113,7 +113,7 @@ const Details = (p) => {
   try {
     deliveryData =
       data[p.title].length !== 0
-        ? getOnlyDay(data[p.title].filter((f) => f.name === kpi)[0].data)
+        ? getOnlyDay(data[p.title].filter((f) => f.name === kpi.value)[0].data)
         : [];
   } catch (error) {
     deliveryData = [];
@@ -260,8 +260,8 @@ const Details = (p) => {
             inputId="modality"
             styles={customStyles}
             placeholder="select KPI"
-            onChange={(e) => setKpi(e.value)}
-            value={{ label: kpi, value: kpi }}
+            onChange={(e) => setKpi(e)}
+            value={kpi}
           />
         </div>
         <div className={c.logo}>

@@ -70,8 +70,8 @@ export const newgetlabelandvalue = (data) => {
   if (data.length > 0) {
     data.map((m) =>
       retData.push({
-        value: m.alias,
-        label: m.kpiName,
+        label: m.alias,
+        value: m.kpiName,
       })
     );
   }
