@@ -46,6 +46,14 @@
   table-layout: fixed;
   box-shadow: 0px 0px 25px 5px rgba(8, 8, 8, 0.788);
 }
+/* .table:hover{
+  position: absolute;
+  top:50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+  z-index: 33333;
+  width: 50vw;
+} */
 .table thead,
 .table tfoot {
   background-color: #f84018;
