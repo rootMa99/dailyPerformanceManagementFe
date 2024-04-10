@@ -15,12 +15,17 @@ const dataSlice = createSlice({
     },
     kpiOwners: [],
     date: getCurrentMonthDates(),
+    gtable:false
+
     // date: {
     //   start: "2024-03-01",
     //   end: "2024-03-30",
     // },
   },
   reducers: {
+    setgtable(s,p){
+      s.gtable=p.payload
+    },
     addDelevery(s, p) {
       s.data.delivery = p.payload;
     },
