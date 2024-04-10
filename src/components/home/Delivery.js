@@ -356,7 +356,7 @@ const Delivery = (p) => {
                 <h3> Action plan </h3>
                 <span></span>
               </div>
-              <table className={c.table} >
+              <table className={c.table} onMouseEnter={e=>setGtable(deliveryData)} onMouseLeave={e=>setGtable(false)}>
                 <thead>
                   <tr>
                     <th>issue Description</th>

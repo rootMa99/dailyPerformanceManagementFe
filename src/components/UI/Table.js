@@ -3,7 +3,7 @@ import { formatDate } from "../functions/utils";
 import c from "./Table.module.css"
 
 const Table=p=>{
-
+    console.log(p.data, "here")
 
     return(
         <table className={c.table}>
