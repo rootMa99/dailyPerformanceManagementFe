@@ -1,6 +1,6 @@
 .table {
     width: 90vw;
-    max-height: 70vh;
+    /* max-height: 30rem; */
     border-collapse: initial;
     /* border: 1px solid black; */
     border-radius: 20px;
@@ -13,6 +13,7 @@
     z-index: 33333;
     /* animation: pulsate 0.5s ease-in-out; */
     animation: fadeIn 0.5s ease-in forwards;
+    overflow: hidden;
   }
   @keyframes fadeIn {
     0% {
@@ -57,7 +58,7 @@
   border-radius: 0 14px 0 0;
 }
 .table tr {
-  background-color: rgba(0, 0, 0, 0.233);
+  background-color: rgba(0, 0, 0, 0.301);
   cursor: pointer;
 }
 .table tr:nth-child(even) {
