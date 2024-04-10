@@ -11,10 +11,18 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 33333;
-    animation: pulsate 2s ease-in-out;
+    /* animation: pulsate 0.5s ease-in-out; */
+    animation: fadeIn 0.5s ease-in forwards;
   }
-  
-  @keyframes pulsate {
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  /* @keyframes pulsate {
     0% {
       transform: scale(1) translate(-50%, -50%);
       opacity: 1;
@@ -27,7 +35,7 @@
       transform: scale(1) translate(-50%, -50%);
       opacity: 1;
     }
-  }
+  } */
 .table thead,
 .table tfoot {
   background-color: #f84018;
