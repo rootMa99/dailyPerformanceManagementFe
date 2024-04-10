@@ -28,12 +28,14 @@ import Ktable from "../alphabet/Ktable";
 import BackDrop from "../UI/BackDrop";
 import Details from "./Details";
 import AddData from "./AddData";
+import Table from "../UI/Table";
 
 
 
 const Delivery = (p) => {
   const [showkpi, setShowKpi] = useState(false);
   const [addData, setAddData] = useState(false);
+  const [gtable, setGtable]=useState(false);
   const { date, kpiOwners } = useSelector((s) => s.data);
   const [deliveryData, setDeliveryData] = useState([]);
   const dispatch = useDispatch();
@@ -257,6 +259,9 @@ const Delivery = (p) => {
 
   return (
     <React.Fragment>
+    {
+      gtable && <Table data={gtable} />
+    }
       {addData && (
         <React.Fragment>
           <BackDrop click={close} />
@@ -351,7 +356,7 @@ const Delivery = (p) => {
                 <h3> Action plan </h3>
                 <span></span>
               </div>
-              <table className={c.table}>
+              <table className={c.table} >
                 <thead>
                   <tr>
                     <th>issue Description</th>
