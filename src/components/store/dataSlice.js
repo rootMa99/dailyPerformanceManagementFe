@@ -24,7 +24,6 @@ const dataSlice = createSlice({
   },
   reducers: {
     setgtable(s,p){
-      s.gtable=false;
       s.gtable=p.payload
     },
     addDelevery(s, p) {
