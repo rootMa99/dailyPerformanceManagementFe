@@ -82,6 +82,7 @@ const dataOp = [
 
 const AddData = (p) => {
   const [control, setControl] = useState("ad");
+  const [pareto, setParetp] = useState([{ motif: "", percentage: "" }]);
   const [dataAdded, setDataAdded] = useState({
     date: p.dateChoosen,
     real: "",
@@ -506,6 +507,59 @@ const AddData = (p) => {
               </div>
             </React.Fragment>
           )}
+          {
+            control==="ap" && (
+              <React.Fragment>
+              <h3 className={c.titleAP}>
+                waring: YOU MUST ENTER AN Pareto And ACTION PLAN
+              </h3>
+              <React.Fragment>
+                {pareto.map((m, i) => (
+                  <div className={c["form-group"]} key={i}>
+                    <div className={c.inputC}>
+                      <h3>motif:</h3>
+                      <input
+                        type="text"
+                        placeholder="Enter Motif"
+                        value={m.motif}
+                        onChange={(e) => {
+                          const newPareto = [...pareto];
+                          newPareto[i].motif = e.target.value;
+                          setParetp(newPareto);
+                        }}
+                        required
+                      />
+                    </div>
+                    <div className={c.inputC}>
+                      <h3>percentage:</h3>
+                      <input
+                        type="number"
+                        placeholder="Enter Percentage"
+                        step="0.01"
+                        max={100}
+                        value={m.percentage}
+                        onChange={(e) => {
+                          const newPareto = [...pareto];
+                          newPareto[i].percentage = +e.target.value;
+                          setParetp(newPareto);
+                        }}
+                        required
+                      />
+                    </div>
+                  </div>
+                ))}
+                <h4
+                  onClick={(e) =>
+                    setParetp((p) => [...p, { motif: "", percentage: 0 }])
+                  }
+                  className={c.addP}
+                >
+                  add pareto
+                </h4>
+              </React.Fragment>
+            </React.Fragment>
+            )
+          }
           <button className={c["form-submit-btn"]} type="submit">
             submit
           </button>
