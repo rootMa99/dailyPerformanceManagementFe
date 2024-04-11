@@ -2,10 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import c from "./AddData.module.css";
 import Select from "react-select";
 import api from "../../service/api";
-import {
-  getDateOfTomorrow,
-  newgetlabelandvalue,
-} from "../functions/newUtils";
+import { getDateOfTomorrow, newgetlabelandvalue } from "../functions/newUtils";
 import NetworkNotify from "../UI/NetworkNotify";
 
 const customStyles = {
@@ -87,7 +84,7 @@ const AddData = (p) => {
     date: p.dateChoosen,
     real: "",
     target: "",
-    name: null ,
+    name: null,
     type: "",
     alias: { label: "", value: "" },
   });
@@ -141,7 +138,14 @@ const AddData = (p) => {
         return;
       }
       console.log(dataAdded.date);
-      const body = dataAdded.name!==null? { ...dataAdded, alias: dataAdded.alias.value }:{ ...dataAdded, alias: dataAdded.alias.value, name: dataAdded.alias.value };
+      const body =
+        dataAdded.name !== null
+          ? { ...dataAdded, alias: dataAdded.alias.value }
+          : {
+              ...dataAdded,
+              alias: dataAdded.alias.value,
+              name: dataAdded.alias.value,
+            };
       try {
         await fetch(`${api}/${p.title}`, {
           method: "POST",
@@ -249,8 +253,7 @@ const AddData = (p) => {
     }
   };
 
-
-  console.log(dataAdded)
+  console.log(dataAdded);
   return (
     <React.Fragment>
       {err.status && <NetworkNotify message={err.message} success={false} />}
@@ -310,7 +313,7 @@ const AddData = (p) => {
                     inputId="modality"
                     styles={customStyles}
                     placeholder="select KPI"
-                    onChange={e=>changeKpiOwn(e)}
+                    onChange={(e) => changeKpiOwn(e)}
                     value={dataAdded.alias}
                   />
                 </div>
@@ -415,9 +418,7 @@ const AddData = (p) => {
                     inputId="modality"
                     styles={customStyles}
                     placeholder="select KPI"
-                    onChange={(e) =>
-                      setDataAdded((p) => ({ ...p, name: e}))
-                    }
+                    onChange={(e) => setDataAdded((p) => ({ ...p, name: e }))}
                     value={dataAdded.name}
                   />
                 </div>
@@ -507,12 +508,8 @@ const AddData = (p) => {
               </div>
             </React.Fragment>
           )}
-          {
-            control==="ap" && (
-              <React.Fragment>
-              <h3 className={c.titleAP}>
-                waring: YOU MUST ENTER AN Pareto And ACTION PLAN
-              </h3>
+          {control === "ap" && (
+            <React.Fragment>
               <React.Fragment>
                 {pareto.map((m, i) => (
                   <div className={c["form-group"]} key={i}>
@@ -558,8 +555,7 @@ const AddData = (p) => {
                 </h4>
               </React.Fragment>
             </React.Fragment>
-            )
-          }
+          )}
           <button className={c["form-submit-btn"]} type="submit">
             submit
           </button>
