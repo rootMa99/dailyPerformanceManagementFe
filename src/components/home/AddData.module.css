@@ -145,3 +145,17 @@
     align-items: center;
     gap: 3rem;
 }
+.addP{
+  display: flex;
+  margin-left: auto;
+  margin-right: 1rem;
+  text-transform: uppercase;
+  margin-top: 2rem;
+  opacity: 0.5;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+.addP:hover{
+  opacity: 1;
+  transform: scale(1.1);
+}
