@@ -135,7 +135,7 @@ const Details = (p) => {
 
   deliveryData.map((m) =>
     m.data.type === "negative"
-      ? m.data.real >= m.data.target
+      ? m.data.real > m.data.target
         ? bgcolor.push("rgb(88, 3, 3)")
         : bgcolor.push("#005B41")
       : m.data.real >= m.data.target
@@ -219,7 +219,8 @@ const Details = (p) => {
         chart.data.datasets.forEach((dataset, index) => {
           const meta = chart.getDatasetMeta(index);
           meta.data.forEach((element, index) => {
-            const data = `${dataset.data[index]}%`;
+            // const data = `${dataset.data[index]}%`;
+            const data = `${dataset.data[index]}`;
             let xPos, yPos;
             if (dataset.type === "bar") {
               xPos = element.x;

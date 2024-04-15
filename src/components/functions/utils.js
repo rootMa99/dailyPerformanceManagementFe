@@ -56,7 +56,10 @@ export const colorDays = (data, dayC, date) => {
   ) {
     return { backgroundColor: "#0720d9" };
   } else {
-    if (data[index].data.real >= data[index].data.target) {
+    if (data[index].data.real === data[index].data.target) {
+      return { backgroundColor: "#006B63" };
+    }
+    if (data[index].data.real > data[index].data.target) {
       if (data[index].data.type === "positive") {
         return { backgroundColor: "#006B63" };
       } else {

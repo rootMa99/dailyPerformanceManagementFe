@@ -96,13 +96,13 @@ const Delivery = (p) => {
   const bgcolor = [];
 
   deliveryData.map((m) =>
-    m.data.type === "negative"
-      ? m.data.real >= m.data.target
+    {m.data.type === "negative"
+      ? m.data.real > m.data.target
         ? bgcolor.push("rgb(88, 3, 3)")
         : bgcolor.push("#005B41")
       : m.data.real >= m.data.target
       ? bgcolor.push("#005B41")
-      : bgcolor.push("rgb(88, 3, 3)")
+      : bgcolor.push("rgb(88, 3, 3)")}
   );
 
   const data = {
