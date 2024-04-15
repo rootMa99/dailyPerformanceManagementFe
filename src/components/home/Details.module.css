@@ -36,7 +36,12 @@
       background-position: 0% 50%;
     }
   } */
-
+  .holt{
+    position: absolute;
+    left:50%;
+    top: 50px;
+    transform: translate(-50%, -50%);
+  }
 .logo {
   position: absolute;
   bottom: 0.5rem;
@@ -46,10 +51,7 @@
   display: flex;
   align-items: flex-end;
   gap: 0.5rem;
-  position: absolute;
-  left:50%;
-  top: 25px;
-  transform: translate(-50%, -50%);
+ 
   flex-direction: row;
   flex-wrap: nowrap;
 }

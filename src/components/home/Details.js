@@ -275,16 +275,19 @@ const Details = (p) => {
         <div className={c.logo}>
           <img src={imglogo} alt="logo for aptiv" />
         </div>
-        <div className={c.employeeT}>
-          <span></span>
-          <h1>{kpi.label}</h1>
-        </div>
-        <div className={c.chartHolder}>
+        <div className={c.holt}>
+          <div className={c.employeeT}>
+            <span></span>
+            <h1>{kpi.label}</h1>
+          </div>
           <div className={c.title}>
             <span></span>
             <h3> trend </h3>
             <span></span>
           </div>
+        </div>
+
+        <div className={c.chartHolder}>
           <Line data={datac} options={options} />
           {p.home === undefined && (
             <React.Fragment>
