@@ -77,6 +77,11 @@ const dataOp = [
   { value: "rc fix confirmed", label: "rc fix confirmed" },
 ];
 
+
+function dataExists(array, key, value) {
+  return array.some(obj => obj[key] === value);
+}
+
 const AddData = (p) => {
   const [control, setControl] = useState("ad");
   const [pareto, setParetp] = useState([{ motif: "", percentage: "" }]);
@@ -100,7 +105,7 @@ const AddData = (p) => {
   const [err, setErr] = useState({ status: false, message: "" });
   const [success, setSuccess] = useState({ status: false, message: "" });
 
-  console.log(kpiListOwner);
+  console.log(kpiListOwner, dataExists(kpiListOwner, "kpiName", "first"));
   const callback = useCallback(async () => {
     try {
       const response = await fetch(`${api}/dpm/kpiNames?kpiName=${p.title}`, {
@@ -357,7 +362,7 @@ const AddData = (p) => {
                             }}
                           />
                         </div>
-                        <div>
+                       {!dataExists(kpiListOwner, "kpiName", "first") && <div className={c.checkBox}>
                           <input
                             type="checkbox"
                             id="horns"
@@ -369,8 +374,8 @@ const AddData = (p) => {
                               }))
                             }
                           />
-                          <label htmlFor="horns">PRIMARY</label>
-                        </div>
+                          <label htmlFor="horns">PRIMARY  <span>You will need to check this box if your KPI is a primary KPI.</span>  </label>
+                        </div>}
                       </div>
                     )}
                   </React.Fragment>

@@ -16,7 +16,7 @@ import {
 import { formatDate, getOnlyDay } from "../functions/utils";
 import Select from "react-select";
 import api from "../../service/api";
-import {  newgetlabelandvalue } from "../functions/newUtils";
+import { newgetlabelandvalue } from "../functions/newUtils";
 
 const customStyles = {
   control: (provided, state) => ({
@@ -85,8 +85,8 @@ const customStyles = {
 
 const Details = (p) => {
   const { data } = useSelector((s) => s.data);
-  const [kpiListOwner, setKpiListOwner]=useState(["first"]);
-  const [kpi, setKpi] = useState({label:"first", value:"first"});
+  const [kpiListOwner, setKpiListOwner] = useState(["first"]);
+  const [kpi, setKpi] = useState({ label: "first", value: "first" });
   console.log(data[p.title].length);
   const callback = useCallback(async () => {
     try {
@@ -98,7 +98,7 @@ const Details = (p) => {
       });
 
       const data = await response.json();
-      setKpiListOwner(data)
+      setKpiListOwner(data);
       console.log(data);
     } catch (error) {
       console.error("Error:", error);
@@ -133,7 +133,10 @@ const Details = (p) => {
       : bgcolor.push("rgb(88, 3, 3)")
   );
   const datac = {
-    labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],
+    labels: [
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+      22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
+    ],
     // labels: deliveryData.map((m) => m.day),
     datasets: [
       {
@@ -216,12 +219,7 @@ const Details = (p) => {
         chart.data.datasets.forEach((dataset, index) => {
           const meta = chart.getDatasetMeta(index);
           meta.data.forEach((element, index) => {
-            const data =
-              dataset.type === "line"
-                ? p.warn !== "productivity"
-                  ? dataset.data[index]
-                  : `${dataset.data[index]}%`
-                : `${dataset.data[index]}%`;
+            const data = `${dataset.data[index]}%`;
             let xPos, yPos;
             if (dataset.type === "bar") {
               xPos = element.x;
@@ -334,3 +332,10 @@ const Details = (p) => {
   );
 };
 export default Details;
+
+// const data =
+//               dataset.type === "line"
+//                 ? p.warn !== "productivity"
+//                   ? dataset.data[index]
+//                   : `${dataset.data[index]}%`
+//                 : `${dataset.data[index]}%`;
