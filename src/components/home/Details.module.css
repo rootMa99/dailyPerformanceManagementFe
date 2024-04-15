@@ -47,8 +47,9 @@
   align-items: flex-end;
   gap: 0.5rem;
   position: absolute;
-  left: -15px;
-  top: 10px;
+  left:50%;
+  top: 25px;
+  transform: translate(-50%, -50%);
   flex-direction: row;
   flex-wrap: nowrap;
 }
@@ -106,7 +107,7 @@
     height: 75vh;
     width: 98%;
     margin: auto;
-    margin-top: 4rem;
+    margin-top: 6rem;
     overflow: auto;
 }
 
