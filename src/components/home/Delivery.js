@@ -131,11 +131,8 @@ const Delivery = (p) => {
         label: "Actual",
         data: deliveryData.map((m) => m.data.real),
         backgroundColor: bgcolor,
-        //hoverBackgroundColor: "#950101",
-        // pointHoverBorderColor: "#FAF0E6",
         borderColor: "#F84018",
         borderWidth: 1,
-        // pointHoverBackgroundColor: "rgb(88, 3, 3)",
       },
     ],
   };

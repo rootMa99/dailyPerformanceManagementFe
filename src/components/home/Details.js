@@ -172,18 +172,8 @@ const Details = (p) => {
         label: "Actual",
         data: deliveryData.map((m) => m.data.real),
         backgroundColor: bgcolor,
-        //hoverBackgroundColor: "#950101",
-        // pointHoverBorderColor: "#FAF0E6",
         borderColor: "#F84018",
-        fill: false,
-        tension: 0.3,
         borderWidth: 1,
-        borderCapStyle: "round",
-        // pointHoverBackgroundColor: "rgb(88, 3, 3)",
-        pointHoverRadius: 8,
-        pointBorderColor: bgcolor,
-        pointBorderWidth: 8,
-        pointRadius: 3,
       },
     ],
   };
@@ -268,8 +258,6 @@ const Details = (p) => {
         <div className={c.selectContainer}>
           <Select
             options={newgetlabelandvalue(kpiListOwner)}
-            id="modality"
-            inputId="modality"
             styles={customStyles}
             placeholder="select KPI"
             onChange={(e) => setKpi(e)}
