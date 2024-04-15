@@ -85,9 +85,19 @@ const customStyles = {
 
 const Details = (p) => {
   const { data } = useSelector((s) => s.data);
-  const [kpiListOwner, setKpiListOwner] = useState(["first"]);
-  const [kpi, setKpi] = useState({ label: "first", value: "first" });
-  console.log(data[p.title].length);
+  const [kpiListOwner, setKpiListOwner] = useState([]);
+  const [kpi, setKpi] = useState({});
+  useEffect(
+    ()=>{
+      if(kpiListOwner.length>0){
+        const d = kpiListOwner.filter(f=>f.kpiName==="first");
+        console.log(d)
+    setKpi({ label: d[0].alias, value: d[0].kpiName })
+      }
+
+    }, [kpiListOwner]
+  )
+  console.log(data[p.title].length, ...kpiListOwner.filter(f=>f.kpiName==="first"));
   const callback = useCallback(async () => {
     try {
       const response = await fetch(`${api}/dpm/kpiNames?kpiName=${p.title}`, {
