@@ -1,7 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import api from "../../service/api";
-import { formatDayDate, getDaysInMonth, separateDataByName } from "../functions/newUtils";
+import {
+  formatDayDate,
+  getDaysInMonth,
+  separateDataByName,
+} from "../functions/newUtils";
 import { dataActions } from "../store/dataSlice";
 import { formatDate, getOnlyDay } from "../functions/utils";
 import Dtable from "../alphabet/Dtable";
@@ -29,8 +33,6 @@ import BackDrop from "../UI/BackDrop";
 import Details from "./Details";
 import AddData from "./AddData";
 
-
-
 const Delivery = (p) => {
   const [showkpi, setShowKpi] = useState(false);
   const [addData, setAddData] = useState(false);
@@ -55,7 +57,7 @@ const Delivery = (p) => {
 
       const data = await response.json();
       const d = separateDataByName(data);
-    
+
       try {
         setDeliveryData(
           getOnlyDay(d.filter((f) => f.name === "first")[0].data)
@@ -86,10 +88,6 @@ const Delivery = (p) => {
     callback();
   }, [callback]);
 
-
-
-
-  
   // const pareto = getParetp(p.data).sort((a, b) => {
   //   return b.percentage - a.percentage;
   // });
@@ -235,7 +233,7 @@ const Delivery = (p) => {
   const close = (e) => {
     setShowKpi(false);
     setAddData(false);
-    callback()
+    callback();
   };
 
   const addDataClicked = (e, t) => {
@@ -244,17 +242,22 @@ const Delivery = (p) => {
       setAddData(false);
       return;
     }
-    console.log(t, p.title, getDaysInMonth(date.end), formatDayDate(t, date.end), date.end);
+    console.log(
+      t,
+      p.title,
+      getDaysInMonth(date.end),
+      formatDayDate(t, date.end),
+      date.end
+    );
     setAddData(formatDayDate(t, date.end));
   };
 
   return (
     <React.Fragment>
-   
       {addData && (
         <React.Fragment>
           <BackDrop click={close} />
-          <AddData title={p.title} dateChoosen={addData}/>
+          <AddData title={p.title} dateChoosen={addData} />
         </React.Fragment>
       )}
       {showkpi && (
@@ -345,7 +348,13 @@ const Delivery = (p) => {
                 <h3> Action plan </h3>
                 <span></span>
               </div>
-              <table className={c.table} onMouseEnter={e=>dispatch(dataActions.setgtable(deliveryData))} onMouseLeave={e=>dispatch(dataActions.setgtable(false))} >
+              <table
+                className={c.table}
+                onMouseEnter={(e) =>
+                  dispatch(dataActions.setgtable(deliveryData))
+                }
+                onMouseLeave={(e) => dispatch(dataActions.setgtable(false))}
+              >
                 <thead>
                   <tr>
                     <th>issue Description</th>
