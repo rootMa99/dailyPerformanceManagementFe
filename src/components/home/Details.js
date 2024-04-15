@@ -258,6 +258,10 @@ const Details = (p) => {
     Legend,
     BarElement
   );
+
+
+  console.log(kpi.label)
+
   return (
     <React.Fragment>
       <div className={c["form-container"]}>
@@ -278,7 +282,7 @@ const Details = (p) => {
         <div className={c.holt}>
           <div className={c.employeeT}>
             <span></span>
-            <h1>{kpi.label}</h1>
+            <h1>{kpi.label!==undefined ? kpi.label : `${p.title} - no kpi found`}</h1>
           </div>
           <div className={c.title}>
             <span></span>

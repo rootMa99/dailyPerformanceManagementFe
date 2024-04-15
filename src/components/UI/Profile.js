@@ -21,7 +21,6 @@ const Profile = (p) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(p.kpiOwn , data.file )
     if (typeof data.file === "object") {
       const formData = new FormData();
       formData.append("file", data.file);
