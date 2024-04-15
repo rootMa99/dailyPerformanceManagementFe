@@ -267,16 +267,7 @@ const AddData = (p) => {
       )}
       <div className={c["form-container"]}>
         <ul className={c.underList}>
-          <li
-            style={
-              control === "acp"
-                ? { opacity: 1, borderBottom: "2px solid white" }
-                : {}
-            }
-            onClick={(e) => setControl("acp")}
-          >
-            add action plan
-          </li>
+          
           <li
             style={
               control === "ad"
@@ -297,6 +288,16 @@ const AddData = (p) => {
             onClick={(e) => setControl("ap")}
           >
             add pareto
+          </li>
+          <li
+            style={
+              control === "acp"
+                ? { opacity: 1, borderBottom: "2px solid white" }
+                : {}
+            }
+            onClick={(e) => setControl("acp")}
+          >
+            add action plan
           </li>
         </ul>
         <form className={c.form} onSubmit={submitHandler}>
