@@ -236,32 +236,31 @@ const AddData = (p) => {
       }
     }
     if (control === "ap") {
-      console.log(pareto)
-      // try {
-      //   await fetch(
-      //     `${api}/${p.title}/pareto?name=${dataAdded.name.value}&date=${dataAdded.date}`,
-      //     {
-      //       method: "POST",
-      //       headers: {
-      //         "Content-Type": "application/json",
-      //         // Authorization: `Bearer ${isLoged.token}`,
-      //       },
-      //       body: JSON.stringify(pareto),
-      //     }
-      //   );
-      //   setParetp([{ motif: "", percentage: "" }]);
-      //   setSuccess({
-      //     status: true,
-      //     message: "data has been successfully added.",
-      //   });
-      // } catch (error) {
-      //   console.error("Error:", error);
-      //   setErr({
-      //     status: true,
-      //     message:
-      //       "Something has gone wrong, we were not able to save this action, please try it again. ",
-      //   });
-      // }
+      try {
+        await fetch(
+          `${api}/${p.title}/pareto?name=${dataAdded.name.value}&date=${dataAdded.date}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              // Authorization: `Bearer ${isLoged.token}`,
+            },
+            body: JSON.stringify(pareto),
+          }
+        );
+        setParetp([{ motif: "", percentage: "" }]);
+        setSuccess({
+          status: true,
+          message: "data has been successfully added.",
+        });
+      } catch (error) {
+        console.error("Error:", error);
+        setErr({
+          status: true,
+          message:
+            "Something has gone wrong, we were not able to save this action, please try it again. ",
+        });
+      }
     }
   };
   if (err.status || success.status) {
@@ -551,54 +550,50 @@ const AddData = (p) => {
           )}
           {control === "ap" && (
             <React.Fragment>
+              <div className={c.inputC}>
+                <h3>choose Kpi:</h3>
+                <Select
+                  options={newgetlabelandvalue(kpiListOwner)}
+                  id="modality"
+                  inputId="modality"
+                  styles={customStyles}
+                  placeholder="select KPI"
+                  onChange={(e) => setDataAdded((p) => ({ ...p, name: e }))}
+                  value={dataAdded.name}
+                />
+              </div>
               <React.Fragment>
                 {pareto.map((m, i) => (
-                  <React.Fragment>
+                  <div className={c["form-group"]} key={i}>
                     <div className={c.inputC}>
-                      <h3>choose Kpi:</h3>
-                      <Select
-                        options={newgetlabelandvalue(kpiListOwner)}
-                        id="modality"
-                        inputId="modality"
-                        styles={customStyles}
-                        placeholder="select KPI"
-                        onChange={(e) =>
-                          setDataAdded((p) => ({ ...p, name: e }))
-                        }
-                        value={dataAdded.name}
+                      <h3>motif:</h3>
+                      <input
+                        type="text"
+                        placeholder="Enter Motif"
+                        value={m.motif}
+                        onChange={(e) => {
+                          const newPareto = [...pareto];
+                          newPareto[i].motif = e.target.value;
+                          setParetp(newPareto);
+                        }}
                       />
                     </div>
-                    <div className={c["form-group"]} key={i}>
-                      <div className={c.inputC}>
-                        <h3>motif:</h3>
-                        <input
-                          type="text"
-                          placeholder="Enter Motif"
-                          value={m.motif}
-                          onChange={(e) => {
-                            const newPareto = [...pareto];
-                            newPareto[i].motif = e.target.value;
-                            setParetp(newPareto);
-                          }}
-                        />
-                      </div>
-                      <div className={c.inputC}>
-                        <h3>percentage:</h3>
-                        <input
-                          type="number"
-                          placeholder="Enter Percentage"
-                          step="0.01"
-                          max={100}
-                          value={m.percentage}
-                          onChange={(e) => {
-                            const newPareto = [...pareto];
-                            newPareto[i].percentage = +e.target.value;
-                            setParetp(newPareto);
-                          }}
-                        />
-                      </div>
+                    <div className={c.inputC}>
+                      <h3>percentage:</h3>
+                      <input
+                        type="number"
+                        placeholder="Enter Percentage"
+                        step="0.01"
+                        max={100}
+                        value={m.percentage}
+                        onChange={(e) => {
+                          const newPareto = [...pareto];
+                          newPareto[i].percentage = +e.target.value;
+                          setParetp(newPareto);
+                        }}
+                      />
                     </div>
-                  </React.Fragment>
+                  </div>
                 ))}
                 <h4
                   onClick={(e) =>
