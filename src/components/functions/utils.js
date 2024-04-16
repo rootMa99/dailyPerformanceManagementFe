@@ -51,8 +51,7 @@ export const colorDays = (data, dayC, date) => {
   const index = data.findIndex((f) => f.day === dayC);
 
   if (
-    index === -1 ||
-    (data[index].data.real === 0 && data[index].data.target === 0)
+    index === -1
   ) {
     return { backgroundColor: "#0720d9" };
   } else {
