@@ -77,9 +77,8 @@ const dataOp = [
   { value: "rc fix confirmed", label: "rc fix confirmed" },
 ];
 
-
 function dataExists(array, key, value) {
-  return array.some(obj => obj[key] === value);
+  return array.some((obj) => obj[key] === value);
 }
 
 const AddData = (p) => {
@@ -101,6 +100,7 @@ const AddData = (p) => {
     dueDate: "",
     status: "",
   });
+
   const [kpiListOwner, setKpiListOwner] = useState(["first"]);
   const [err, setErr] = useState({ status: false, message: "" });
   const [success, setSuccess] = useState({ status: false, message: "" });
@@ -235,6 +235,40 @@ const AddData = (p) => {
         });
       }
     }
+    if (control === "ap") {
+      try {
+        await fetch(
+          `${api}/${p.title}/pareto?name=${dataAdded.name.value}&date=${dataAdded.date}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              // Authorization: `Bearer ${isLoged.token}`,
+            },
+            body: JSON.stringify(pareto),
+          }
+        );
+        setApm({
+          issueDescription: "",
+          causes: "",
+          contermeasures: "",
+          resp: "",
+          dueDate: "",
+          status: "",
+        });
+        setSuccess({
+          status: true,
+          message: "data has been successfully added.",
+        });
+      } catch (error) {
+        console.error("Error:", error);
+        setErr({
+          status: true,
+          message:
+            "Something has gone wrong, we were not able to save this action, please try it again. ",
+        });
+      }
+    }
   };
   if (err.status || success.status) {
     setTimeout(() => {
@@ -267,7 +301,6 @@ const AddData = (p) => {
       )}
       <div className={c["form-container"]}>
         <ul className={c.underList}>
-          
           <li
             style={
               control === "ad"
@@ -363,20 +396,28 @@ const AddData = (p) => {
                             }}
                           />
                         </div>
-                       {!dataExists(kpiListOwner, "kpiName", "first") && <div className={c.checkBox}>
-                          <input
-                            type="checkbox"
-                            id="horns"
-                            name="horns"
-                            onChange={(e) =>
-                              setDataAdded((p) => ({
-                                ...p,
-                                name: "first",
-                              }))
-                            }
-                          />
-                          <label htmlFor="horns">PRIMARY  <span>You will need to check this box if your KPI is a primary KPI.</span>  </label>
-                        </div>}
+                        {!dataExists(kpiListOwner, "kpiName", "first") && (
+                          <div className={c.checkBox}>
+                            <input
+                              type="checkbox"
+                              id="horns"
+                              name="horns"
+                              onChange={(e) =>
+                                setDataAdded((p) => ({
+                                  ...p,
+                                  name: "first",
+                                }))
+                              }
+                            />
+                            <label htmlFor="horns">
+                              PRIMARY{" "}
+                              <span>
+                                You will need to check this box if your KPI is a
+                                primary KPI.
+                              </span>{" "}
+                            </label>
+                          </div>
+                        )}
                       </div>
                     )}
                   </React.Fragment>
@@ -518,38 +559,52 @@ const AddData = (p) => {
             <React.Fragment>
               <React.Fragment>
                 {pareto.map((m, i) => (
-                  <div className={c["form-group"]} key={i}>
+                  <React.Fragment>
                     <div className={c.inputC}>
-                      <h3>motif:</h3>
-                      <input
-                        type="text"
-                        placeholder="Enter Motif"
-                        value={m.motif}
-                        onChange={(e) => {
-                          const newPareto = [...pareto];
-                          newPareto[i].motif = e.target.value;
-                          setParetp(newPareto);
-                        }}
-                        required
+                      <h3>choose Kpi:</h3>
+                      <Select
+                        options={newgetlabelandvalue(kpiListOwner)}
+                        id="modality"
+                        inputId="modality"
+                        styles={customStyles}
+                        placeholder="select KPI"
+                        onChange={(e) =>
+                          setDataAdded((p) => ({ ...p, name: e }))
+                        }
+                        value={dataAdded.name}
                       />
                     </div>
-                    <div className={c.inputC}>
-                      <h3>percentage:</h3>
-                      <input
-                        type="number"
-                        placeholder="Enter Percentage"
-                        step="0.01"
-                        max={100}
-                        value={m.percentage}
-                        onChange={(e) => {
-                          const newPareto = [...pareto];
-                          newPareto[i].percentage = +e.target.value;
-                          setParetp(newPareto);
-                        }}
-                        required
-                      />
+                    <div className={c["form-group"]} key={i}>
+                      <div className={c.inputC}>
+                        <h3>motif:</h3>
+                        <input
+                          type="text"
+                          placeholder="Enter Motif"
+                          value={m.motif}
+                          onChange={(e) => {
+                            const newPareto = [...pareto];
+                            newPareto[i].motif = e.target.value;
+                            setParetp(newPareto);
+                          }}
+                        />
+                      </div>
+                      <div className={c.inputC}>
+                        <h3>percentage:</h3>
+                        <input
+                          type="number"
+                          placeholder="Enter Percentage"
+                          step="0.01"
+                          max={100}
+                          value={m.percentage}
+                          onChange={(e) => {
+                            const newPareto = [...pareto];
+                            newPareto[i].percentage = +e.target.value;
+                            setParetp(newPareto);
+                          }}
+                        />
+                      </div>
                     </div>
-                  </div>
+                  </React.Fragment>
                 ))}
                 <h4
                   onClick={(e) =>
