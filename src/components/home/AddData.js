@@ -236,6 +236,16 @@ const AddData = (p) => {
       }
     }
     if (control === "ap") {
+      let l=0;
+      pareto.forEach(e=>l+=e.percentage);
+      if(l>100){
+        setErr({
+          status: true,
+          message:
+            "The Pareto total must be less than 100%.",
+        });
+        return
+      }
       try {
         await fetch(
           `${api}/${p.title}/pareto?name=${dataAdded.name.value}&date=${dataAdded.date}`,
