@@ -206,7 +206,7 @@ const Details = (p) => {
         labels: {
           color: "#FAF0E6",
         },
-        display: true,
+        display: false,
       },
       datalabels: {
         display: true,
