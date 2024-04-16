@@ -242,7 +242,7 @@ const AddData = (p) => {
         setErr({
           status: true,
           message:
-            "The Pareto total must be less than 100%.",
+            `The Pareto total must be less than 100%. total is: ${l}`,
         });
         return
       }
