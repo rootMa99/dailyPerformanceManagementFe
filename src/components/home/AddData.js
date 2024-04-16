@@ -236,38 +236,32 @@ const AddData = (p) => {
       }
     }
     if (control === "ap") {
-      try {
-        await fetch(
-          `${api}/${p.title}/pareto?name=${dataAdded.name.value}&date=${dataAdded.date}`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              // Authorization: `Bearer ${isLoged.token}`,
-            },
-            body: JSON.stringify(pareto),
-          }
-        );
-        setApm({
-          issueDescription: "",
-          causes: "",
-          contermeasures: "",
-          resp: "",
-          dueDate: "",
-          status: "",
-        });
-        setSuccess({
-          status: true,
-          message: "data has been successfully added.",
-        });
-      } catch (error) {
-        console.error("Error:", error);
-        setErr({
-          status: true,
-          message:
-            "Something has gone wrong, we were not able to save this action, please try it again. ",
-        });
-      }
+      console.log(pareto)
+      // try {
+      //   await fetch(
+      //     `${api}/${p.title}/pareto?name=${dataAdded.name.value}&date=${dataAdded.date}`,
+      //     {
+      //       method: "POST",
+      //       headers: {
+      //         "Content-Type": "application/json",
+      //         // Authorization: `Bearer ${isLoged.token}`,
+      //       },
+      //       body: JSON.stringify(pareto),
+      //     }
+      //   );
+      //   setParetp([{ motif: "", percentage: "" }]);
+      //   setSuccess({
+      //     status: true,
+      //     message: "data has been successfully added.",
+      //   });
+      // } catch (error) {
+      //   console.error("Error:", error);
+      //   setErr({
+      //     status: true,
+      //     message:
+      //       "Something has gone wrong, we were not able to save this action, please try it again. ",
+      //   });
+      // }
     }
   };
   if (err.status || success.status) {
