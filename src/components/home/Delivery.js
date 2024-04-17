@@ -7,7 +7,7 @@ import {
   separateDataByName,
 } from "../functions/newUtils";
 import { dataActions } from "../store/dataSlice";
-import { formatDate, getOnlyDay } from "../functions/utils";
+import { formatDate, getOnlyDay, getParetp } from "../functions/utils";
 import Dtable from "../alphabet/Dtable";
 import Profile from "../UI/Profile";
 import { useLocation } from "react-router";
@@ -22,7 +22,7 @@ import {
   Legend,
   BarElement,
 } from "chart.js";
-import { Line } from "react-chartjs-2";
+import { Bar, Line } from "react-chartjs-2";
 import Ttable from "../alphabet/Ttable";
 import Stable from "../alphabet/Stable";
 import Qletter from "../alphabet/Qletter";
@@ -88,10 +88,10 @@ const Delivery = (p) => {
     callback();
   }, [callback]);
 
-  // const pareto = getParetp(p.data).sort((a, b) => {
-  //   return b.percentage - a.percentage;
-  // });
-  // console.log(pareto);
+  const pareto = getParetp(deliveryData).sort((a, b) => {
+    return b.percentage - a.percentage;
+  });
+  console.log(deliveryData, "here", p.title, pareto);
 
   const bgcolor = [];
 
@@ -136,20 +136,20 @@ const Delivery = (p) => {
       },
     ],
   };
-  // const paretoChart = {
-  //   labels: pareto.map((m) => m.motif),
-  //   datasets: [
-  //     {
-  //       type: "bar",
-  //       label: "Pareto",
-  //       data: pareto.map((m) => m.percentage),
-  //       backgroundColor: "#4E7C88",
-  //       hoverBackgroundColor: "#929D96",
-  //       borderColor: "black",
-  //       borderWidth: 1,
-  //     },
-  //   ],
-  // };
+  const paretoChart = {
+    labels: pareto.map((m) => m.motif),
+    datasets: [
+      {
+        type: "bar",
+        label: "Pareto",
+        data: pareto.map((m) => m.percentage),
+        backgroundColor: "#4E7C88",
+        hoverBackgroundColor: "#929D96",
+        borderColor: "black",
+        borderWidth: 1,
+      },
+    ],
+  };
   const options = {
     responsive: true,
     maintainAspectRatio: false,
@@ -248,7 +248,7 @@ const Delivery = (p) => {
     );
     setAddData(formatDayDate(t, date.end));
   };
-
+  console.log(deliveryData, p.title);
   return (
     <React.Fragment>
       {addData && (
@@ -338,6 +338,16 @@ const Delivery = (p) => {
             <span></span>
           </div>
           <Line data={data} options={options} />
+          {
+            <React.Fragment>
+              <div className={c.title}>
+                <span></span>
+                <h3> preto </h3>
+                <span></span>
+              </div>
+              <Bar data={paretoChart} options={options} />
+            </React.Fragment>
+          }
           {p.home === undefined && (
             <React.Fragment>
               <div className={c.title}>

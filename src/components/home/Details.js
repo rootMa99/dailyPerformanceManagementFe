@@ -87,6 +87,7 @@ const Details = (p) => {
   const { data } = useSelector((s) => s.data);
   const [kpiListOwner, setKpiListOwner] = useState([]);
   const [kpi, setKpi] = useState({});
+  console.log(data)
   useEffect(() => {
     if (kpiListOwner.length > 0) {
       const d = kpiListOwner.filter((f) => f.kpiName === "first");

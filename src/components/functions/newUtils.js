@@ -14,6 +14,7 @@ export const separateDataByName = (d) => {
               real: e.real,
               target: e.target,
               type: e.type,
+              pareto:e.pms
             },
           },
         ],
@@ -29,6 +30,7 @@ export const separateDataByName = (d) => {
             real: e.real,
             target: e.target,
             type: e.type,
+            pareto:e.pms
           },
         });
       } else {
@@ -43,6 +45,7 @@ export const separateDataByName = (d) => {
                 real: e.real,
                 target: e.target,
                 type: e.type,
+                pareto:e.pms
               },
             },
           ],

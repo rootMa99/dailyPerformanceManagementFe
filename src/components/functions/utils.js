@@ -78,8 +78,9 @@ export const getParetp = (data) => {
   const rp = [];
 
   data.forEach((e) => {
-    if (e.data[0].paretoModels !== null) {
-      rp.push(...e.data[0].paretoModels);
+    console.log(e)
+    if (e.data.pareto !== null) {
+      rp.push(...e.data.pareto);
     }
   });
   return rp;
