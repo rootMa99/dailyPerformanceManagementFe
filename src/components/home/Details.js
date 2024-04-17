@@ -302,14 +302,18 @@ const Details = (p) => {
 
         <div className={c.chartHolder}>
           <Line data={datac} options={options} />
-          <div className={c.title}>
-            <span></span>
-            <h3> preto </h3>
-            <span></span>
-          </div>
-          <div style={{height:"25rem"}}>
-            <Bar data={paretoChart} options={options} />
-          </div>
+          {pareto.length > 0 && (
+            <React.Fragment>
+              <div className={c.title}>
+                <span></span>
+                <h3> preto </h3>
+                <span></span>
+              </div>
+              <div style={{ height: "25rem" }}>
+                <Bar data={paretoChart} options={options} />
+              </div>
+            </React.Fragment>
+          )}
           {p.home === undefined && (
             <React.Fragment>
               <div className={c.title}>
