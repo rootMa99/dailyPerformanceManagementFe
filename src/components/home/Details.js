@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import c from "./Details.module.css";
 import imglogo from "../../assets/aptiv-logo.svg";
 import { useSelector } from "react-redux";
-import { Line } from "react-chartjs-2";
+import { Bar, Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   LineElement,
@@ -13,7 +13,7 @@ import {
   Legend,
   BarElement,
 } from "chart.js";
-import { formatDate, getOnlyDay } from "../functions/utils";
+import { formatDate, getOnlyDay, getParetp } from "../functions/utils";
 import Select from "react-select";
 import api from "../../service/api";
 import { newgetlabelandvalue } from "../functions/newUtils";
@@ -87,7 +87,7 @@ const Details = (p) => {
   const { data } = useSelector((s) => s.data);
   const [kpiListOwner, setKpiListOwner] = useState([]);
   const [kpi, setKpi] = useState({});
-  console.log(data)
+  console.log(data);
   useEffect(() => {
     if (kpiListOwner.length > 0) {
       const d = kpiListOwner.filter((f) => f.kpiName === "first");
@@ -131,7 +131,9 @@ const Details = (p) => {
   }
 
   console.log(deliveryData);
-
+  const pareto = getParetp(deliveryData).sort((a, b) => {
+    return b.percentage - a.percentage;
+  });
   const bgcolor = [];
 
   deliveryData.map((m) =>
@@ -250,6 +252,20 @@ const Details = (p) => {
     Legend,
     BarElement
   );
+  const paretoChart = {
+    labels: pareto.map((m) => m.motif),
+    datasets: [
+      {
+        type: "bar",
+        label: "Pareto",
+        data: pareto.map((m) => m.percentage),
+        backgroundColor: "#4E7C88",
+        hoverBackgroundColor: "#929D96",
+        borderColor: "black",
+        borderWidth: 1,
+      },
+    ],
+  };
 
   console.log(kpi.label);
 
@@ -286,6 +302,14 @@ const Details = (p) => {
 
         <div className={c.chartHolder}>
           <Line data={datac} options={options} />
+          <div className={c.title}>
+            <span></span>
+            <h3> preto </h3>
+            <span></span>
+          </div>
+          <div style={{height:"25rem"}}>
+            <Bar data={paretoChart} options={options} />
+          </div>
           {p.home === undefined && (
             <React.Fragment>
               <div className={c.title}>
