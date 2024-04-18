@@ -107,3 +107,17 @@ export const getDateOfTomorrow = (dateString) => {
 
   return tomorrowDateString;
 };
+
+
+
+export const getcostumData=(data)=>{
+  const pareto=[];
+  const ap=[];
+
+  data.forEach(e=>{
+    pareto.push(...e.data.pareto);
+    ap.push(...e.data.apm);
+  })
+
+  return {pareto, ap}
+}

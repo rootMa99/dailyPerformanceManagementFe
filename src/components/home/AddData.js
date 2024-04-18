@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import c from "./AddData.module.css";
 import Select from "react-select";
 import api from "../../service/api";
-import { getDateOfTomorrow, newgetlabelandvalue } from "../functions/newUtils";
+import { getDateOfTomorrow, getcostumData, newgetlabelandvalue } from "../functions/newUtils";
 import NetworkNotify from "../UI/NetworkNotify";
 
 const customStyles = {
@@ -106,6 +106,20 @@ const AddData = (p) => {
   const [err, setErr] = useState({ status: false, message: "" });
   const [success, setSuccess] = useState({ status: false, message: "" });
 
+
+  useEffect(()=>{
+    try{
+      if (dataAdded.name!==null || dataAdded.name!=="create new kpi"){
+        const fil=p.data.filter(f=>f.name===dataAdded.name);
+        console.log(fil)
+        console.log(getcostumData(fil[0].data))
+      }
+    }catch(error){
+      console.error(error)
+  }
+    
+  }, [dataAdded.name, p.data])
+
   console.log(kpiListOwner, dataExists(kpiListOwner, "kpiName", "first"));
   const callback = useCallback(async () => {
     try {
@@ -157,14 +171,10 @@ const AddData = (p) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            // Authorization: `Bearer ${isLoged.token}`,
           },
           body: JSON.stringify(body),
         });
 
-        // const datar = await response.json();
-        // console.Console(datar);
-        // p.click(e, p.title);
         const confirmation = window.confirm("Want to enter tomorrow's data?");
 
         if (confirmation) {
@@ -295,6 +305,8 @@ const AddData = (p) => {
       setDataAdded((p) => ({ ...p, alias: e }));
     }
   };
+
+
 
   console.log(dataAdded);
   return (
