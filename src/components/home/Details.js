@@ -293,14 +293,14 @@ const Details = (p) => {
                 : `${p.title} - no kpi found`}
             </h1>
           </div>
-          <div className={c.title}>
+        </div>
+
+        <div className={c.chartHolder}>
+        <div className={c.title}>
             <span></span>
             <h3> trend </h3>
             <span></span>
           </div>
-        </div>
-
-        <div className={c.chartHolder}>
           <Line data={datac} options={options} />
           {pareto.length > 0 && (
             <React.Fragment>
