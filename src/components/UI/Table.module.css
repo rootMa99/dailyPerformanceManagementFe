@@ -1,29 +1,29 @@
 .table {
-    width: 90vw;
-    /* max-height: 30rem; */
-    border-collapse: initial;
-    /* border: 1px solid black; */
-    border-radius: 20px;
-    table-layout: fixed;
-    box-shadow: 0px 0px 25px 5px rgba(8, 8, 8, 0.788);
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 33333;
-    /* animation: pulsate 0.5s ease-in-out; */
-    animation: fadeIn 0.5s ease-in forwards;
-    overflow: hidden;
+  width: 90vw;
+  /* max-height: 30rem; */
+  border-collapse: initial;
+  /* border: 1px solid black; */
+  border-radius: 20px;
+  table-layout: fixed;
+  box-shadow: 0px 0px 25px 5px rgba(8, 8, 8, 0.788);
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 33333;
+  /* animation: pulsate 0.5s ease-in-out; */
+  animation: fadeIn 0.5s ease-in forwards;
+  overflow: hidden;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
   }
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
+  100% {
+    opacity: 1;
   }
-  /* @keyframes pulsate {
+}
+/* @keyframes pulsate {
     0% {
       transform: scale(1) translate(-50%, -50%);
       opacity: 1;
@@ -57,8 +57,8 @@
 .table th:last-of-type {
   border-radius: 0 14px 0 0;
 }
-/* .table tr {
-  background-color: transparent;
+/* .table tbody tr{
+  background-color: green;
   backdrop-filter: blur(10px);
 } */
 /* .table tr:nth-child(even) {
@@ -71,8 +71,6 @@
   text-transform: capitalize;
   font-weight: 450;
   font-size: small;
-  background-color: transparent ;
-  backdrop-filter: blur(10px) !important;
 }
 
 .table tfoot tr:last-of-type td:last-of-type {
@@ -84,4 +82,8 @@
 .table tfoot tr td {
   font-weight: 900;
   font-size: larger;
+}
+.table{
+  background-color: transparent;
+  backdrop-filter: blur(10px);
 }
