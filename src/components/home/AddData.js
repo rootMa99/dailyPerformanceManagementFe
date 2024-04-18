@@ -122,18 +122,26 @@ const AddData = (p) => {
       console.error(error);
     }
   }, [dataAdded.name, p.data]);
-  
+
   useEffect(() => {
     try {
-      if (separateData[0].data.type === "negative") {
-        if(dataAdded.target > dataAdded.real){
+      if (separateData[0].data.type === "positive") {
+        if (dataAdded.target > dataAdded.real) {
           setNext(true);
-
-        }  
+          const d = getcostumData(separateData);
+          setParetp(d);
+        } else {
+          setNext(false);
+        }
       } else {
-        if(dataAdded.target < dataAdded.real){
+        console.log("run");
+        if (dataAdded.target < dataAdded.real) {
           setNext(true);
-        } 
+          const d = getcostumData(separateData);
+          setParetp(d.pareto);
+        } else {
+          setNext(false);
+        }
       }
     } catch (e) {}
   }, [dataAdded.target, dataAdded.real, separateData]);
@@ -193,32 +201,36 @@ const AddData = (p) => {
           body: JSON.stringify(body),
         });
 
-        const confirmation = window.confirm("Want to enter tomorrow's data?");
+        if (!next) {
+          const confirmation = window.confirm("Want to enter tomorrow's data?");
 
-        if (confirmation) {
-          setDataAdded((p) => ({
-            date: getDateOfTomorrow(p.date),
-            real: "",
-            target: "",
-            name: p.name,
-            alias: p.alias,
-            type: p.type,
-          }));
-        } else {
-          setDataAdded((p) => ({
-            date: p.date,
-            real: "",
-            target: "",
-            name: p.name,
-            alias: p.alias,
-            type: p.type,
-          }));
+          if (confirmation) {
+            setDataAdded((p) => ({
+              date: getDateOfTomorrow(p.date),
+              real: "",
+              target: "",
+              name: p.name,
+              alias: p.alias,
+              type: p.type,
+            }));
+          } else {
+            setDataAdded((p) => ({
+              date: p.date,
+              real: "",
+              target: "",
+              name: p.name,
+              alias: p.alias,
+              type: p.type,
+            }));
+          }
         }
-
         setSuccess({
           status: true,
           message: "data has been successfully added.",
         });
+        if (next) {
+          setControl("ap");
+        }
       } catch (error) {
         console.error("Error:", error);
         setErr({
@@ -265,6 +277,7 @@ const AddData = (p) => {
       }
     }
     if (control === "ap") {
+      console.log(pareto);
       let l = 0;
       pareto.forEach((e) => (l += e.percentage));
       if (l > 100) {
@@ -597,7 +610,7 @@ const AddData = (p) => {
                   styles={customStyles}
                   placeholder="select KPI"
                   onChange={(e) => setDataAdded((p) => ({ ...p, name: e }))}
-                  value={dataAdded.name}
+                  value={{ value: dataAdded.name, label: dataAdded.name }}
                 />
               </div>
               <React.Fragment>
@@ -610,8 +623,12 @@ const AddData = (p) => {
                         placeholder="Enter Motif"
                         value={m.motif}
                         onChange={(e) => {
-                          const newPareto = [...pareto];
-                          newPareto[i].motif = e.target.value;
+                          const newPareto = pareto.map((item, index) => {
+                            if (index === i) {
+                              return { ...item, motif: e.target.value };
+                            }
+                            return item;
+                          });
                           setParetp(newPareto);
                         }}
                       />
@@ -625,8 +642,12 @@ const AddData = (p) => {
                         max={100}
                         value={m.percentage}
                         onChange={(e) => {
-                          const newPareto = [...pareto];
-                          newPareto[i].percentage = +e.target.value;
+                          const newPareto = pareto.map((item, index) => {
+                            if (index === i) {
+                              return { ...item, percentage: +e.target.value };
+                            }
+                            return item;
+                          });
                           setParetp(newPareto);
                         }}
                       />
@@ -645,7 +666,7 @@ const AddData = (p) => {
             </React.Fragment>
           )}
           <button className={c["form-submit-btn"]} type="submit">
-            submit
+            {!next ? "submit" : "next"}
           </button>
         </form>
       </div>
