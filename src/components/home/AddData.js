@@ -2,7 +2,11 @@ import React, { useCallback, useEffect, useState } from "react";
 import c from "./AddData.module.css";
 import Select from "react-select";
 import api from "../../service/api";
-import { getDateOfTomorrow, getcostumData, newgetlabelandvalue } from "../functions/newUtils";
+import {
+  getDateOfTomorrow,
+  getcostumData,
+  newgetlabelandvalue,
+} from "../functions/newUtils";
 import NetworkNotify from "../UI/NetworkNotify";
 
 const customStyles = {
@@ -83,7 +87,8 @@ function dataExists(array, key, value) {
 
 const AddData = (p) => {
   const [control, setControl] = useState("ad");
-  const [next, setNext]=useState(false);
+  const [next, setNext] = useState(false);
+  const [separateData, setSeparateData] = useState(null);
   const [pareto, setParetp] = useState([{ motif: "", percentage: "" }]);
   const [dataAdded, setDataAdded] = useState({
     date: p.dateChoosen,
@@ -101,24 +106,23 @@ const AddData = (p) => {
     dueDate: "",
     status: "",
   });
-  console.log(p.data, "passed data")
+  console.log(p.data, "passed data");
   const [kpiListOwner, setKpiListOwner] = useState(["first"]);
   const [err, setErr] = useState({ status: false, message: "" });
   const [success, setSuccess] = useState({ status: false, message: "" });
 
-
-  useEffect(()=>{
-    try{
-      if (dataAdded.name!==null || dataAdded.name!=="create new kpi"){
-        const fil=p.data.filter(f=>f.name===dataAdded.name);
-        console.log(fil)
-        console.log(getcostumData(fil[0].data))
+  useEffect(() => {
+    try {
+      if (dataAdded.name !== null || dataAdded.name !== "create new kpi") {
+        const d = getcostumData(
+          p.data.filter((f) => f.name === dataAdded.name)[0].data
+        );
+        console.log(d);
       }
-    }catch(error){
-      console.error(error)
-  }
-    
-  }, [dataAdded.name, p.data])
+    } catch (error) {
+      console.error(error);
+    }
+  }, [dataAdded.name, p.data]);
 
   console.log(kpiListOwner, dataExists(kpiListOwner, "kpiName", "first"));
   const callback = useCallback(async () => {
@@ -247,15 +251,14 @@ const AddData = (p) => {
       }
     }
     if (control === "ap") {
-      let l=0;
-      pareto.forEach(e=>l+=e.percentage);
-      if(l>100){
+      let l = 0;
+      pareto.forEach((e) => (l += e.percentage));
+      if (l > 100) {
         setErr({
           status: true,
-          message:
-            `The Pareto total must be less than 100%. total is: ${l}`,
+          message: `The Pareto total must be less than 100%. total is: ${l}`,
         });
-        return
+        return;
       }
       try {
         await fetch(
@@ -305,8 +308,6 @@ const AddData = (p) => {
       setDataAdded((p) => ({ ...p, alias: e }));
     }
   };
-
-
 
   console.log(dataAdded);
   return (
