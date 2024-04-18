@@ -42,7 +42,7 @@ const Delivery = (p) => {
   const delivery = kpiOwners.findIndex((f) => f.kpiOwn === p.title);
   const location = useLocation();
   const currentPath = location.pathname;
-
+  const [passedData, setPassedData]= useState([])
   const callback = useCallback(async () => {
     try {
       const response = await fetch(
@@ -57,7 +57,7 @@ const Delivery = (p) => {
 
       const data = await response.json();
       const d = separateDataByName(data);
-
+      setPassedData(d)
       try {
         setDeliveryData(
           getOnlyDay(d.filter((f) => f.name === "first")[0].data)
@@ -254,7 +254,7 @@ const Delivery = (p) => {
       {addData && (
         <React.Fragment>
           <BackDrop click={close} />
-          <AddData title={p.title} dateChoosen={addData} />
+          <AddData title={p.title} data={passedData} dateChoosen={addData} />
         </React.Fragment>
       )}
       {showkpi && (

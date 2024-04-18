@@ -100,7 +100,7 @@ const AddData = (p) => {
     dueDate: "",
     status: "",
   });
-
+  console.log(p.data, "passed data")
   const [kpiListOwner, setKpiListOwner] = useState(["first"]);
   const [err, setErr] = useState({ status: false, message: "" });
   const [success, setSuccess] = useState({ status: false, message: "" });
