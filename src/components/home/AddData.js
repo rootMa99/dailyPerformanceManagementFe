@@ -83,6 +83,7 @@ function dataExists(array, key, value) {
 
 const AddData = (p) => {
   const [control, setControl] = useState("ad");
+  const [next, setNext]=useState(false);
   const [pareto, setParetp] = useState([{ motif: "", percentage: "" }]);
   const [dataAdded, setDataAdded] = useState({
     date: p.dateChoosen,
