@@ -114,15 +114,29 @@ const AddData = (p) => {
   useEffect(() => {
     try {
       if (dataAdded.name !== null || dataAdded.name !== "create new kpi") {
-        const d = getcostumData(
-          p.data.filter((f) => f.name === dataAdded.name)[0].data
-        );
+        const d = p.data.filter((f) => f.name === dataAdded.name)[0].data;
         console.log(d);
+        setSeparateData(d);
       }
     } catch (error) {
       console.error(error);
     }
   }, [dataAdded.name, p.data]);
+  
+  useEffect(() => {
+    try {
+      if (separateData[0].data.type === "negative") {
+        if(dataAdded.target > dataAdded.real){
+          setNext(true);
+
+        }  
+      } else {
+        if(dataAdded.target < dataAdded.real){
+          setNext(true);
+        } 
+      }
+    } catch (e) {}
+  }, [dataAdded.target, dataAdded.real, separateData]);
 
   console.log(kpiListOwner, dataExists(kpiListOwner, "kpiName", "first"));
   const callback = useCallback(async () => {
