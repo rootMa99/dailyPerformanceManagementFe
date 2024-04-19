@@ -140,13 +140,13 @@
   opacity: 1;
   border-bottom: 2px solid white;
 } */
-.newK{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 3rem;
+.newK {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
 }
-.addP{
+.addP {
   display: flex;
   margin-left: auto;
   margin-right: 1rem;
@@ -156,25 +156,26 @@
   cursor: pointer;
   margin-bottom: 0;
 }
-.addP:hover{
+.addP:hover {
   opacity: 1;
   transform: scale(1.1);
 }
 
-.checkBox label span{
-
+.checkBox label span {
   font-size: smaller;
   color: #f84018;
 }
-.mssg{
+.mssg {
   color: #ed0a0a;
   text-transform: uppercase;
   font-weight: 900;
 }
-.addPm{
+.addPm {
   color: #ffee00;
-  /* position: absolute;
-  bottom: 4.5rem; */
+  position: absolute;
+  bottom: 5.5rem;
   text-transform: uppercase;
   font-weight: 600;
+  border-bottom: 1px solid;
+  margin: 0;
 }
