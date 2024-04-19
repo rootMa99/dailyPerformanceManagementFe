@@ -601,7 +601,7 @@ const AddData = (p) => {
           {control === "ap" && (
             <React.Fragment>
               <div className={c.inputC}>
-                <h3>choose Kpi:</h3>
+                <h3>choosen Kpi:</h3>
                 <Select
                   options={newgetlabelandvalue(kpiListOwner)}
                   id="modality"
@@ -610,6 +610,7 @@ const AddData = (p) => {
                   placeholder="select KPI"
                   onChange={(e) => setDataAdded((p) => ({ ...p, name: e.value }))}
                   value={{ value: dataAdded.name, label: dataAdded.name }}
+                  isDisabled={true}
                 />
               </div>
               <React.Fragment>
