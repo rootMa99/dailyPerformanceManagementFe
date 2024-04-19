@@ -111,40 +111,40 @@ const AddData = (p) => {
   const [err, setErr] = useState({ status: false, message: "" });
   const [success, setSuccess] = useState({ status: false, message: "" });
 
-  // useEffect(() => {
-  //   try {
-  //     if (dataAdded.name !== null || dataAdded.name !== "create new kpi") {
-  //       const d = p.data.filter((f) => f.name === dataAdded.name)[0].data;
-  //       console.log(d);
-  //       setSeparateData(d);
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }, [dataAdded.name, p.data]);
+  useEffect(() => {
+    try {
+      if (dataAdded.name !== null || dataAdded.name !== "create new kpi") {
+        const d = p.data.filter((f) => f.name === dataAdded.name)[0].data;
+        console.log(d);
+        setSeparateData(d);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }, [dataAdded.name, p.data]);
 
-  // useEffect(() => {
-  //   try {
-  //     if (separateData[0].data.type === "positive") {
-  //       if (dataAdded.target > dataAdded.real) {
-  //         setNext(true);
-  //         const d = getcostumData(separateData);
-  //         setParetp(d);
-  //       } else {
-  //         setNext(false);
-  //       }
-  //     } else {
-  //       console.log("run");
-  //       if (dataAdded.target < dataAdded.real) {
-  //         setNext(true);
-  //         const d = getcostumData(separateData);
-  //         setParetp(d.pareto);
-  //       } else {
-  //         setNext(false);
-  //       }
-  //     }
-  //   } catch (e) {}
-  // }, [dataAdded.target, dataAdded.real, separateData]);
+  useEffect(() => {
+    try {
+      if (separateData[0].data.type === "positive") {
+        if (dataAdded.target > dataAdded.real) {
+          setNext(true);
+          const d = getcostumData(separateData);
+          setParetp(d);
+        } else {
+          setNext(false);
+        }
+      } else {
+        console.log("run");
+        if (dataAdded.target < dataAdded.real) {
+          setNext(true);
+          const d = getcostumData(separateData);
+          setParetp(d.pareto);
+        } else {
+          setNext(false);
+        }
+      }
+    } catch (e) {}
+  }, [dataAdded.target, dataAdded.real, separateData]);
 
   console.log(kpiListOwner, dataExists(kpiListOwner, "kpiName", "first"));
   const callback = useCallback(async () => {
@@ -277,7 +277,7 @@ const AddData = (p) => {
       }
     }
     if (control === "ap") {
-      console.log(pareto);
+      console.log(pareto, dataAdded.name);
       let l = 0;
       pareto.forEach((e) => (l += e.percentage));
       if (l > 100) {
@@ -289,7 +289,7 @@ const AddData = (p) => {
       }
       try {
         await fetch(
-          `${api}/${p.title}/pareto?name=${dataAdded.name.value}&date=${dataAdded.date}`,
+          `${api}/${p.title}/pareto?name=${dataAdded.name}&date=${dataAdded.date}`,
           {
             method: "POST",
             headers: {
@@ -299,7 +299,7 @@ const AddData = (p) => {
             body: JSON.stringify(pareto),
           }
         );
-        setParetp([{ motif: "", percentage: "" }]);
+        // setParetp([{ motif: "", percentage: "" }]);
         setSuccess({
           status: true,
           message: "data has been successfully added.",
@@ -362,7 +362,6 @@ const AddData = (p) => {
                 ? { opacity: 1, borderBottom: "2px solid white" }
                 : {}
             }
-            onClick={(e) => setControl("ap")}
           >
             add pareto
           </li>
@@ -609,7 +608,7 @@ const AddData = (p) => {
                   inputId="modality"
                   styles={customStyles}
                   placeholder="select KPI"
-                  onChange={(e) => setDataAdded((p) => ({ ...p, name: e }))}
+                  onChange={(e) => setDataAdded((p) => ({ ...p, name: e.value }))}
                   value={{ value: dataAdded.name, label: dataAdded.name }}
                 />
               </div>
