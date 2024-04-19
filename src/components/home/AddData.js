@@ -305,6 +305,7 @@ const AddData = (p) => {
           status: true,
           message: "data has been successfully added.",
         });
+        setControl("acp");
       } catch (error) {
         console.error("Error:", error);
         setErr({
