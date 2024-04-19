@@ -129,7 +129,8 @@ const AddData = (p) => {
         if (dataAdded.target > dataAdded.real) {
           setNext(true);
           const d = getcostumData(separateData);
-          setParetp(d);
+          console.log(d, "see here")
+          setParetp(d.pareto);
         } else {
           setNext(false);
         }
@@ -351,7 +352,6 @@ const AddData = (p) => {
                 ? { opacity: 1, borderBottom: "2px solid white" }
                 : {}
             }
-            onClick={(e) => setControl("ad")}
           >
             add data
           </li>
@@ -371,7 +371,6 @@ const AddData = (p) => {
                 ? { opacity: 1, borderBottom: "2px solid white" }
                 : {}
             }
-            onClick={(e) => setControl("acp")}
           >
             add action plan
           </li>
@@ -501,15 +500,15 @@ const AddData = (p) => {
             <React.Fragment>
               <div className={c["form-group"]}>
                 <div className={c.inputC}>
-                  <h3>choose Kpi:</h3>
+                  <h3>choosen Kpi:</h3>
                   <Select
                     options={newgetlabelandvalue(kpiListOwner)}
                     id="modality"
                     inputId="modality"
                     styles={customStyles}
                     placeholder="select KPI"
-                    onChange={(e) => setDataAdded((p) => ({ ...p, name: e }))}
-                    value={dataAdded.name}
+                    value={{ value: dataAdded.name, label: dataAdded.name }}
+                    isDisabled={true}
                   />
                 </div>
                 <div className={c.inputC}>
@@ -665,9 +664,9 @@ const AddData = (p) => {
               </React.Fragment>
             </React.Fragment>
           )}
-          <button className={c["form-submit-btn"]} type="submit">
+          {control !== "acp" && <button className={c["form-submit-btn"]} type="submit">
             {!next ? "submit" : "next"}
-          </button>
+          </button>}
         </form>
       </div>
     </React.Fragment>
