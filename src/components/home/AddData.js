@@ -129,7 +129,7 @@ const AddData = (p) => {
         if (dataAdded.target > dataAdded.real) {
           setNext(true);
           const d = getcostumData(separateData);
-          console.log(d, "see here")
+          console.log(d, "see here");
           setParetp(d.pareto);
         } else {
           setNext(false);
@@ -467,34 +467,36 @@ const AddData = (p) => {
                 )}
               </div>
 
-              { <div className={c["form-group"]}>
-                <div className={c.inputC}>
-                  <h3>real data:</h3>
-                  <input
-                    type="number"
-                    placeholder="Enter your real data"
-                    step="0.01"
-                    required
-                    onChange={(e) =>
-                      setDataAdded((p) => ({ ...p, real: +e.target.value }))
-                    }
-                    value={dataAdded.real}
-                  />
+              {
+                <div className={c["form-group"]}>
+                  <div className={c.inputC}>
+                    <h3>real data:</h3>
+                    <input
+                      type="number"
+                      placeholder="Enter your real data"
+                      step="0.01"
+                      required
+                      onChange={(e) =>
+                        setDataAdded((p) => ({ ...p, real: +e.target.value }))
+                      }
+                      value={dataAdded.real}
+                    />
+                  </div>
+                  <div className={c.inputC}>
+                    <h3>target data:</h3>
+                    <input
+                      type="number"
+                      placeholder="Enter your target data"
+                      step="0.01"
+                      required
+                      onChange={(e) =>
+                        setDataAdded((p) => ({ ...p, target: +e.target.value }))
+                      }
+                      value={dataAdded.target}
+                    />
+                  </div>
                 </div>
-                <div className={c.inputC}>
-                  <h3>target data:</h3>
-                  <input
-                    type="number"
-                    placeholder="Enter your target data"
-                    step="0.01"
-                    required
-                    onChange={(e) =>
-                      setDataAdded((p) => ({ ...p, target: +e.target.value }))
-                    }
-                    value={dataAdded.target}
-                  />
-                </div>
-              </div>}
+              }
             </React.Fragment>
           )}
           {control === "acp" && (
@@ -600,7 +602,10 @@ const AddData = (p) => {
           )}
           {control === "ap" && (
             <React.Fragment>
-              <h3 className={c.mssg}>caution: You will need to add, update, or just confirm Pareto if there is no change.</h3>
+              <h3 className={c.mssg}>
+                caution: You will need to add, update, or just confirm Pareto if
+                there is no change.
+              </h3>
               <div className={c.inputC}>
                 <h3>choosen Kpi:</h3>
                 <Select
@@ -609,7 +614,9 @@ const AddData = (p) => {
                   inputId="modality"
                   styles={customStyles}
                   placeholder="select KPI"
-                  onChange={(e) => setDataAdded((p) => ({ ...p, name: e.value }))}
+                  onChange={(e) =>
+                    setDataAdded((p) => ({ ...p, name: e.value }))
+                  }
                   value={{ value: dataAdded.name, label: dataAdded.name }}
                   isDisabled={true}
                 />
@@ -655,10 +662,7 @@ const AddData = (p) => {
                     </div>
                   </div>
                 ))}
-                <h4
-
-                  className={c.addPm}
-                >
+                <h4 className={c.addPm}>
                   note: The Pareto total must be less than or equal 100%
                 </h4>
                 <h4
@@ -672,9 +676,11 @@ const AddData = (p) => {
               </React.Fragment>
             </React.Fragment>
           )}
-          {control !== "acp" && <button className={c["form-submit-btn"]} type="submit">
-            {!next ? "submit" : "next"}
-          </button>}
+          {control !== "acp" && (
+            <button className={c["form-submit-btn"]} type="submit">
+              {!next ? "submit" : "next"}
+            </button>
+          )}
         </form>
       </div>
     </React.Fragment>
