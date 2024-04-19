@@ -599,7 +599,7 @@ const AddData = (p) => {
           )}
           {control === "ap" && (
             <React.Fragment>
-              <h3 className={c.mssg}>You will need to add, update, or just confirm Pareto if there is no change.</h3>
+              <h3 className={c.mssg}>caution: You will need to add, update, or just confirm Pareto if there is no change.</h3>
               <div className={c.inputC}>
                 <h3>choosen Kpi:</h3>
                 <Select
@@ -654,6 +654,12 @@ const AddData = (p) => {
                     </div>
                   </div>
                 ))}
+                <h4
+
+                  className={c.addPm}
+                >
+                  note: The Pareto total must be less than or equal 100%
+                </h4>
                 <h4
                   onClick={(e) =>
                     setParetp((p) => [...p, { motif: "", percentage: 0 }])

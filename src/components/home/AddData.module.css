@@ -171,3 +171,10 @@
   text-transform: uppercase;
   font-weight: 900;
 }
+.addPm{
+  color: #ffee00;
+  /* position: absolute;
+  bottom: 4.5rem; */
+  text-transform: uppercase;
+  font-weight: 600;
+}
