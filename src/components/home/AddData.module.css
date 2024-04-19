@@ -135,10 +135,10 @@
   border-bottom: 2px solid transparent;
   cursor: pointer;
 }
-.underList li:hover {
+/* .underList li:hover {
   opacity: 1;
   border-bottom: 2px solid white;
-}
+} */
 .newK{
     width: 100%;
     display: flex;
