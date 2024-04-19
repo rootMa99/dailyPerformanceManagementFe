@@ -452,11 +452,11 @@ const AddData = (p) => {
                               }
                             />
                             <label htmlFor="horns">
-                              PRIMARY{" "}
+                              PRIMARY
                               <span>
                                 You will need to check this box if your KPI is a
                                 primary KPI.
-                              </span>{" "}
+                              </span>
                             </label>
                           </div>
                         )}
