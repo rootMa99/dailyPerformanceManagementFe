@@ -467,7 +467,7 @@ const AddData = (p) => {
                 )}
               </div>
 
-              <div className={c["form-group"]}>
+              { <div className={c["form-group"]}>
                 <div className={c.inputC}>
                   <h3>real data:</h3>
                   <input
@@ -494,7 +494,7 @@ const AddData = (p) => {
                     value={dataAdded.target}
                   />
                 </div>
-              </div>
+              </div>}
             </React.Fragment>
           )}
           {control === "acp" && (

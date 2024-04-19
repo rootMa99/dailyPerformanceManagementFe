@@ -296,12 +296,14 @@ const Details = (p) => {
         </div>
 
         <div className={c.chartHolder}>
-        <div className={c.title}>
+          <div className={c.title}>
             <span></span>
             <h3> trend </h3>
             <span></span>
           </div>
-          <Line data={datac} options={options} />
+          <div style={{ height: "35rem" }}>
+            <Line data={datac} options={options} />
+          </div>
           {pareto.length > 0 && (
             <React.Fragment>
               <div className={c.title}>
