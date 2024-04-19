@@ -166,3 +166,8 @@
   font-size: smaller;
   color: #f84018;
 }
+.mssg{
+  color: #ed0a0a;
+  text-transform: uppercase;
+  font-weight: 900;
+}

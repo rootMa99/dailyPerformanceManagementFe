@@ -599,6 +599,7 @@ const AddData = (p) => {
           )}
           {control === "ap" && (
             <React.Fragment>
+              <h3 className={c.mssg}>You will need to add, update, or just confirm Pareto if there is no change.</h3>
               <div className={c.inputC}>
                 <h3>choosen Kpi:</h3>
                 <Select
