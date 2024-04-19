@@ -111,40 +111,40 @@ const AddData = (p) => {
   const [err, setErr] = useState({ status: false, message: "" });
   const [success, setSuccess] = useState({ status: false, message: "" });
 
-  useEffect(() => {
-    try {
-      if (dataAdded.name !== null || dataAdded.name !== "create new kpi") {
-        const d = p.data.filter((f) => f.name === dataAdded.name)[0].data;
-        console.log(d);
-        setSeparateData(d);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  }, [dataAdded.name, p.data]);
+  // useEffect(() => {
+  //   try {
+  //     if (dataAdded.name !== null || dataAdded.name !== "create new kpi") {
+  //       const d = p.data.filter((f) => f.name === dataAdded.name)[0].data;
+  //       console.log(d);
+  //       setSeparateData(d);
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }, [dataAdded.name, p.data]);
 
-  useEffect(() => {
-    try {
-      if (separateData[0].data.type === "positive") {
-        if (dataAdded.target > dataAdded.real) {
-          setNext(true);
-          const d = getcostumData(separateData);
-          setParetp(d);
-        } else {
-          setNext(false);
-        }
-      } else {
-        console.log("run");
-        if (dataAdded.target < dataAdded.real) {
-          setNext(true);
-          const d = getcostumData(separateData);
-          setParetp(d.pareto);
-        } else {
-          setNext(false);
-        }
-      }
-    } catch (e) {}
-  }, [dataAdded.target, dataAdded.real, separateData]);
+  // useEffect(() => {
+  //   try {
+  //     if (separateData[0].data.type === "positive") {
+  //       if (dataAdded.target > dataAdded.real) {
+  //         setNext(true);
+  //         const d = getcostumData(separateData);
+  //         setParetp(d);
+  //       } else {
+  //         setNext(false);
+  //       }
+  //     } else {
+  //       console.log("run");
+  //       if (dataAdded.target < dataAdded.real) {
+  //         setNext(true);
+  //         const d = getcostumData(separateData);
+  //         setParetp(d.pareto);
+  //       } else {
+  //         setNext(false);
+  //       }
+  //     }
+  //   } catch (e) {}
+  // }, [dataAdded.target, dataAdded.real, separateData]);
 
   console.log(kpiListOwner, dataExists(kpiListOwner, "kpiName", "first"));
   const callback = useCallback(async () => {
