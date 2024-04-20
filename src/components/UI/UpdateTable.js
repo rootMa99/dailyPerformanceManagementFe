@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { formatDate } from "../functions/utils";
 import c from "./UpdateTable.module.css";
 
@@ -83,6 +83,17 @@ const dataOp = [
     { value: "rc fix confirmed", label: "rc fix confirmed" },
   ];
 const UpdateTable = (p) => {
+
+    const [apm, setApm] = useState({
+        issueDescription: "",
+        causes: "",
+        contermeasures: "",
+        resp: "",
+        dueDate: "",
+        status: "",
+      });
+
+
     const data=p.data;
 
   return (
