@@ -278,7 +278,7 @@ const AddData = (p) => {
       }
     }
     if (control === "ap") {
-      console.log(pareto, dataAdded.name);
+      console.log(pareto, dataAdded.name, p.title);
       let l = 0;
       pareto.forEach((e) => (l += e.percentage));
       if (l > 100) {
@@ -501,103 +501,7 @@ const AddData = (p) => {
           )}
           {control === "acp" && (
             <React.Fragment>
-              <div className={c["form-group"]}>
-                <div className={c.inputC}>
-                  <h3>choosen Kpi:</h3>
-                  <Select
-                    options={newgetlabelandvalue(kpiListOwner)}
-                    id="modality"
-                    inputId="modality"
-                    styles={customStyles}
-                    placeholder="select KPI"
-                    value={{ value: dataAdded.name, label: dataAdded.name }}
-                    isDisabled={true}
-                  />
-                </div>
-                <div className={c.inputC}>
-                  <h3>Issue description:</h3>
-                  <input
-                    type="text"
-                    placeholder="Enter Issue description"
-                    value={apm.issueDescription}
-                    onChange={(e) =>
-                      setApm((p) => {
-                        return { ...p, issueDescription: e.target.value };
-                      })
-                    }
-                    required
-                  />
-                </div>
-                <div className={c.inputC}>
-                  <h3>Causes:</h3>
-                  <input
-                    type="text"
-                    placeholder="Enter Causes"
-                    value={apm.causes}
-                    onChange={(e) =>
-                      setApm((p) => {
-                        return { ...p, causes: e.target.value };
-                      })
-                    }
-                    required
-                  />
-                </div>
-                <div className={c.inputC}>
-                  <h3>Contermeasures:</h3>
-                  <input
-                    type="text"
-                    placeholder="Enter Contermeasures"
-                    value={apm.contermeasures}
-                    onChange={(e) =>
-                      setApm((p) => {
-                        return { ...p, contermeasures: e.target.value };
-                      })
-                    }
-                    required
-                  />
-                </div>
-                <div className={c.inputC}>
-                  <h3>Resp:</h3>
-                  <input
-                    type="text"
-                    placeholder="Enter Resp"
-                    value={apm.resp}
-                    onChange={(e) =>
-                      setApm((p) => {
-                        return { ...p, resp: e.target.value };
-                      })
-                    }
-                    required
-                  />
-                </div>
-                <div className={c.inputC}>
-                  <h3>Due date:</h3>
-                  <input
-                    type="date"
-                    value={apm.dueDate}
-                    required
-                    onChange={(e) =>
-                      setApm((p) => {
-                        return { ...p, dueDate: e.target.value };
-                      })
-                    }
-                  />
-                </div>
-                <div className={c.inputC}>
-                  <h3>Status:</h3>
-                  <Select
-                    options={dataOp}
-                    styles={customStyles}
-                    value={{ label: apm.status, value: apm.status }}
-                    onChange={(e) =>
-                      setApm((p) => {
-                        return { ...p, status: e.value };
-                      })
-                    }
-                    menuPlacement="top"
-                  />
-                </div>
-              </div>
+             
             </React.Fragment>
           )}
           {control === "ap" && (
@@ -687,3 +591,113 @@ const AddData = (p) => {
   );
 };
 export default AddData;
+
+
+
+
+
+
+
+
+
+
+
+
+
+// <div className={c["form-group"]}>
+// <div className={c.inputC}>
+//   <h3>choosen Kpi:</h3>
+//   <Select
+//     options={newgetlabelandvalue(kpiListOwner)}
+//     id="modality"
+//     inputId="modality"
+//     styles={customStyles}
+//     placeholder="select KPI"
+//     value={{ value: dataAdded.name, label: dataAdded.name }}
+//     isDisabled={true}
+//   />
+// </div>
+// <div className={c.inputC}>
+//   <h3>Issue description:</h3>
+//   <input
+//     type="text"
+//     placeholder="Enter Issue description"
+//     value={apm.issueDescription}
+//     onChange={(e) =>
+//       setApm((p) => {
+//         return { ...p, issueDescription: e.target.value };
+//       })
+//     }
+//     required
+//   />
+// </div>
+// <div className={c.inputC}>
+//   <h3>Causes:</h3>
+//   <input
+//     type="text"
+//     placeholder="Enter Causes"
+//     value={apm.causes}
+//     onChange={(e) =>
+//       setApm((p) => {
+//         return { ...p, causes: e.target.value };
+//       })
+//     }
+//     required
+//   />
+// </div>
+// <div className={c.inputC}>
+//   <h3>Contermeasures:</h3>
+//   <input
+//     type="text"
+//     placeholder="Enter Contermeasures"
+//     value={apm.contermeasures}
+//     onChange={(e) =>
+//       setApm((p) => {
+//         return { ...p, contermeasures: e.target.value };
+//       })
+//     }
+//     required
+//   />
+// </div>
+// <div className={c.inputC}>
+//   <h3>Resp:</h3>
+//   <input
+//     type="text"
+//     placeholder="Enter Resp"
+//     value={apm.resp}
+//     onChange={(e) =>
+//       setApm((p) => {
+//         return { ...p, resp: e.target.value };
+//       })
+//     }
+//     required
+//   />
+// </div>
+// <div className={c.inputC}>
+//   <h3>Due date:</h3>
+//   <input
+//     type="date"
+//     value={apm.dueDate}
+//     required
+//     onChange={(e) =>
+//       setApm((p) => {
+//         return { ...p, dueDate: e.target.value };
+//       })
+//     }
+//   />
+// </div>
+// <div className={c.inputC}>
+//   <h3>Status:</h3>
+//   <Select
+//     options={dataOp}
+//     styles={customStyles}
+//     value={{ label: apm.status, value: apm.status }}
+//     onChange={(e) =>
+//       setApm((p) => {
+//         return { ...p, status: e.value };
+//       })
+//     }
+//     menuPlacement="top"
+//   />
+// </div>
+// </div>
