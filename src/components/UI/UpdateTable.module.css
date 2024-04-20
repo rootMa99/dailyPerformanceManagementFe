@@ -71,3 +71,43 @@
     opacity: 1;
     transform: scale(1.1);
   }
+
+
+
+ .form-group {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 94%;
+  }
+  
+  .inputC input,
+  .inputD input {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-family: inherit;
+    border: 1px solid #5e5d5d;
+    background-color: #181818;
+    color: #e5e1da;
+  }
+  .inputD input {
+    width: 94%;
+    text-align: center;
+  }
+  .inputC input::placeholder {
+    opacity: 0.8;
+  }
+  
+  .inputC input:focus,
+  .inputC input:hover,
+  .inputD input:focus,
+  .inputD input:hover {
+    outline: none;
+    border-color: #f84018;
+  }
+  .inputD input:hover {
+    cursor: pointer;
+  }

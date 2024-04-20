@@ -493,7 +493,7 @@ const AddData = (p) => {
           )}
           {control === "acp" && (
             <React.Fragment>
-             <UpdateTable data={acp}/> 
+             <UpdateTable data={acp} title={p.title} name={dataAdded.name} date={dataAdded.date} /> 
             </React.Fragment>
           )}
           {control === "ap" && (
