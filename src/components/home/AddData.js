@@ -75,12 +75,7 @@ const customStyles = {
   }),
 };
 
-const dataOp = [
-  { value: "action assigned", label: "action assigned" },
-  { value: "action started", label: "action started" },
-  { value: "action complete", label: "action complete" },
-  { value: "rc fix confirmed", label: "rc fix confirmed" },
-];
+
 
 function dataExists(array, key, value) {
   return array.some((obj) => obj[key] === value);
