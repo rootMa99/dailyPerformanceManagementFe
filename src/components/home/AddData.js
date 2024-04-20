@@ -8,6 +8,7 @@ import {
   newgetlabelandvalue,
 } from "../functions/newUtils";
 import NetworkNotify from "../UI/NetworkNotify";
+import UpdateTable from "../UI/UpdateTable";
 
 const customStyles = {
   control: (provided, state) => ({
@@ -89,6 +90,7 @@ const AddData = (p) => {
   const [control, setControl] = useState("ad");
   const [next, setNext] = useState(false);
   const [separateData, setSeparateData] = useState(null);
+  const [acp, setAcp]=useState([]);
   const [pareto, setParetp] = useState([{ motif: "", percentage: "" }]);
   const [dataAdded, setDataAdded] = useState({
     date: p.dateChoosen,
@@ -131,6 +133,7 @@ const AddData = (p) => {
           const d = getcostumData(separateData);
           console.log(d, "see here");
           setParetp(d.pareto);
+          setAcp(d.ap)
         } else {
           setNext(false);
         }
@@ -140,6 +143,7 @@ const AddData = (p) => {
           setNext(true);
           const d = getcostumData(separateData);
           setParetp(d.pareto);
+          setAcp(d.ap)
         } else {
           setNext(false);
         }
@@ -501,7 +505,7 @@ const AddData = (p) => {
           )}
           {control === "acp" && (
             <React.Fragment>
-             
+             <UpdateTable data={acp}/> 
             </React.Fragment>
           )}
           {control === "ap" && (
