@@ -7,7 +7,7 @@ import Select from "react-select";
 const customStyles = {
   control: (provided, state) => ({
     ...provided,
-    width: "97%",
+    width: "100%",
     height: "auto",
     fontWeight: "600",
     textTransform: "uppercase",
@@ -139,7 +139,6 @@ const UpdateTable = (p) => {
             <div className={c.inputC}>
               <h3>choosen Kpi:</h3>
               <Select
-            
                 id="modality"
                 inputId="modality"
                 styles={customStyles}
@@ -232,11 +231,32 @@ const UpdateTable = (p) => {
               />
             </div>
           </div>
+          <div className={c.buttons}>
+            <h4
+              className={c.addP}
+              onClick={(e) => {
+                setAddAp(false);
+                setApm({
+                  issueDescription: "",
+                  causes: "",
+                  contermeasures: "",
+                  resp: "",
+                  dueDate: "",
+                  status: "",
+                });
+              }}
+            >
+              cancel
+            </h4>
+            <button className={c["form-submit-btn"]}>submit</button>
+          </div>
         </React.Fragment>
       )}
       {!addAp && (
         <React.Fragment>
-          <h4 className={c.addP}>add action plan</h4>
+          <h4 className={c.addP} onClick={(e) => setAddAp(true)}>
+            add action plan
+          </h4>
           <table className={c.table}>
             <thead>
               <tr>
@@ -250,7 +270,13 @@ const UpdateTable = (p) => {
             </thead>
             <tbody>
               {data.map((m, i) => (
-                <tr key={m.id} onClick={(e) => setAddAp(true)}>
+                <tr
+                  key={m.id}
+                  onClick={(e) => {
+                    setAddAp(true);
+                    setApm(m);
+                  }}
+                >
                   <td>{m.issueDescription}</td>
                   <td>{m.causes}</td>
                   <td>{m.contermeasures}</td>
