@@ -493,7 +493,7 @@ const AddData = (p) => {
           )}
           {control === "acp" && (
             <React.Fragment>
-             <UpdateTable data={acp} title={p.title} name={dataAdded.name} date={dataAdded.date} /> 
+             <UpdateTable data={acp} title={p.title} alias={dataAdded.alias} name={dataAdded.name} date={dataAdded.date} /> 
             </React.Fragment>
           )}
           {control === "ap" && (
@@ -505,15 +505,11 @@ const AddData = (p) => {
               <div className={c.inputC}>
                 <h3>choosen Kpi:</h3>
                 <Select
-                  options={newgetlabelandvalue(kpiListOwner)}
                   id="modality"
                   inputId="modality"
                   styles={customStyles}
                   placeholder="select KPI"
-                  onChange={(e) =>
-                    setDataAdded((p) => ({ ...p, name: e.value }))
-                  }
-                  value={{ value: dataAdded.name, label: dataAdded.name }}
+                  value={dataAdded.alias}
                   isDisabled={true}
                 />
               </div>

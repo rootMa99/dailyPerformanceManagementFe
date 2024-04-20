@@ -143,7 +143,7 @@ const UpdateTable = (p) => {
                 inputId="modality"
                 styles={customStyles}
                 placeholder="select KPI"
-                value={{ value: p.name, label: p.name }}
+                value={p.alias}
                 isDisabled={true}
               />
             </div>
