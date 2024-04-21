@@ -104,7 +104,7 @@ const Delivery = (p) => {
       ? bgcolor.push("#005B41")
       : bgcolor.push("rgb(88, 3, 3)")
   );
-
+console.log(deliveryData, p.title, 'debuger simple')
   const data = {
     labels: deliveryData.map((m) => m.day),
     datasets: [
@@ -183,37 +183,6 @@ const Delivery = (p) => {
       },
       datalabels: {
         display: true,
-      },
-    },
-    animation: p.home === undefined && {
-      onComplete: (animation) => {
-        const { chart } = animation;
-        const ctx = chart.ctx;
-        chart.data.datasets.forEach((dataset, index) => {
-          const meta = chart.getDatasetMeta(index);
-          meta.data.forEach((element, index) => {
-            const data =
-              dataset.type === "line"
-                ? p.warn !== "productivity"
-                  ? dataset.data[index]
-                  : `${dataset.data[index]}%`
-                : `${dataset.data[index]}%`;
-            let xPos, yPos;
-            if (dataset.type === "bar") {
-              xPos = element.x;
-              yPos = element.y + 15;
-            } else if (dataset.type === "line") {
-              xPos = element.x;
-              yPos = element.y - 10;
-            }
-            ctx.save();
-            ctx.textAlign = "center";
-            ctx.fillStyle = dataset.type === "bar" ? "#FFFAD7" : "#EEEEEE";
-            ctx.font = "17px Arial";
-            ctx.fillText(data, xPos, yPos);
-            ctx.restore();
-          });
-        });
       },
     },
   };
