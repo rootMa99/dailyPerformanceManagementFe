@@ -3,6 +3,7 @@ import { formatDate } from "../functions/utils";
 import c from "./UpdateTable.module.css";
 import api from "../../service/api";
 import Select from "react-select";
+import NetworkNotify from "./NetworkNotify";
 
 const customStyles = {
   control: (provided, state) => ({
@@ -144,6 +145,10 @@ const UpdateTable = (p) => {
 
   return (
     <React.Fragment>
+    {err.status && <NetworkNotify message={err.message} success={false} />}
+    {success.status && (
+      <NetworkNotify message={success.message} success={true} />
+    )}
       {addAp && (
         <React.Fragment>
           <div className={c["form-group"]}>
