@@ -32,7 +32,7 @@
   cursor: pointer;
 }
 .table tbody tr:hover {
-  transform: scaleX(1.08);
+  transform: scaleX(1.02);
 }
 .table tr:nth-child(even) {
   background-color: rgba(0, 0, 0, 0.596);
@@ -134,10 +134,16 @@
 .form-submit-btn:hover {
   background-color: #313131;
 }
-.mssg {
+.mssg, .mssgN{
   color: #ed0a0a;
   text-transform: uppercase;
   font-weight: 900;
+}
+.mssgN{
+  color: #d7c90b87;
+  font-weight: lighter !important;
+  font-size:smaller;
+  margin: 0;
 }
 .addPm {
   color: #ffee00;

@@ -116,7 +116,7 @@ const UpdateTable = (p) => {
         if (index !== -1) {
           data[index] = apm;
         } else {
-          data.push({...datar, dueDate:datar.dueDate.split('T')[0]});
+          data.push({ ...datar, dueDate: datar.dueDate.split("T")[0] });
         }
       } catch (e) {}
 
@@ -151,14 +151,18 @@ const UpdateTable = (p) => {
 
   return (
     <React.Fragment>
-    {err.status && <NetworkNotify message={err.message} success={false} />}
-    {success.status && (
-      <NetworkNotify message={success.message} success={true} />
-    )}
-    <h3 className={c.mssg}>
-                caution: You will need to add, update, or just confirm Pareto if
-                there is no change.
-              </h3>
+      {err.status && <NetworkNotify message={err.message} success={false} />}
+      {success.status && (
+        <NetworkNotify message={success.message} success={true} />
+      )}
+      <h3 className={c.mssg}>
+        caution: YOU WILL NEED TO ADD, UPDATE, OR JUST LEAVE THE ACTION PLAN IF
+        THERE IS NO CHANGE.
+      </h3>
+      <p className={c.mssgN}>
+        NOTE: To update an action plan, you can simply click on the row of the
+        action plan you are interested in.
+      </p>
       {addAp && (
         <React.Fragment>
           <div className={c["form-group"]}>
