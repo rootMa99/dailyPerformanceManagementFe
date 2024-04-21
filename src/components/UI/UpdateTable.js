@@ -98,7 +98,7 @@ const UpdateTable = (p) => {
     console.log(apm);
 
     try {
-      await fetch(
+      const response = await fetch(
         `${api}/${p.title}/actionPlan?name=${p.name}&date=${p.date}`,
         {
           method: "POST",
@@ -106,9 +106,20 @@ const UpdateTable = (p) => {
             "Content-Type": "application/json",
             // Authorization: `Bearer ${isLoged.token}`,
           },
-          body: JSON.stringify([apm]),
+          body: JSON.stringify(apm),
         }
       );
+      const datar = await response.json();
+      try {
+        const index = data.findIndex((f) => f.id === apm.id);
+        if (index !== -1) {
+          data[index] = apm;
+        } else {
+          data.push(datar);
+        }
+      } catch (e) {}
+
+      setAddAp(false);
       setApm({
         issueDescription: "",
         causes: "",
@@ -248,7 +259,9 @@ const UpdateTable = (p) => {
             >
               cancel
             </h4>
-            <button className={c["form-submit-btn"]}>submit</button>
+            <button className={c["form-submit-btn"]} onClick={onSubmitHand}>
+              submit
+            </button>
           </div>
         </React.Fragment>
       )}
