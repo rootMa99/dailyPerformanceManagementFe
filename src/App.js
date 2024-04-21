@@ -39,7 +39,7 @@ function App() {
 
       if (currentDate < targetDate) {
         alert(
-          "We have made some updates. If you encounter any problems, please don't hesitate to contact Haidar Oussil or Anass Zeroual via Teams."
+          "We have made some updates. If you encounter any problems, please don't hesitate to contact Haidar Oussil or Zeroual Anass via Teams."
         );
       }
     }

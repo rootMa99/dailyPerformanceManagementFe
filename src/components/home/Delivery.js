@@ -65,7 +65,7 @@ const Delivery = (p) => {
       } catch (e) {
         setDeliveryData([]);
       }
-      dispatch(dataActions.addDelevery(d));
+      // dispatch(dataActions.addDelevery(d));
       p.title === "delivery" && dispatch(dataActions.addDelevery(d));
 
       p.title === "safety" && dispatch(dataActions.addSafety(d));
