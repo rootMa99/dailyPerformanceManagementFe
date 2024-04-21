@@ -116,7 +116,7 @@ const UpdateTable = (p) => {
         if (index !== -1) {
           data[index] = apm;
         } else {
-          data.push(datar);
+          data.push({...datar, dueDate:datar.dueDate.split('T')[0]});
         }
       } catch (e) {}
 
@@ -155,6 +155,10 @@ const UpdateTable = (p) => {
     {success.status && (
       <NetworkNotify message={success.message} success={true} />
     )}
+    <h3 className={c.mssg}>
+                caution: You will need to add, update, or just confirm Pareto if
+                there is no change.
+              </h3>
       {addAp && (
         <React.Fragment>
           <div className={c["form-group"]}>

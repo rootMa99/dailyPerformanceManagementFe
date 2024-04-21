@@ -134,3 +134,18 @@
 .form-submit-btn:hover {
   background-color: #313131;
 }
+.mssg {
+  color: #ed0a0a;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+.addPm {
+  color: #ffee00;
+  position: absolute;
+  bottom: 5.5rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-bottom: 1px solid;
+  margin: 0;
+}
+
