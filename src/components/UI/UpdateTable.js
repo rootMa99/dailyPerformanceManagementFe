@@ -142,6 +142,12 @@ const UpdateTable = (p) => {
       });
     }
   };
+  if (err.status || success.status) {
+    setTimeout(() => {
+      setErr({ status: false, message: "" });
+      setSuccess({ status: false, message: "" });
+    }, 2000);
+  }
 
   return (
     <React.Fragment>
