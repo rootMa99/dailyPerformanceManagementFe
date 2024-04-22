@@ -227,10 +227,10 @@ const Details = (p) => {
             let xPos, yPos;
             if (dataset.type === "bar") {
               xPos = element.x;
-              yPos = element.y + 15;
+              yPos = element.y + element.height / 2;
             } else if (dataset.type === "line") {
               xPos = element.x;
-              yPos = element.y - 10;
+              yPos = element.y - 20;
             }
             ctx.save();
             ctx.textAlign = "center";
