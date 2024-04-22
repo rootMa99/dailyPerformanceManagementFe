@@ -42,7 +42,7 @@ const Delivery = (p) => {
   const delivery = kpiOwners.findIndex((f) => f.kpiOwn === p.title);
   const location = useLocation();
   const currentPath = location.pathname;
-  const [passedData, setPassedData]= useState([])
+  const [passedData, setPassedData] = useState([]);
   const callback = useCallback(async () => {
     try {
       const response = await fetch(
@@ -57,7 +57,7 @@ const Delivery = (p) => {
 
       const data = await response.json();
       const d = separateDataByName(data);
-      setPassedData(d)
+      setPassedData(d);
       try {
         setDeliveryData(
           getOnlyDay(d.filter((f) => f.name === "first")[0].data)
@@ -104,7 +104,7 @@ const Delivery = (p) => {
       ? bgcolor.push("#005B41")
       : bgcolor.push("rgb(88, 3, 3)")
   );
-console.log(deliveryData, p.title, 'debuger simple')
+  console.log(deliveryData, p.title, "debuger simple");
   const data = {
     labels: deliveryData.map((m) => m.day),
     datasets: [
@@ -346,19 +346,30 @@ console.log(deliveryData, p.title, 'debuger simple')
                     (m, i) =>
                       m.data.apm != null &&
                       m.data.apm.map((m) => (
-                        <tr key={m.id}>
+                        <tr
+                          key={m.id}
+                          style={
+                            m.status === "RC Fixedrc fix confirmed"
+                              ? { backgroundColor: "green" }
+                              : m.status === "action complete"
+                              ? { backgroundColor: "green" }
+                              : {}
+                          }
+                        >
                           <td>{m.issueDescription}</td>
                           <td>{m.causes}</td>
+                          <td>{m.contermeasures}</td>
                           <td
                             style={
-                              m.dueDate < formatDate(new Date())
+                              m.dueDate < formatDate(new Date()) &&
+                              m.status !== "action complete" &&
+                              m.status !== "RC Fixedrc fix confirmed"
                                 ? { backgroundColor: "red" }
                                 : {}
                             }
                           >
-                            {m.contermeasures}
+                            {m.dueDate}
                           </td>
-                          <td>{m.dueDate}</td>
                           <td>{m.resp}</td>
                           <td>{m.status}</td>
                         </tr>
