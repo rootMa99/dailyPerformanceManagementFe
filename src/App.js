@@ -35,7 +35,7 @@ function App() {
     if (currentPath === "/admin") {
       const currentDate = new Date();
 
-      const targetDate = new Date("2024-05-01");
+      const targetDate = new Date("2024-04-25");
 
       if (currentDate < targetDate) {
         alert(
