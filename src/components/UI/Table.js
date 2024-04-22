@@ -1,34 +1,45 @@
-
 import { formatDate } from "../functions/utils";
-import c from "./Table.module.css"
+import c from "./Table.module.css";
 
-const Table=p=>{
-    console.log(p.data, "here")
+const Table = (p) => {
+  console.log(p.data, "here");
 
-    return(
-        <table className={c.table}>
-        <thead>
-          <tr>
-            <th>issue Description</th>
-            <th>causes</th>
-            <th width="30%">contermeasures</th>
-            <th>due Date</th>
-            <th>resp</th>
-            <th>status</th>
-          </tr>
-        </thead>
-        <tbody>
-        {p.data.length>0 && p.data.map(
+  return (
+    <table className={c.table}>
+      <thead>
+        <tr>
+          <th>issue Description</th>
+          <th>causes</th>
+          <th width="30%">contermeasures</th>
+          <th>due Date</th>
+          <th>resp</th>
+          <th>status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {p.data.length > 0 &&
+          p.data.map(
             (m, i) =>
               m.data.apm != null &&
               m.data.apm.map((m) => (
-                <tr key={m.id}>
+                <tr
+                  key={m.id}
+                  style={
+                    m.status === "RC Fixedrc fix confirmed"
+                      ? { backgroundColor: "green" }
+                      : m.status === "action complete"
+                      ? { backgroundColor: "green" }
+                      : {}
+                  }
+                >
                   <td>{m.issueDescription}</td>
                   <td>{m.causes}</td>
                   <td>{m.contermeasures}</td>
                   <td
                     style={
-                      m.dueDate < formatDate(new Date())
+                      m.dueDate < formatDate(new Date()) &&
+                      m.status !== "action complete" &&
+                      m.status !== "RC Fixedrc fix confirmed"
                         ? { backgroundColor: "red" }
                         : {}
                     }
@@ -40,18 +51,18 @@ const Table=p=>{
                 </tr>
               ))
           )}
-        </tbody>
-        <tfoot>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tfoot>
-      </table>
-    );
-}
+      </tbody>
+      <tfoot>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
+  );
+};
 export default Table;

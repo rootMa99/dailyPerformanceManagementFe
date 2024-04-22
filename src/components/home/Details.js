@@ -339,13 +339,24 @@ const Details = (p) => {
                     (m, i) =>
                       m.data.apm != null &&
                       m.data.apm.map((m) => (
-                        <tr key={m.id}>
+                        <tr
+                          key={m.id}
+                          style={
+                            m.status === "RC Fixedrc fix confirmed"
+                              ? { backgroundColor: "green" }
+                              : m.status === "action complete"
+                              ? { backgroundColor: "green" }
+                              : {}
+                          }
+                        >
                           <td>{m.issueDescription}</td>
                           <td>{m.causes}</td>
                           <td>{m.contermeasures}</td>
                           <td
                             style={
-                              m.dueDate < formatDate(new Date())
+                              m.dueDate < formatDate(new Date()) &&
+                              m.status !== "action complete" &&
+                              m.status !== "RC Fixedrc fix confirmed"
                                 ? { backgroundColor: "red" }
                                 : {}
                             }
