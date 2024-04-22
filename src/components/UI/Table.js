@@ -25,10 +25,10 @@ const Table = (p) => {
                 <tr
                   key={m.id}
                   style={
-                    m.status === "RC Fixedrc fix confirmed"
-                      ? { backgroundColor: "green" }
+                    m.status === "rc fix confirmed"
+                      ? { backgroundColor: "#006B63" }
                       : m.status === "action complete"
-                      ? { backgroundColor: "green" }
+                      ? { backgroundColor: "#00AC9E" }
                       : {}
                   }
                 >
@@ -39,7 +39,7 @@ const Table = (p) => {
                     style={
                       m.dueDate < formatDate(new Date()) &&
                       m.status !== "action complete" &&
-                      m.status !== "RC Fixedrc fix confirmed"
+                      m.status !== "rc fix confirmed"
                         ? { backgroundColor: "red" }
                         : {}
                     }

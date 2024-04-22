@@ -98,11 +98,11 @@ const Delivery = (p) => {
   deliveryData.map((m) =>
     m.data.type === "negative"
       ? m.data.real > m.data.target
-        ? bgcolor.push("rgb(88, 3, 3)")
-        : bgcolor.push("#005B41")
+        ? bgcolor.push("#CF3335")
+        : bgcolor.push("#00AC9E")
       : m.data.real >= m.data.target
-      ? bgcolor.push("#005B41")
-      : bgcolor.push("rgb(88, 3, 3)")
+      ? bgcolor.push("#00AC9E")
+      : bgcolor.push("#CF3335")
   );
   console.log(deliveryData, p.title, "debuger simple");
   const data = {
@@ -349,10 +349,10 @@ const Delivery = (p) => {
                         <tr
                           key={m.id}
                           style={
-                            m.status === "RC Fixedrc fix confirmed"
-                              ? { backgroundColor: "green" }
+                            m.status === "rc fix confirmed"
+                              ? { backgroundColor: "#006B63" }
                               : m.status === "action complete"
-                              ? { backgroundColor: "green" }
+                              ? { backgroundColor: "#00AC9E" }
                               : {}
                           }
                         >
@@ -363,7 +363,7 @@ const Delivery = (p) => {
                             style={
                               m.dueDate < formatDate(new Date()) &&
                               m.status !== "action complete" &&
-                              m.status !== "RC Fixedrc fix confirmed"
+                              m.status !== "rc fix confirmed"
                                 ? { backgroundColor: "red" }
                                 : {}
                             }
