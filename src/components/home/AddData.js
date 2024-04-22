@@ -273,13 +273,14 @@ const AddData = (p) => {
       console.log(pareto, dataAdded.name, p.title);
       let l = 0;
       pareto.forEach((e) => (l += e.percentage));
-      if (l > 100) {
+      if (l > 100 || l < 100) {
         setErr({
           status: true,
-          message: `The Pareto total must be less than 100%. total is: ${l}`,
+          message: `The Pareto total must be equal 100%. total is: ${l}`,
         });
         return;
       }
+      
       try {
         await fetch(
           `${api}/${p.title}/pareto?name=${dataAdded.name}&date=${dataAdded.date}`,
@@ -555,7 +556,7 @@ const AddData = (p) => {
                   </div>
                 ))}
                 <h4 className={c.addPm}>
-                  note: The Pareto total must be less than or equal 100%
+                  note: The Pareto total must be equal 100%
                 </h4>
                 <h4
                   onClick={(e) =>

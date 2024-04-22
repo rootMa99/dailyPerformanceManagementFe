@@ -131,8 +131,6 @@ const Delivery = (p) => {
         label: "Actual",
         data: deliveryData.map((m) => m.data.real),
         backgroundColor: bgcolor,
-        borderColor: "#F84018",
-        borderWidth: 1,
       },
     ],
   };
@@ -165,7 +163,7 @@ const Delivery = (p) => {
           color: "#f3f3f34f",
         },
         ticks: {
-          display: p.home === undefined ? false : true,
+          display: false,
           color: "white",
           fontWeight: "bold",
         },
