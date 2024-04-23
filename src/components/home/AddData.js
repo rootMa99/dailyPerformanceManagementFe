@@ -105,13 +105,19 @@ const AddData = (p) => {
     try {
       if (dataAdded.name !== null || dataAdded.name !== "create new kpi") {
         const d = p.data.filter((f) => f.name === dataAdded.name)[0].data;
-        console.log(d);
+        const i= d.findIndex(f=>f.date===p.dateChoosen);
+        console.log(d, i);
+        if(i>-1){
+          setDataAdded(p=>({...p, real:d[i].data.real, target:d[i].data.target}))
+        }else{
+          setDataAdded(p=>({...p, real:"", target:""}))
+        }
         setSeparateData(d);
       }
     } catch (error) {
       console.error(error);
     }
-  }, [dataAdded.name, p.data]);
+  }, [dataAdded.name, p.data, p.dateChoosen]);
 
   useEffect(() => {
     try {
