@@ -233,42 +233,6 @@ const AddData = (p) => {
         });
       }
     }
-    // if (control === "acp") {
-    //   console.log(apm);
-
-    //   try {
-    //     await fetch(
-    //       `${api}/${p.title}/actionPlan?name=${dataAdded.name.value}&date=${dataAdded.date}`,
-    //       {
-    //         method: "POST",
-    //         headers: {
-    //           "Content-Type": "application/json",
-    //           // Authorization: `Bearer ${isLoged.token}`,
-    //         },
-    //         body: JSON.stringify([apm]),
-    //       }
-    //     );
-    //     setApm({
-    //       issueDescription: "",
-    //       causes: "",
-    //       contermeasures: "",
-    //       resp: "",
-    //       dueDate: "",
-    //       status: "",
-    //     });
-    //     setSuccess({
-    //       status: true,
-    //       message: "data has been successfully added.",
-    //     });
-    //   } catch (error) {
-    //     console.error("Error:", error);
-    //     setErr({
-    //       status: true,
-    //       message:
-    //         "Something has gone wrong, we were not able to save this action, please try it again. ",
-    //     });
-    //   }
-    // }
     if (control === "ap") {
       console.log(pareto, dataAdded.name, p.title);
       let l = 0;
