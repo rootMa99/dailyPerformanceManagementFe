@@ -229,7 +229,7 @@ const AddData = (p) => {
         setErr({
           status: true,
           message:
-            "Something has gone wrong, we were not able to save this action, please try it again. ",
+            "Something has gone wrong, we were not able to save this action, please try it again.",
         });
       }
     }
@@ -252,12 +252,10 @@ const AddData = (p) => {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              // Authorization: `Bearer ${isLoged.token}`,
             },
             body: JSON.stringify(pareto),
           }
         );
-        // setParetp([{ motif: "", percentage: "" }]);
         setSuccess({
           status: true,
           message: "data has been successfully added.",
