@@ -9,6 +9,9 @@ import {
 } from "../functions/newUtils";
 import NetworkNotify from "../UI/NetworkNotify";
 import UpdateTable from "../UI/UpdateTable";
+import BackDrop from "../UI/BackDrop";
+import UploadDataForm from "../UI/UploadDataForm";
+
 
 const customStyles = {
   control: (provided, state) => ({
@@ -83,6 +86,7 @@ function dataExists(array, key, value) {
 
 const AddData = (p) => {
   const [control, setControl] = useState("ad");
+  const [upload, setUpload]= useState(false)
   const [next, setNext] = useState(false);
   const [separateData, setSeparateData] = useState(null);
   const [acp, setAcp]=useState([]);
@@ -302,6 +306,9 @@ const AddData = (p) => {
   console.log(dataAdded);
   return (
     <React.Fragment>
+    {
+      upload && <UploadDataForm />
+    }
       {err.status && <NetworkNotify message={err.message} success={false} />}
       {success.status && (
         <NetworkNotify message={success.message} success={true} />
@@ -542,6 +549,18 @@ const AddData = (p) => {
               {!next ? "submit" : "next"}
             </button>
           )}
+          {
+            control === "ad" && (
+              <h4
+                  onClick={(e) =>
+                    setUpload(true)
+                  }
+                  className={c.addP}
+                >
+                  upload data
+                </h4>
+            )
+          }
         </form>
       </div>
     </React.Fragment>
