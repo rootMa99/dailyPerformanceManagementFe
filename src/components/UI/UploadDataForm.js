@@ -98,13 +98,15 @@ const UploadDataForm = (p) => {
               </div>
             </React.Fragment>
           </label>
-         
         </div>
         {showButton && (
-            <button className={c.button} onClick={handleButtonClick}>
-              Upload File
-            </button>
-          )}
+          <button className={c.button} onClick={handleButtonClick}>
+            Upload File
+          </button>
+        )}
+        <h4 onClick={(e) => console.log("c")} className={c.addP}>
+          cancel
+        </h4>
       </div>
     </React.Fragment>
   );
