@@ -13,6 +13,14 @@
   align-items: center;
   gap: 20px;
 }
+.warning, .warningNote{
+    color: #f84018;
+    margin: 0;
+}
+.warningNote{
+    color: yellow;
+    font-weight: 400;
+}
 .button {
   width: 30rem;
   display: flex;
@@ -26,7 +34,6 @@
   font-size: inherit;
   gap: 8px;
   margin: 0;
-  margin-top: 2rem;
   cursor: pointer;
   border-radius: 6px;
   box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.084), 0px 2px 3px rgba(0, 0, 0, 0.168);
@@ -168,15 +175,53 @@
 }
 
 .addP {
-  margin-right: 1rem;
   text-transform: uppercase;
-  margin-top: 2rem;
   opacity: 0.5;
   cursor: pointer;
-  margin-bottom: 0;
+  margin: 0;
   color: #fff;
 }
 .addP:hover {
   opacity: 1;
   transform: scale(1.1);
 }
+.table {
+    width: 40%;
+    border-collapse: initial;
+    /* border: 1px solid black; */
+    border-radius: 20px;
+    animation: rsin 0.25s ease-in forwards;
+    table-layout: fixed;
+    box-shadow: 0px 0px 25px 5px rgba(8, 8, 8, 0.788);
+  }
+  .table thead,
+  .table tfoot {
+    background-color: #f84018;
+  }
+  .table th,
+  .table tfoot tr td {
+    font-family: Formular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol";
+    color: rgb(255, 254, 251);
+    text-align: center;
+    text-transform: uppercase;
+    padding: 16px 3px;
+  }
+  .table th:first-of-type {
+    border-radius: 14px 0 0 0;
+  }
+  .table th:last-of-type {
+    border-radius: 0 14px 0 0;
+  }
+  
+  .table tfoot tr:last-of-type td:last-of-type {
+    border-radius: 0 0 14px 0;
+  }
+  .table tfoot tr:last-of-type td:first-of-type {
+    border-radius: 0 0 0 14px;
+  }
+  .table tfoot tr td {
+    font-weight: 900;
+    font-size: larger;
+  }

@@ -61,11 +61,38 @@ const UploadDataForm = (p) => {
     }, 2000);
   }
 
-
   return (
     <React.Fragment>
-    {err.status && <NetworkNotify message={err.message} success={false} />}
+      {err.status && <NetworkNotify message={err.message} success={false} />}
       <div className={c.uploadH}>
+        <h3 className={c.warning}>
+          Warning: The KPI name must be the same as the KPI that you are
+          targeting.*
+        </h3>
+        <h4 className={c.warningNote}>
+          Note: The schema of Excel must be as follows.**
+        </h4>
+        <table className={c.table}>
+          <thead>
+            <tr>
+              <th>date</th>
+              <th>real</th>
+              <th>target</th>
+              <th>kpi Name</th>
+              <th>type</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+          <tfoot>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tfoot>
+        </table>
         <div className={c.wrap}>
           <label
             htmlFor="images"
