@@ -50,7 +50,7 @@ const UploadDataForm = (p) => {
       setErr({
         status: true,
         message:
-          "Something has gone wrong, we were not able to save this action, please try it again. ",
+          "Something has gone wrong, we were not able to save this action, please try it again.",
       });
     }
   };
