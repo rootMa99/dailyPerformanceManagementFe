@@ -368,8 +368,8 @@ const AddData = (p) => {
                       <h3>choose type:</h3>
                       <Select
                         options={[
-                          { label: "negative", value: "negative" },
-                          { label: "positive", value: "positive" },
+                          { label: "minimize against target", value: "negative" },
+                          { label: "maximize against target", value: "positive" },
                         ]}
                         id="modality"
                         inputId="modality"
