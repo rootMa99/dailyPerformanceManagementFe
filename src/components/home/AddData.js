@@ -303,10 +303,13 @@ const AddData = (p) => {
   };
 
   console.log(dataAdded);
+  const close=()=>{
+    setUpload(false);
+  }
   return (
     <React.Fragment>
     {
-      upload && <UploadDataForm />
+      upload && <UploadDataForm title={p.title} close={close}/>
     }
       {err.status && <NetworkNotify message={err.message} success={false} />}
       {success.status && (

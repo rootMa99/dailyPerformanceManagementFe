@@ -39,15 +39,12 @@ const UploadDataForm = (p) => {
     formData.append("excel", file);
 
     try {
-      const response = await fetch(`${api}/logistics`, {
+      await fetch(`${api}/${p.title}/uploadData`, {
         method: "POST",
         body: formData,
       });
-
-      const data = await response.json();
-      console.log(data);
+      p.close();
     } catch (error) {
-      setShowbutton(true);
       console.error("Error:", error);
     }
   };
@@ -104,7 +101,7 @@ const UploadDataForm = (p) => {
             Upload File
           </button>
         )}
-        <h4 onClick={(e) => console.log("c")} className={c.addP}>
+        <h4 onClick={(e) => p.close()} className={c.addP}>
           cancel
         </h4>
       </div>
