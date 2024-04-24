@@ -1,13 +1,14 @@
 import React, { useRef, useState } from "react";
 import c from "./UploadDataForm.module.css";
 import api from "../../service/api";
+import NetworkNotify from "./NetworkNotify";
 
 const UploadDataForm = (p) => {
   const dropContainerRef = useRef(null);
   const fileInputRef = useRef(null);
   const [file, setFile] = useState();
   const [showButton, setShowbutton] = useState(false);
-
+  const [err, setErr] = useState({ status: false, message: "" });
   const handleDragOver = (e) => {
     e.preventDefault();
   };
@@ -36,7 +37,7 @@ const UploadDataForm = (p) => {
   const handleButtonClick = async () => {
     setShowbutton(false);
     const formData = new FormData();
-    formData.append("excel", file);
+    formData.append("file", file);
 
     try {
       await fetch(`${api}/${p.title}/uploadData`, {
@@ -46,11 +47,24 @@ const UploadDataForm = (p) => {
       p.close();
     } catch (error) {
       console.error("Error:", error);
+      setErr({
+        status: true,
+        message:
+          "Something has gone wrong, we were not able to save this action, please try it again. ",
+      });
     }
   };
 
+  if (err.status) {
+    setTimeout(() => {
+      setErr({ status: false, message: "" });
+    }, 2000);
+  }
+
+
   return (
     <React.Fragment>
+    {err.status && <NetworkNotify message={err.message} success={false} />}
       <div className={c.uploadH}>
         <div className={c.wrap}>
           <label
