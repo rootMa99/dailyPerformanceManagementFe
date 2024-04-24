@@ -98,6 +98,9 @@
 .inputC input::placeholder {
   opacity: 0.8;
 }
+.inputC h3{
+  text-transform: uppercase;
+}
 
 .inputC input:focus,
 .inputC input:hover,
@@ -141,12 +144,12 @@
 }
 .mssgN{
   color: #d7c90b87;
-  font-weight: lighter !important;
-  font-size:smaller;
+  font-weight: 600;
+  font-size:small;
   margin: 0;
 }
 .addPm {
-  color: #ffee00;
+  color: yellow;
   position: absolute;
   bottom: 5.5rem;
   text-transform: uppercase;

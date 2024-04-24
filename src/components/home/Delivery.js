@@ -299,9 +299,9 @@ const Delivery = (p) => {
           />
         </div>
         <div className={c.chartHolder}>
-          <div className={c.titletop}>
+          <div className={c.title}>
             <span></span>
-            <h3> {p.title} </h3>
+            <h3> trend </h3>
             <span></span>
           </div>
           <Line data={data} options={options} />

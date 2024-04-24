@@ -368,8 +368,7 @@ const AddData = (p) => {
                     value={dataAdded.alias}
                   />
                 </div>
-                {(dataAdded.name === null ||
-                  dataAdded.alias.value === "create new kpi") && (
+                {(dataAdded.alias.value === "create new kpi") && (
                   <React.Fragment>
                     OR
                     <div className={c.inputC}>
@@ -443,6 +442,7 @@ const AddData = (p) => {
               </div>
 
               {
+                
                 <div className={c["form-group"]}>
                   <div className={c.inputC}>
                     <h3>real data:</h3>
