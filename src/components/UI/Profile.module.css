@@ -56,9 +56,9 @@
   }
   .edit{
     position: absolute;
-    bottom: -10px;
-    right: -10px;
-    width: 4rem;
+    bottom: 0px;
+    right: 2px;
+    width: 2.5rem;
     cursor: pointer;
   }
   .edit:hover{
