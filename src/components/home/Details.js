@@ -155,7 +155,7 @@ const Details = (p) => {
       {
         type: "line",
         label: "Target",
-        data: deliveryData.map((m) => m.data.target),
+        data: deliveryData.map((m) => m.data.target.toFixed(1)),
         backgroundColor: "#F84018",
         pointHoverBorderColor: "#FAF0E6",
         borderColor: "#3BC6EB",
@@ -173,7 +173,7 @@ const Details = (p) => {
       {
         type: "bar",
         label: "Actual",
-        data: deliveryData.map((m) => m.data.real),
+        data: deliveryData.map((m) => m.data.real.toFixed(1)),
         backgroundColor: bgcolor,
         borderColor: "#F84018",
         borderWidth: 1,
