@@ -23,8 +23,9 @@
   color: #757373;
   font-weight: bold;
   text-transform: capitalize;
-  text-align: right;
+  text-align: center;
   margin: 1rem;
+  margin-top: 2rem;
 }
 .sign a{
   text-decoration: none;
@@ -32,7 +33,7 @@
   cursor: pointer;
 }
 .sign a:hover{
-  color: #f8f8f8;
+  color: #ffffff;
 }
 @media (height >= 700px) {
   .App {

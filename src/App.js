@@ -49,7 +49,13 @@ function App() {
     <div className="App">
       <NavBar />
       <Home />
-      <p className="sign" >developed by: <a href="https://www.linkedin.com/in/anass-zeroual-54a90b1b8/">Anass Zeroual</a></p>
+      <p className="sign">
+      <a href="https://www.aptiv.com/">©APTIV M4-meknes.</a> All Rights Reserved.
+        Designed and developed by:{" "}
+        <a href="https://www.linkedin.com/in/anass-zeroual-54a90b1b8/">
+          Zeroual Anass
+        </a>, Managed by: Haidar, Ouassil & El Ouafi, Halima
+      </p>
     </div>
   );
 }
