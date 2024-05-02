@@ -49,6 +49,7 @@ function App() {
     <div className="App">
       <NavBar />
       <Home />
+      <p className="sign" >developed by: Anass Zeroual</p>
     </div>
   );
 }
