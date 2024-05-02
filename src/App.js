@@ -49,7 +49,7 @@ function App() {
     <div className="App">
       <NavBar />
       <Home />
-      <p className="sign" >developed by: Anass Zeroual</p>
+      <p className="sign" >developed by: <a href="https://www.linkedin.com/in/anass-zeroual-54a90b1b8/">Anass Zeroual</a></p>
     </div>
   );
 }

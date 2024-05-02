@@ -20,13 +20,20 @@
   background-color: #f84018;
 }
 .sign{
-  color: #535151;
+  color: #757373;
   font-weight: bold;
   text-transform: capitalize;
   text-align: right;
   margin: 1rem;
 }
-
+.sign a{
+  text-decoration: none;
+  color: #757373;
+  cursor: pointer;
+}
+.sign a:hover{
+  color: #f8f8f8;
+}
 @media (height >= 700px) {
   .App {
     height: 94vh;
