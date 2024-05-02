@@ -50,12 +50,19 @@ function App() {
       <NavBar />
       <Home />
       <p className="sign">
-      <a href="https://www.aptiv.com/" target="_blank" rel="noreferrer">©APTIV M4-meknes.</a> All Rights Reserved.
-        Designed and developed by:{" "}
-        <a href="https://www.linkedin.com/in/anass-zeroual-54a90b1b8/" target="_blank" rel="noreferrer">
-          Zeroual Anass
-        </a>, Managed by: Haidar Ouassil & El Ouafi Halima
-      </p>
+      <a href="https://www.aptiv.com/" target="_blank" rel="noreferrer">
+        ©APTIV M4-meknes.
+      </a>
+      All Rights Reserved. Designed and developed by:
+      <a
+        href="https://www.linkedin.com/in/anass-zeroual-54a90b1b8/"
+        target="_blank"
+        rel="noreferrer"
+      >
+        Zeroual Anass
+      </a>
+      , Managed by: Haidar Ouassil & El Ouafi Halima
+    </p>
     </div>
   );
 }

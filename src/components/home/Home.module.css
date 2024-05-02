@@ -1,8 +1,7 @@
 .holding {
   display: flex;
   justify-content: space-evenly;
-  height: 100rem;
-
+  min-height: 110rem;
 }
 
 .letterContainer {
