@@ -543,7 +543,7 @@ const AddData = (p) => {
                     </div>
                   </div>
                 ))}
-                
+                <div className={c.mod}>
                 <h4 className={c.addPm}>
                   note: The Pareto total must be equal 100%
                 </h4>
@@ -555,6 +555,8 @@ const AddData = (p) => {
                 >
                   add pareto
                 </h4>
+                </div>
+                
               </React.Fragment>
             </React.Fragment>
           )}
