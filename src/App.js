@@ -51,7 +51,7 @@ function App() {
       <Home />
       <p className="sign">
         <a href="https://www.aptiv.com/" target="_blank" rel="noreferrer">
-          ©APTIV M4-meknes.
+          ©APTIV M4-Meknès.
         </a>{" "}
         All Rights Reserved. Designed and developed by:{" "}
         <a
