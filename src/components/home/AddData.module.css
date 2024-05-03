@@ -180,3 +180,9 @@
   /* margin: 0; */
   width: max-content;
 }
+.mod{
+  width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
