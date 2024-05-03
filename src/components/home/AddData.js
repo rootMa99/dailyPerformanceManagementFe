@@ -566,7 +566,7 @@ const AddData = (p) => {
             </button>
           )}
           {control === "ad" && kpiListOwner.length > 0 && (
-            <h4 onClick={(e) => setUpload(true)} className={c.addP}>
+            <h4 onClick={(e) => setUpload(true)} className={c.addPs}>
               upload data
             </h4>
           )}

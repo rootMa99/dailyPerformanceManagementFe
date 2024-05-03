@@ -146,9 +146,9 @@
   align-items: center;
   gap: 3rem;
 }
-.addP {
+.addP,.addPs {
   display: flex;
-  margin-left: auto;
+  /* margin-left: auto; */
   margin-right: 1rem;
   text-transform: uppercase;
   margin-top: 0;
@@ -156,7 +156,11 @@
   cursor: pointer;
   margin-bottom: 0;
 }
-.addP:hover {
+.addPs{
+  margin-left: auto;
+  margin-top: 10px;
+}
+.addP:hover, .addPs:hover {
   opacity: 1;
   transform: scale(1.1);
 }
@@ -185,4 +189,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+.form-submit-btn{
+  margin-top: 0 !important;
 }
