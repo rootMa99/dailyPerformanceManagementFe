@@ -61,7 +61,6 @@ function App() {
         >
           Zeroual Anass
         </a>
-        , Managed by: Haidar Ouassil & El Ouafi Halima
       </p>
     </div>
   );
