@@ -309,7 +309,7 @@ const Delivery = (p) => {
             <React.Fragment>
               <div className={c.title}>
                 <span></span>
-                <h3> preto </h3>
+                <h3> pareto </h3>
                 <span></span>
               </div>
               <Bar data={paretoChart} options={options} />
