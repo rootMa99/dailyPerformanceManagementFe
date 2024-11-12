@@ -58,7 +58,8 @@ const Delivery = (p) => {
       const data = await response.json();
       const d = separateDataByName(data);
       setPassedData(d);
-      try {
+      try {        
+        // console.log(getOnlyDay(d.filter((f) => f.name === "first")[0].data), p.title, "############################################################################")
         setDeliveryData(
           getOnlyDay(d.filter((f) => f.name === "first")[0].data)
         );
@@ -334,6 +335,7 @@ const Delivery = (p) => {
                     <th>issue Description</th>
                     <th>causes</th>
                     <th width="30%">contermeasures</th>
+                    <th>open Date</th>
                     <th>due Date</th>
                     <th>resp</th>
                     <th>status</th>
@@ -357,6 +359,9 @@ const Delivery = (p) => {
                           <td>{m.issueDescription}</td>
                           <td>{m.causes}</td>
                           <td>{m.contermeasures}</td>
+                          <td>
+                            {m.openDate}
+                          </td>
                           <td
                             style={
                               m.dueDate < formatDate(new Date()) &&
@@ -376,6 +381,7 @@ const Delivery = (p) => {
                 </tbody>
                 <tfoot>
                   <tr>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>

@@ -87,14 +87,15 @@ const Details = (p) => {
   const { data } = useSelector((s) => s.data);
   const [kpiListOwner, setKpiListOwner] = useState([]);
   const [kpi, setKpi] = useState({});
-  console.log(data);
+ 
   useEffect(() => {
     if (kpiListOwner.length > 0) {
-      const d = kpiListOwner.filter((f) => f.kpiName === "first");
+      const d =
+        kpiListOwner.filter((f) => f.kpiName === "first");
       console.log(d);
       setKpi({ label: d[0].alias, value: d[0].kpiName });
     }
-  }, [kpiListOwner]);
+  }, [kpiListOwner, p.title]);
   console.log(
     data[p.title].length,
     ...kpiListOwner.filter((f) => f.kpiName === "first")
@@ -274,7 +275,7 @@ const Details = (p) => {
       <div className={c["form-container"]}>
         <div className={c.selectContainer}>
           <Select
-            options={newgetlabelandvalue(kpiListOwner)}
+            options={newgetlabelandvalue(kpiListOwner, p.title)}
             styles={customStyles}
             placeholder="select KPI"
             onChange={(e) => setKpi(e)}
@@ -301,7 +302,7 @@ const Details = (p) => {
             <h3> trend </h3>
             <span></span>
           </div>
-          <div style={{ height: "35rem" }}>
+          <div style={{ height: "35rem"}}>
             <Line data={datac} options={options} />
           </div>
           {pareto.length > 0 && (
@@ -311,7 +312,7 @@ const Details = (p) => {
                 <h3> preto </h3>
                 <span></span>
               </div>
-              <div style={{ height: "25rem" }}>
+              <div style={{ height: "25rem"}}>
                 <Bar data={paretoChart} options={options} />
               </div>
             </React.Fragment>
@@ -328,7 +329,8 @@ const Details = (p) => {
                   <tr>
                     <th>issue Description</th>
                     <th>causes</th>
-                    <th width="30%">contermeasures</th>
+                    <th width="25%">contermeasures</th>
+                    <th>open Date</th>
                     <th>due Date</th>
                     <th>resp</th>
                     <th>status</th>
@@ -352,6 +354,9 @@ const Details = (p) => {
                           <td>{m.issueDescription}</td>
                           <td>{m.causes}</td>
                           <td>{m.contermeasures}</td>
+                          <td>
+                            {m.openDate}
+                          </td>
                           <td
                             style={
                               m.dueDate < formatDate(new Date()) &&
@@ -371,6 +376,7 @@ const Details = (p) => {
                 </tbody>
                 <tfoot>
                   <tr>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>

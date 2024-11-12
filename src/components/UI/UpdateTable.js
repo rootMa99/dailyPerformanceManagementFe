@@ -90,6 +90,7 @@ const UpdateTable = (p) => {
     resp: "",
     dueDate: "",
     status: "",
+    openDate:""
   });
   const [addAp, setAddAp] = useState(false);
 
@@ -127,6 +128,7 @@ const UpdateTable = (p) => {
         contermeasures: "",
         resp: "",
         dueDate: "",
+        openDate: "",
         status: "",
       });
       setSuccess({
@@ -234,6 +236,19 @@ const UpdateTable = (p) => {
               />
             </div>
             <div className={c.inputC}>
+              <h3>open date:</h3>
+              <input
+                type="date"
+                value={apm.openDate}
+                required
+                onChange={(e) =>
+                  setApm((p) => {
+                    return { ...p, openDate: e.target.value };
+                  })
+                }
+              />
+            </div>
+            <div className={c.inputC}>
               <h3>Due date:</h3>
               <input
                 type="date"
@@ -294,7 +309,8 @@ const UpdateTable = (p) => {
               <tr>
                 <th>issue Description</th>
                 <th>causes</th>
-                <th width="30%">contermeasures</th>
+                <th width="25%">contermeasures</th>
+                <th>open Date</th>
                 <th>due Date</th>
                 <th>resp</th>
                 <th>status</th>
@@ -312,6 +328,9 @@ const UpdateTable = (p) => {
                   <td>{m.issueDescription}</td>
                   <td>{m.causes}</td>
                   <td>{m.contermeasures}</td>
+                  <td>
+                    {m.openDate}
+                  </td>
                   <td
                     style={
                       m.dueDate < formatDate(new Date())
@@ -328,6 +347,7 @@ const UpdateTable = (p) => {
             </tbody>
             <tfoot>
               <tr>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>

@@ -1,11 +1,12 @@
 import { useDispatch } from "react-redux";
-import { useCallback, useEffect } from "react";
+import { Suspense, useCallback, useEffect } from "react";
 import "./App.css";
 import NavBar from "./components/UI/NavBar";
 import Home from "./components/home/Home";
 import api from "./service/api";
 import { dataActions } from "./components/store/dataSlice";
-import { useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import ActionExitCriteria from "./components/UI/ActionExitCriteria";
 
 function App() {
   const dispatch = useDispatch();
@@ -48,22 +49,30 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <Home />
-      <p className="sign">
-        <a href="https://www.aptiv.com/" target="_blank" rel="noreferrer">
-          ©APTIV M4-Meknès.
-        </a>{" "}
-        All Rights Reserved. Designed and developed by:{" "}
-        <a
-          href="https://www.linkedin.com/in/anass-zeroual-54a90b1b8/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Zeroual Anass
-        </a>
-      </p>
+      <Suspense>
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/admin" element={<Home />} />
+        <Route exact path="/aec" element={<ActionExitCriteria />} />
+        <Route path="*" element={<Navigate replace to="/" />} />
+      </Routes>
+    </Suspense>
+      
     </div>
   );
 }
 
 export default App;
+// <p className="sign">
+//         <a href="https://www.aptiv.com/" target="_blank" rel="noreferrer">
+//           ©APTIV M4-Meknès.
+//         </a>{" "}
+//         All Rights Reserved. Designed and developed by:{" "}
+//         <a
+//           href="https://www.linkedin.com/in/anass-zeroual-54a90b1b8/"
+//           target="_blank"
+//           rel="noreferrer"
+//         >
+//           Zeroual Anass
+//         </a>
+//       </p>

@@ -14,11 +14,23 @@ const NavBar = (p) => {
 
       <div className={c.links}>
         <ul>
-        <li style={{ marginRight: "20rem" }}>
-        <a href="http://10.142.0.204/toScada" target="_blank" rel="noopener noreferrer">
-          DPO utilisation
-        </a>
-      </li>
+          <li>
+            <NavLink
+              to="/aec"
+              className={({ isActive }) => (isActive ? c.activeLink : c.link)}
+            >
+              Action Exit Criteria
+            </NavLink>
+          </li>
+          <li style={{ marginRight: "20rem" }}>
+            <a
+              href="http://10.142.0.204/toScada"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              DPO usage
+            </a>
+          </li>
         </ul>
       </div>
     </div>
