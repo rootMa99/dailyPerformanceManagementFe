@@ -147,12 +147,18 @@ const Details = (p) => {
       : bgcolor.push("#CF3335")
   );
   const datac = {
-    // labels: [
-    //   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-    //   22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
-    // ],
     labels: deliveryData.map((m) => m.day),
     datasets: [
+      {
+        type: "bar",
+        label: "Real",
+        data: deliveryData.map((m) => m.data.real.toFixed(1)),
+        backgroundColor: bgcolor,
+        borderColor: "#F84018",
+        borderWidth: 1,
+        yAxisID: 'y',
+        order: 3
+      },
       {
         type: "line",
         label: "Target",
@@ -170,17 +176,31 @@ const Details = (p) => {
         pointBorderWidth: 8,
         pointRadius: 1,
         borderDash: [5, 7],
+        yAxisID: 'y',
+        order: 2
       },
       {
-        type: "bar",
-        label: "Actual",
-        data: deliveryData.map((m) => m.data.real.toFixed(1)),
-        backgroundColor: bgcolor,
-        borderColor: "#F84018",
-        borderWidth: 1,
-      },
+        type: "line",
+        label: "Cumulative",
+        data: (() => {
+          let cumsum = 0;
+          return deliveryData.map((m) => {
+            cumsum += parseFloat(m.data.real);
+            return cumsum.toFixed(1);
+          });
+        })(),
+        backgroundColor: "#FFD700",
+        borderColor: "#FFD700",
+        fill: false,
+        tension: 0.4,
+        borderWidth: 2,
+        pointRadius: 3,
+        yAxisID: 'y1',
+        order: 1
+      }
     ],
   };
+  
   const options = {
     responsive: true,
     maintainAspectRatio: false,
@@ -200,43 +220,85 @@ const Details = (p) => {
           color: "white",
           fontWeight: "bold",
         },
-        y: {
-          stacked: true,
-        },
+        position: 'left',
       },
+      y1: {
+        position: 'right',
+        grid: {
+          drawOnChartArea: false,
+        },
+        ticks: {
+          color: "#FFD700",
+          fontWeight: "bold",
+          display: p.home === undefined ? false : true,
+        },
+      }
     },
     plugins: {
       legend: {
-        labels: {
-          color: "#FAF0E6",
-        },
         display: false,
       },
       datalabels: {
         display: true,
       },
     },
+    layout: {
+      padding: {
+        top: 70 
+      }
+    },
     animation: p.home === undefined && {
       onComplete: (animation) => {
         const { chart } = animation;
         const ctx = chart.ctx;
-        chart.data.datasets.forEach((dataset, index) => {
-          const meta = chart.getDatasetMeta(index);
+        
+        const chartArea = chart.chartArea;
+        
+        const positions = {
+          Target: chartArea.top - 55,
+          Cumulative: chartArea.top - 30,
+          Real: null
+        };
+        
+        ['Real', 'Target', 'Cumulative'].forEach(labelType => {
+          const dataset = chart.data.datasets.find(ds => ds.label === labelType);
+          if (!dataset) return;
+          
+          const meta = chart.getDatasetMeta(chart.data.datasets.indexOf(dataset));
           meta.data.forEach((element, index) => {
-            // const data = `${dataset.data[index]}%`;
             const data = `${dataset.data[index]}`;
-            let xPos, yPos;
-            if (dataset.type === "bar") {
-              xPos = element.x;
-              yPos = element.y + element.height / 2;
-            } else if (dataset.type === "line") {
-              xPos = element.x;
-              yPos = element.y - 20;
+            let xPos = element.x;
+            let yPos;
+            
+            if (labelType === 'Real') {
+              yPos = element.y + (element.height ? element.height / 2 : 0);
+            } else {
+              yPos = positions[labelType];
             }
+            
+            const colors = {
+              Real: "#FFFAD7",
+              Target: "#EEEEEE",
+              Cumulative: "#FFD700"
+            };
+            
             ctx.save();
             ctx.textAlign = "center";
-            ctx.fillStyle = dataset.type === "bar" ? "#FFFAD7" : "#EEEEEE";
-            ctx.font = "17px Arial";
+            ctx.font = "bold 17px Arial";
+            
+            const textWidth = ctx.measureText(data).width;
+            const padding = 4;
+            const height = 20;
+            
+            ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+            ctx.fillRect(
+              xPos - textWidth/2 - padding,
+              yPos - height + padding,
+              textWidth + (padding * 2),
+              height
+            );
+            
+            ctx.fillStyle = colors[labelType];
             ctx.fillText(data, xPos, yPos);
             ctx.restore();
           });
