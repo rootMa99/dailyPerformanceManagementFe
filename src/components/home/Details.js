@@ -113,7 +113,7 @@ const CustomBarLabel = (props) => {
 };
 
 const CustomLineLabel = (props) => {
-  const { x, y, value, stroke } = props;
+  const { x, y, value } = props;
   return (
     <text 
       x={x} 
